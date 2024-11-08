@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.upper-header {
+    height: auto;
+    text-align: center;
+}
+
+.upper-header a img {
+    width: 246px;
+}
