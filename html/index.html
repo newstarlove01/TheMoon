@@ -1,19 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trang chủ</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <header>
-        <div class="upper-header">
-            <a href=""><img src="/img/logo-ngang.png" alt=""></a>
-            <div>
 
-            </div>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/slick.css" />
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <link rel="stylesheet" href="../css/all.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Darker+Grotesque:wght@300..900&family=Jura:wght@300..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body id="body">
+    <header>
+      <div class="logo-nav">
+        <a href="#"><img id="logo" src="/img/logo-ngang.png" alt="" /> </a>
+        <div class="icons-area">
+          <form action="">
+            <input
+              onmouseleave="closeSearch()"
+              id="search"
+              type="text"
+              placeholder="Tìm kiếm..."
+            />
+          </form>
+          <a onmouseover="openSearch()" href="#" class="search"
+            ><i class="fa-solid fa-magnifying-glass icon"></i
+          ></a>
+          <a href="#"><i class="fa-solid fa-user icon"></i></a>
+          <a href="#"><i class="fa-solid fa-cart-shopping icon"></i></a>
         </div>
+      </div>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary thanh-nav">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <!-- <span class="navbar-toggler-icon menu-icon"></span> -->
+            <i class="fa-solid fa-bars navbar-toggler-icon menu-icon"></i>
+          </button>
+          <div class="collapse navbar-collapse categories" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">NHẪN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">DÂY CHUYỀN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">KHUYÊN TAI</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">VÒNG TAY</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
-</body>
+    <main>
+      <div id="banner">
+        <div
+          id="carouselExampleIndicators"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="3"
+              aria-label="Slide 4"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="4"
+              aria-label="Slide 5"
+            ></button>
+          </div>
+          <div class="carousel-inner banner">
+            <div class="carousel-item active" data-bs-interval="2000">
+              <img src="/img/banner1.jpg" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="/img/banner2.jpg" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="/img/banner3.webp" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="/img/banner4.jpg" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="/img/banner5.webp" class="d-block w-100" alt="..." />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <div id="new">
+        <h1>Sản phẩm mới ra mắt</h1>
+        <div class="new">
+          <a href="#" class="new-items">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+            <p>985.000đ</p>
+            <button>Thêm vào giỏ hàng</button>
+          </a>
+          <a href="#" class="new-items">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+            <p>985.000đ</p>
+            <button>Thêm vào giỏ hàng</button>
+          </a>
+          <a href="#" class="new-items">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+            <p>985.000đ</p>
+            <button>Thêm vào giỏ hàng</button>
+          </a>
+          <a href="#" class="new-items">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+            <p>985.000đ</p>
+            <button>Thêm vào giỏ hàng</button>
+          </a>
+        </div>
+      </div>
+      <div id="introduct">
+        <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+        <div>
+          <h1>Nhẫn Bạc S925 Poseidon Helios Silver Original</h1>
+          <p>
+            Câu chuyện từ nhà thiết kế: Nhẫn Poseidon dựa trên vị vua cai quản
+            đại dương trong thần thoại Hy Lạp, có quyền năng thao túng những cơn
+            sóng thần cuộn trào.
+          </p>
+          <p>
+            Nổi bật trên mặt nhẫn là họa tiết đinh ba, vỏ sò, những đường lượn
+            sóng, cùng hai dãy ký tự POSEIDON và ΠΟΣΕΙΔΩΝ - tên của vị thần viết
+            bằng chữ Hy Lạp cổ.
+          </p>
+          <p>
+            Với form tròn và đường nét khỏe khoắn, chế tác Poseidon mang đến cho
+            anh em vẻ ngoài phóng khoáng, táo bạo đúng với tinh thần khám phá
+            của BST Atlantis.
+          </p>
+          <button>Xem thêm</button>
+        </div>
+      </div>
+      <div id="hot">
+        <h1>Sản phẩm nổi bật</h1>
+        <div class="hot">
+          <div class="hot-items">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <h2>Bromeliads Ring Helios</h2>
+            <button>Xem thêm</button>
+          </div>
+          <div class="hot-items">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <h2>Bromeliads Ring Helios</h2>
+            <button>Xem thêm</button>
+          </div>
+        </div>
+      </div>
+      <div id="meet">
+        <h1>Meets</h1>
+        <div class="meet" id="slide">
+          <div class="meets">
+            <img src="/img/meet1.jpg" alt="" />
+            <h3>THE MOON X BLOGGER TRÍ MINH LÊ</h3>
+          </div>
+          <div class="meets">
+            <img src="/img/meet2.webp" alt="" />
+            <h3>THE MOON x YOUTUBER KIÊN PHẠM</h3>
+          </div>
+          <div class="meets">
+            <img src="/img/meet3.webp" alt="" />
+            <h3>THE MOON X BLOGGER PHAN UYÊN NHI</h3>
+          </div>
+          <div class="meets">
+            <img src="/img/meet4.webp" alt="" />
+            <h3>THE MOON X BLOGGER TRÍ MINH LÊ</h3>
+          </div>
+          <div class="meets">
+            <img src="/img/meet5.webp" alt="" />
+            <h3>THE MOON x YOUTUBER KIÊN PHẠM</h3>
+          </div>
+          
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="email-footer">
+        <h1>Đăng Kí Để Nhận Thêm Thông Tin Hữu Ích</h1>
+        <h4>
+          Đăng kí để nhận thông tin hữu ích để chúng tôi tạo nên phong cách của
+          bạn!
+        </h4>
+        <div class="email-input">
+          <input type="text" placeholder="Email của bạn" />
+        </div>
+      </div>
+      <hr />
+      <div class="connect-footer">
+        <div class="connect-item">
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Kết nối với chúng tôi</a></li>
+              <li>
+                The Moon là brand phụ kiện thành lập bởi những người có niềm đam
+                mê với trang sức, yêu thích các chế tác được tạo ra từ đôi bàn
+                tay thuần Việt, mong muốn đưa các tác phẩm vươn tầm thế giới.
+              </li>
+              <li>Hotline hỗ trợ:</li>
+              <li>- Số điện thoại: 0975598481</li>
+              <li>- Email: phuongcac555@gmail.com</li>
+            </ul>
+          </div>
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Chăm sóc khách hàng</a></li>
+              <li>Hướng dẫn thanh toán</li>
+              <li>Giao hàng</li>
+              <li>Chính sách bảo hành</li>
+              <li>Chính sách đổi trả</li>
+              <li>Chính sách bảo mật</li>
+            </ul>
+          </div>
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Về chúng tôi</a></li>
+              <li>Câu chuyện của The Moon</li>
+              <li>Hệ thống cửa hàng</li>
+              <li>Tuyển dụng</li>
+              <li>Membership by The Moon</li>
+            </ul>
+          </div>
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Dành cho khách hàng</a></li>
+              <li>Tin tức</li>
+              <li>Kiến thức thời trang</li>
+              <li>Hướng dẫn bảo quản sản phẩm</li>
+              <li>Hướng dẫn đo Size</li>
+            </ul>
+          </div>
+        </div>
+        <img src="/img/logo-ngang.png" alt="" />
+        <div class="social-area">
+          <div class="icons">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+          <div class="credit">© 2024 The Moon Jewels. All Rights Reserved.</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+
+  <script src="../js/style.js"></script>
+  <script src="../js/index.js"></script>
+  <script src="../js/all.js"></script>
+  <script src="../js/bootstrap.bundle.js"></script>
 </html>

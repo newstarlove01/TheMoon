@@ -1,13 +1,168 @@
-body {
-    background-color: black;
+#body {
+  background-color: black;
+}
+
+#body .logo-nav {
+  position: relative;
+  height: 100px;
+}
+
+#body header img {
+  width: 20%;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
     color: white;
 }
 
-.upper-header {
-    height: auto;
-    text-align: center;
+#body .icons-area {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  top: 40px;
+  right: 50px;
 }
 
-.upper-header a img {
-    width: 246px;
+#body .icons-area input {
+  display: none;
+  width: 250px;
+  background-color: black;
+  border: 2px solid white;
+  color: white;
+  padding-left: 10px;
 }
+
+#body .search-bar {
+  height: 30px;
+  background-color: black;
+  border: 2px solid white;
+  color: white;
+}
+
+#body .icon {
+  color: white;
+  font-size: 24px;
+  padding: 0 5px;
+}
+
+#body .menu-icon {
+  color: white;
+}
+
+#body .thanh-nav {
+  background: black;
+  text-align: center;
+  padding: 0;
+  margin: 8px 0;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+#body .container-fluid {
+  background-color: black;
+}
+
+#body .categories {
+  flex-direction: column;
+}
+
+#body .nav-item a {
+  color: white;
+  font-family: "Jura";
+  font-size: 25px;
+  padding: 10px 30px;
+}
+
+#body .nav-item a:hover {
+  color: #fab320;
+}
+
+#body .nav-item .active {
+  color: #fab320;
+}
+
+#body footer {
+  margin-top: 200px;
+}
+
+#body .email-footer {
+  text-align: center;
+  margin: 0 2%;
+  color: white;
+  border-bottom: 2px solid white;
+  height: auto;
+  padding-bottom: 100px;
+}
+
+#body .email-footer h1 {
+  font-family: "Jura";
+  font-weight: bold;
+  font-size: 55px;
+}
+
+#body .email-footer h2 {
+  font-family: "Jura";
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#body .email-input input {
+  width: 400px;
+  height: 50px;
+  font-family: "Jura";
+  font-weight: bold;
+  font-size: 20px;
+  padding: 20px;
+}
+
+#body .connect-footer {
+  margin: 0 2%;
+  color: white;
+}
+
+#body .connect-item {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+}
+
+#body .connect-items {
+  width: 100%;
+  line-height: 30px;
+}
+
+#body .connect-items li {
+  list-style: none;
+  font-family: "Darker Grotesque";
+  font-weight: 500;
+  font-size: 15px;
+}
+
+#body .connect-items a {
+  font-family: "Jura";
+  font-weight: bold;
+  font-size: 25px;
+  text-decoration: none;
+  color: white;
+}
+
+#body .connect-footer .social-area {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#body .connect-footer img {
+  width: 20%;
+  margin-top: 20px;
+}
+
+#body .social-area .icons a {
+  font-size: 17px;
+  color: white;
+}
+
+
+

@@ -1,0 +1,255 @@
+#banner img {
+  height: 550px;
+}
+
+#new {
+  margin: 0 2%;
+  color: white;
+  margin-top: 100px;
+}
+
+#new a {
+  text-decoration: none;
+  color: white;
+}
+
+#new .new {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  color: white;
+}
+
+#new h1 {
+  font-size: 30px;
+  font-family: "Jura";
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#new .new-items {
+  height: auto;
+  margin-top: 20px;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+#new img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#new h2 {
+  font-size: 16px;
+  font-family: "Merriweather";
+  font-weight: 900;
+}
+
+#new p {
+  font-size: 16px;
+  font-family: "Darker Grotesque";
+  font-weight: 500;
+}
+
+#new button {
+  width: 100%;
+  height: 10%;
+  color: #fab320;
+  background-color: black;
+  border: 2px solid #fab320;
+  font-family: "Jura";
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#new button:hover {
+  background-color: #fab320;
+  color: black;
+}
+
+#introduct {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(200px, 1fr));
+  margin: 0 8%;
+  margin-top: 100px;
+  gap: 20px;
+  color: white;
+}
+
+#introduct img {
+  width: 100%;
+}
+
+#introduct h1 {
+  font-family: "Merriweather";
+  font-weight: 900;
+  font-size: 25px;
+}
+
+#introduct p {
+  font-family: "Darker Grotesque";
+  font-weight: 500;
+  font-size: 19px;
+}
+
+#introduct button {
+  width: 200px;
+  height: 50px;
+  background-color: black;
+  border: 2px solid #fab320;
+  font-family: "Jura";
+  font-size: 20px;
+  font-weight: bold;
+  color: #fab320;
+  margin-top: 30px;
+}
+
+#introduct button:hover {
+  background-color: #fab320;
+  color: black;
+}
+
+#hot {
+  margin: 0 2%;
+  margin-top: 100px;
+  color: white;
+}
+
+#hot h1 {
+  font-size: 30px;
+  font-family: "Jura";
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#hot .hot {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+#hot img {
+  width: 80%;
+}
+
+#hot .hot-items {
+  margin-top: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+#hot h2 {
+  font-family: "Merriweather";
+  font-weight: 900;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+#hot button {
+  width: 200px;
+  height: 50px;
+  background-color: black;
+  border: 2px solid #fab320;
+  font-family: "Jura";
+  font-size: 20px;
+  font-weight: bold;
+  color: #fab320;
+  margin-top: 10px;
+}
+
+#hot button:hover {
+  background-color: #fab320;
+  color: black;
+}
+
+#meet {
+  margin: 0 2%;
+  margin-top: 100px;
+  color: white;
+  overflow: hidden;
+}
+
+#meet h1 {
+  font-size: 30px;
+  font-family: "Jura";
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#meet .meet {
+  display: flex;
+  width: 100%; /* Điều chỉnh kích thước tùy ý */
+  max-width: 100%;
+  margin: auto;
+}
+
+#slide {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+#meet img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+#meet .meets {
+  font-size: 20px;
+  font-family: "Darker Grotesque";
+  flex: 0 0 33.33%; /* Mặc định là 3 ảnh trên 1 slide */
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+#new .new-items:hover {
+  transform: scale(1.05);
+}
+
+#hot .hot-items:hover {
+  transform: scale(1.05);
+}
+
+#meet .meets:hover {
+  transform: scale(1.05);
+}
+
+@media (min-width: 600px) {
+  #new .new {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #hot .hot {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  #new .new {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  #hot .hot {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  #meet .meets {
+    flex: 0 0 100%; /* Mặc định là 3 ảnh trên 1 slide */
+  }
+}
+
+@media (min-width: 1024px) {
+  #new .new {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  #introduct {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  #hot .hot {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
