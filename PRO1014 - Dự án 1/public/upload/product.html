@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sản phẩm</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/product.css" />
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <link rel="stylesheet" href="../css/all.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Darker+Grotesque:wght@300..900&family=Jura:wght@300..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body id="body">
+    <header>
+      <div class="logo-nav">
+        <a href="#"><img id="logo" src="/img/logo-ngang.png" alt="" /> </a>
+        <div class="icons-area">
+          <form action="">
+            <input
+              onmouseleave="closeSearch()"
+              id="search"
+              type="text"
+              placeholder="Tìm kiếm..."
+            />
+          </form>
+          <a onmouseover="openSearch()" href="#" class="search"
+            ><i class="fa-solid fa-magnifying-glass icon"></i
+          ></a>
+          <a href="#"><i class="fa-solid fa-user icon"></i></a>
+          <a href="#"><i class="fa-solid fa-cart-shopping icon"></i></a>
+        </div>
+      </div>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary thanh-nav">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <!-- <span class="navbar-toggler-icon menu-icon"></span> -->
+            <i class="fa-solid fa-bars navbar-toggler-icon menu-icon"></i>
+          </button>
+          <div class="collapse navbar-collapse categories" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">NHẪN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">DÂY CHUYỀN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">KHUYÊN TAI</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">VÒNG TAY</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div id="product-banner">
+        <img src="/img/product-banner.jpg" alt="" />
+        <div class="product-banner-content">
+          <h1>NHẪN</h1>
+          <p>
+            Bộ sưu tập Nhẫn nhà The Moon gồm các thiết kế nhẫn bạc S925, nhẫn
+            bạc nam, nhẫn thời trang mang phong cách lịch lãm, phong trần, năng
+            động, cool ngầu...
+          </p>
+        </div>
+      </div>
+      <div id="main-container">
+        <div id="filter">
+          <div class="card">
+            <div class="card-header">
+              <button class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                <div>Giá</div>
+                <div><i class="fa-solid fa-plus"></i></div>
+              </button>
+            </div>
+            <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
+              <div class="card-body">
+                <div class="price-input-container">
+                  <div class="price-input">
+                    <div class="price-field">
+                      <input
+                        type="number"
+                        class="min-input"
+                        min="0"
+                        max="20000000"
+                        value="0"
+                      />
+                    </div>
+                    <i class="fa-solid fa-minus"></i>
+                    <div class="price-field">
+                      <input
+                        type="number"
+                        class="max-input"
+                        min="0"
+                        max="20000000"
+                        value="20000000"
+                      />
+                    </div>
+                  </div>
+                  <div class="slider-container">
+                    <div class="price-slider"></div>
+                  </div>
+                  <!-- Slider -->
+                  <div class="range-input">
+                    <input
+                      type="range"
+                      class="min-range"
+                      min="0"
+                      max="20000000"
+                      value="0"
+                      step="1"
+                    />
+                    <input
+                      type="range"
+                      class="max-range"
+                      min="0"
+                      max="20000000"
+                      value="20000000"
+                      step="1"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <button
+                style="border-top: 2px solid white"
+                class="btn"
+                data-bs-toggle="collapse"
+                href="#collapseTwo"
+              >
+                <div>Loại sản phẩm</div>
+                <div><i class="fa-solid fa-plus"></i></div>
+              </button>
+            </div>
+            <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+              <div class="card-body">
+                <label class="container">
+                  <p>Nhẫn bạc</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                  <p>Nhẫn vàng</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                  <p>Nhẫn hợp kim</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <button
+                style="border-top: 2px solid white"
+                class="btn"
+                data-bs-toggle="collapse"
+                href="#collapseThree"
+              >
+                <div>Cỡ</div>
+                <div><i class="fa-solid fa-plus"></i></div>
+              </button>
+            </div>
+            <div
+              id="collapseThree"
+              class="collapse"
+              data-bs-parent="#accordion"
+            >
+              <div class="card-body">
+                <label class="container">
+                  <p>Nhẫn bạc</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                  <p>Nhẫn vàng</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                  <p>Nhẫn hợp kim</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                  <p>Nhẫn bạc</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                  <p>Nhẫn vàng</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                  <p>Nhẫn hợp kim</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                  <p>Nhẫn bạc</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                  <p>Nhẫn vàng</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                  <p>Nhẫn hợp kim</p>
+                  <input type="checkbox" />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <button
+                  style="border-top: 2px solid white"
+                  class="btn"
+                  data-bs-toggle="collapse"
+                  href="#collapseFour"
+                >
+                  <div>Sale</div>
+                  <div><i class="fa-solid fa-plus"></i></div>
+                </button>
+              </div>
+              <div
+                id="collapseFour"
+                class="collapse"
+                data-bs-parent="#accordion"
+              >
+                <div class="card-body">
+                  <label class="container">
+                    <p>Nhẫn hợp kim</p>
+                    <input type="checkbox" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="product">
+          <div id="product-list">
+            <a href="#" class="product-items">
+              <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+              <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+              <p>985.000đ</p>
+              <button>Thêm vào giỏ hàng</button>
+            </a>
+            <a href="#" class="product-items">
+              <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+              <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+              <p>985.000đ</p>
+              <button>Thêm vào giỏ hàng</button>
+            </a>
+            <a href="#" class="product-items">
+              <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+              <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+              <p>985.000đ</p>
+              <button>Thêm vào giỏ hàng</button>
+            </a>
+            <a href="#" class="product-items">
+              <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+              <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+              <p>985.000đ</p>
+              <button>Thêm vào giỏ hàng</button>
+            </a>
+            <a href="#" class="product-items">
+              <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+              <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+              <p>985.000đ</p>
+              <button>Thêm vào giỏ hàng</button>
+            </a>
+            <a href="#" class="product-items">
+              <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+              <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+              <p>985.000đ</p>
+              <button>Thêm vào giỏ hàng</button>
+            </a>
+            <a href="#" class="product-items">
+              <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+              <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+              <p>985.000đ</p>
+              <button>Thêm vào giỏ hàng</button>
+            </a>
+            <a href="#" class="product-items">
+              <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+              <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+              <p>985.000đ</p>
+              <button>Thêm vào giỏ hàng</button>
+            </a>
+            <a href="#" class="product-items">
+              <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+              <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+              <p>985.000đ</p>
+              <button>Thêm vào giỏ hàng</button>
+            </a>
+          </div>
+          <div id="page">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link active-check" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="email-footer">
+        <h1>Đăng Kí Để Nhận Thêm Thông Tin Hữu Ích</h1>
+        <h4>
+          Đăng kí để nhận thông tin hữu ích để chúng tôi tạo nên phong cách của
+          bạn!
+        </h4>
+        <div class="email-input">
+          <input type="text" placeholder="Email của bạn" />
+        </div>
+      </div>
+      <hr />
+      <div class="connect-footer">
+        <div class="connect-item">
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Kết nối với chúng tôi</a></li>
+              <li>
+                The Moon là brand phụ kiện thành lập bởi những người có niềm đam
+                mê với trang sức, yêu thích các chế tác được tạo ra từ đôi bàn
+                tay thuần Việt, mong muốn đưa các tác phẩm vươn tầm thế giới.
+              </li>
+              <li>Hotline hỗ trợ:</li>
+              <li>- Số điện thoại: 0975598481</li>
+              <li>- Email: phuongcac555@gmail.com</li>
+            </ul>
+          </div>
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Chăm sóc khách hàng</a></li>
+              <li>Hướng dẫn thanh toán</li>
+              <li>Giao hàng</li>
+              <li>Chính sách bảo hành</li>
+              <li>Chính sách đổi trả</li>
+              <li>Chính sách bảo mật</li>
+            </ul>
+          </div>
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Về chúng tôi</a></li>
+              <li>Câu chuyện của The Moon</li>
+              <li>Hệ thống cửa hàng</li>
+              <li>Tuyển dụng</li>
+              <li>Membership by The Moon</li>
+            </ul>
+          </div>
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Dành cho khách hàng</a></li>
+              <li>Tin tức</li>
+              <li>Kiến thức thời trang</li>
+              <li>Hướng dẫn bảo quản sản phẩm</li>
+              <li>Hướng dẫn đo Size</li>
+            </ul>
+          </div>
+        </div>
+        <img src="/img/logo-ngang.png" alt="" />
+        <div class="social-area">
+          <div class="icons">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+          <div class="credit">© 2024 The Moon Jewels. All Rights Reserved.</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+
+  <script src="../js/style.js"></script>
+  <script src="../js/product.js"></script>
+  <script src="../js/all.js"></script>
+  <script src="../js/bootstrap.bundle.js"></script>
+</html>

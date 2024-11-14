@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/detail.css" />
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <link rel="stylesheet" href="../css/all.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Darker+Grotesque:wght@300..900&family=Jura:wght@300..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body id="body">
+    <header>
+      <div class="logo-nav">
+        <a href="#"><img id="logo" src="/img/logo-ngang.png" alt="" /> </a>
+        <div class="icons-area">
+          <form action="">
+            <input
+              onmouseleave="closeSearch()"
+              id="search"
+              type="text"
+              placeholder="Tìm kiếm..."
+            />
+          </form>
+          <a onmouseover="openSearch()" href="#" class="search"
+            ><i class="fa-solid fa-magnifying-glass icon"></i
+          ></a>
+          <a href="#"><i class="fa-solid fa-user icon"></i></a>
+          <a href="#"><i class="fa-solid fa-cart-shopping icon"></i></a>
+        </div>
+      </div>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary thanh-nav">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <!-- <span class="navbar-toggler-icon menu-icon"></span> -->
+            <i class="fa-solid fa-bars navbar-toggler-icon menu-icon"></i>
+          </button>
+          <div class="collapse navbar-collapse categories" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">NHẪN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">DÂY CHUYỀN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">KHUYÊN TAI</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">VÒNG TAY</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div id="title">
+        <!-- prettier-ignore -->
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Nhẫn Bạc S925 Poseidon Helios Silver Original</li>
+          </ol>
+        </nav>
+      </div>
+      <div id="product-detail">
+        <div class="slide-album">
+          <img class="slide-items" src="/img/FUSHIRINGHeliosSilver.webp" />
+          <img class="slide-items" src="/img/FUSHIRINGHeliosSilver1.jpg" />
+          <img class="slide-items" src="/img/FUSHIRINGHeliosSilver2.webp" />
+          <img class="slide-items" src="/img/FUSHIRINGHeliosSilver3.jpg" />
+          <div class="thumbnail">
+            <img
+              class="album-item"
+              src="/img/FUSHIRINGHeliosSilver.webp"
+              onclick="pauseAndShow(1)"
+            />
+            <img
+              class="album-item"
+              src="/img/FUSHIRINGHeliosSilver1.jpg"
+              onclick="pauseAndShow(2)"
+            />
+            <img
+              class="album-item"
+              src="/img/FUSHIRINGHeliosSilver2.webp"
+              onclick="pauseAndShow(3)"
+            />
+            <img
+              class="album-item"
+              src="/img/FUSHIRINGHeliosSilver3.jpg"
+              onclick="pauseAndShow(4)"
+            />
+          </div>
+        </div>
+        <div class="product-detail">
+          <h1>Nhẫn Bạc S925 Poseidon Helios Silver Original</h1>
+          <h2>995.000 VNĐ</h2>
+          <!-- prettier-ignore -->
+          <div class="size-title">
+            <p>Cỡ</p>
+            <a style="color: white; text-decoration: none;" href="#">Hướng dẫn đo size</a>
+          </div>
+          <!-- prettier-ignore -->
+          <div class="btn-group size-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+            <label class="btn size-items-effect" for="btnradio1">Size 6</label>
+          
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <label class="btn size-items-effect" for="btnradio2">Size 7</label>
+          
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+            <label class="btn size-items-effect" for="btnradio3">Size 8</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+            <label class="btn size-items-effect" for="btnradio4">Size 9</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
+            <label class="btn size-items-effect" for="btnradio5">Size 10</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
+            <label class="btn size-items-effect" for="btnradio6">Size 11</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off">
+            <label class="btn size-items-effect" for="btnradio7">Size 12</label>
+          </div>
+          <!-- prettier-ignore -->
+          <div style="display: grid; grid-template-columns: 1fr 2fr; margin-top: 20px; gap: 20px;">
+            <div class="quantity">
+            <button class="minus" aria-label="Decrease">&minus;</button>
+            <input type="number" class="input-box" value="1" min="1" max="10">
+            <button class="plus" aria-label="Increase">&plus;</button>
+          </div>
+            <button class="cart-add">THÊM VÀO GIỎ HÀNG</button>
+          </div>
+          <button class="buy-now">MUA NGAY</button>
+          <p class="info">
+            Nếu sản phẩm anh/chị quan tâm hiển thị hết hàng trên website. <br />
+            Vui lòng INBOX trực tiếp với The Moon để được hỗ trợ nhanh nhất.
+            <br />
+            Xin chân thành cảm ơn!
+          </p>
+        </div>
+      </div>
+      <div id="mo-ta">
+        <h3>Mô tả</h3>
+        <p>
+          Tên sản phẩm: Nhẫn Bạc S925 Poseidon Helios Silver Original
+          <br /><br />
+
+          Chất liệu: Bạc S925<br /><br />
+
+          Loại đá sử dụng: Không<br /><br />
+
+          Thương hiệu: HELIOS<br /><br />
+
+          Bảo hành: Theo chính sách bảo hành và nhận đánh sáng sản phẩm trọn
+          đời<br /><br />
+
+          Câu chuyện từ nhà thiết kế: Nhẫn Poseidon dựa trên vị vua cai quản đại
+          dương trong thần thoại Hy Lạp, có quyền năng thao túng những cơn sóng
+          thần cuộn trào.<br /><br />
+
+          Nổi bật trên mặt nhẫn là họa tiết đinh ba, vỏ sò, những đường lượn
+          sóng, cùng hai dãy ký tự POSEIDON và ΠΟΣΕΙΔΩΝ - tên của vị thần viết
+          bằng chữ Hy Lạp cổ.<br /><br />
+
+          Với form tròn và đường nét khỏe khoắn, chế tác Poseidon mang đến cho
+          anh em vẻ ngoài phóng khoáng, táo bạo đúng với tinh thần khám phá của
+          BST Atlantis.
+        </p>
+      </div>
+      <div id="danh-gia">
+        <h3>Đánh giá</h3>
+        <h4>
+          Đánh giá của khách hàng (144) <br />
+          4.8/5
+          <strong style="color: #fab320"
+            ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i
+          ></strong>
+        </h4>
+        <div class="khach-hang">
+          <div class="avatar">
+            <img src="/img/avatar.jpg" alt="" />
+            <h5>
+              n**h <br />
+              <strong style="color: #fab320"
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i
+              ></strong>
+            </h5>
+          </div>
+          <p>
+            Mặt hàng: Đen, size 1 <br /><br />
+            omg phải gọi là tuyệt cả là vời, bth ít đánh giá sau khi mua hàng
+            nma hnay phải vào đây để fb vì nhẫn quá đẹp đi
+          </p>
+          <div class="file">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+          </div>
+        </div>
+        <div class="khach-hang">
+          <div class="avatar">
+            <img src="/img/avatar.jpg" alt="" />
+            <h5>
+              n**h <br />
+              <strong style="color: #fab320"
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i
+              ></strong>
+            </h5>
+          </div>
+          <p>
+            Mặt hàng: Đen, size 1 <br /><br />
+            omg phải gọi là tuyệt cả là vời, bth ít đánh giá sau khi mua hàng
+            nma hnay phải vào đây để fb vì nhẫn quá đẹp đi
+          </p>
+          <div class="file">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+          </div>
+        </div>
+        <div class="khach-hang">
+          <div class="avatar">
+            <img src="/img/avatar.jpg" alt="" />
+            <h5>
+              n**h <br />
+              <strong style="color: #fab320"
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i
+              ></strong>
+            </h5>
+          </div>
+          <p>
+            Mặt hàng: Đen, size 1 <br /><br />
+            omg phải gọi là tuyệt cả là vời, bth ít đánh giá sau khi mua hàng
+            nma hnay phải vào đây để fb vì nhẫn quá đẹp đi
+          </p>
+          <div class="file">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+          </div>
+        </div>
+        <div id="page">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item">
+                <a class="page-link active-check" href="#">1</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <hr />
+      <div id="recommend">
+        <h1>Có thể bạn sẽ thích</h1>
+        <div class="recommend">
+          <a href="#" class="recommend-items">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+            <p>985.000đ</p>
+            <button>Thêm vào giỏ hàng</button>
+          </a>
+          <a href="#" class="recommend-items">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+            <p>985.000đ</p>
+            <button>Thêm vào giỏ hàng</button>
+          </a>
+          <a href="#" class="recommend-items">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+            <p>985.000đ</p>
+            <button>Thêm vào giỏ hàng</button>
+          </a>
+          <a href="#" class="recommend-items">
+            <img src="/img/FUSHIRINGHeliosSilver.webp" alt="" />
+            <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
+            <p>985.000đ</p>
+            <button>Thêm vào giỏ hàng</button>
+          </a>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="email-footer">
+        <h1>Đăng Kí Để Nhận Thêm Thông Tin Hữu Ích</h1>
+        <h4>
+          Đăng kí để nhận thông tin hữu ích để chúng tôi tạo nên phong cách của
+          bạn!
+        </h4>
+        <div class="email-input">
+          <input type="text" placeholder="Email của bạn" />
+        </div>
+      </div>
+      <hr />
+      <div class="connect-footer">
+        <div class="connect-item">
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Kết nối với chúng tôi</a></li>
+              <li>
+                The Moon là brand phụ kiện thành lập bởi những người có niềm đam
+                mê với trang sức, yêu thích các chế tác được tạo ra từ đôi bàn
+                tay thuần Việt, mong muốn đưa các tác phẩm vươn tầm thế giới.
+              </li>
+              <li>Hotline hỗ trợ:</li>
+              <li>- Số điện thoại: 0975598481</li>
+              <li>- Email: phuongcac555@gmail.com</li>
+            </ul>
+          </div>
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Chăm sóc khách hàng</a></li>
+              <li>Hướng dẫn thanh toán</li>
+              <li>Giao hàng</li>
+              <li>Chính sách bảo hành</li>
+              <li>Chính sách đổi trả</li>
+              <li>Chính sách bảo mật</li>
+            </ul>
+          </div>
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Về chúng tôi</a></li>
+              <li>Câu chuyện của The Moon</li>
+              <li>Hệ thống cửa hàng</li>
+              <li>Tuyển dụng</li>
+              <li>Membership by The Moon</li>
+            </ul>
+          </div>
+          <div class="connect-items">
+            <ul>
+              <li><a href="#">Dành cho khách hàng</a></li>
+              <li>Tin tức</li>
+              <li>Kiến thức thời trang</li>
+              <li>Hướng dẫn bảo quản sản phẩm</li>
+              <li>Hướng dẫn đo Size</li>
+            </ul>
+          </div>
+        </div>
+        <img src="/img/logo-ngang.png" alt="" />
+        <div class="social-area">
+          <div class="icons">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+          <div class="credit">© 2024 The Moon Jewels. All Rights Reserved.</div>
+        </div>
+      </div>
+    </footer>
+  </body>
+
+  <script src="../js/style.js"></script>
+  <script src="../js/detail.js"></script>
+  <script src="../js/all.js"></script>
+  <script src="../js/bootstrap.bundle.js"></script>
+</html>
