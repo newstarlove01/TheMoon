@@ -25,6 +25,6 @@ switch ($view) {
         $detail->detail();
         break;
 }
-//? a
+
 
 include_once("./app/view/footer.php");
