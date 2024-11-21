@@ -181,12 +181,6 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $mo_ta);
               </a>';
       };
       ?>
-      <!-- <a href="#" class="recommend-items">
-        <img src="./img/FUSHIRINGHeliosSilver.webp" alt="" />
-        <h2>Nhẫn Bạc S925 Combatant Helios Silver Original</h2>
-        <p>985.000đ</p>
-        <button>Thêm vào giỏ hàng</button>
-      </a> -->
     </div>
   </div>
 </main>
