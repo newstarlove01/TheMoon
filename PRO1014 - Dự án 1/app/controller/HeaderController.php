@@ -1,5 +1,4 @@
 <?php
-require_once ('app/model/database.php');
 require_once ('app/model/CategoryModel.php');
 class HeaderController{
     private $category;
@@ -12,7 +11,7 @@ class HeaderController{
         require_once 'app/view/header.php';
     }
     function header(){
-        $this->data['dm'] = $this->category->getCate();
+        $this->data['dsdm'] = $this->category->getCate();
         // var_dump($this->data); // Kiểm tra giá trị của $this->data
         $this->view($this->data);
     }

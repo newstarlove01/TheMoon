@@ -6,9 +6,9 @@
     <title>Trang chủ</title>
 
     <link rel="stylesheet" href="./public/css/style.css" />
-    <link rel="stylesheet" href="./public/css/index.css" />
-    <link rel="stylesheet" href="./public/css/product.css" />
-    <link rel="stylesheet" href="./public/css/detail.css" />
+    <link rel="stylesheet" href="./public/css/index.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="./public/css/product.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="./public/css/detail.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="./public/css/bootstrap.css" />
     <link rel="stylesheet" href="./public/css/all.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -55,26 +55,14 @@
           <div class="collapse navbar-collapse categories" id="navbarNav">
             <ul class="navbar-nav">
             <?php
-            $listcate = $data['dm'];
+            $listcate = $data['dsdm'];
             foreach ($listcate as $item) {
                 extract($item);
                 echo '<li class="nav-item">
-                <a class="nav-link" href="index.php?view=product">'.$ten.'</a>
+                <a class="nav-link" href="index.php?view=product&id='.$id.'">'.$ten.'</a>
               </li>';
             };
             ?>
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="index.php?view=product">NHẪN</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">DÂY CHUYỀN</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">KHUYÊN TAI</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">VÒNG TAY</a>
-              </li> -->
             </ul>
           </div>
         </div>

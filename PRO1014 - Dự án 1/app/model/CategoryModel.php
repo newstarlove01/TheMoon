@@ -26,6 +26,6 @@ class CategoryModel{
     }
     function getIdcate($id) {
         $sql = "SELECT * FROM danh_muc WHERE id = $id";
-        return $this->db->getone($sql);
+        return $this->db->getOne($sql);
     }
 }
