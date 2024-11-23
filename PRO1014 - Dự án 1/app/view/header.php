@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trang chủ</title>
 
-    <link rel="stylesheet" href="./public/css/cart.css">
-    <link rel="stylesheet" href="./public/css/style.css" />
+    <link rel="stylesheet" href="./public/css/style.css?v=<?php echo time(); ?>   " />
     <link rel="stylesheet" href="./public/css/index.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="./public/css/product.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="./public/css/detail.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="./public/css/cart.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./public/css/pay.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./public/css/bootstrap.css" />
     <link rel="stylesheet" href="./public/css/all.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,7 +37,7 @@
             ><i class="fa-solid fa-magnifying-glass icon"></i
           ></a>
           <a href="#"><i class="fa-solid fa-user icon"></i></a>
-          <a href="#"><i class="fa-solid fa-cart-shopping icon"></i></a>
+          <a href="index.php?view=cart"><i class="fa-solid fa-cart-shopping icon"></i></a>
         </div>
       </div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary thanh-nav">
