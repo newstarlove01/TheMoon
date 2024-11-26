@@ -1,17 +1,17 @@
+<link rel="stylesheet" href="./public/css/product.css?v=<?php echo time(); ?>" />
 <main>
   <?php
   $cate = $data['dm'];
-  extract($cate);
-  $mo_ta = preg_replace('/([.!?])\s/', '$1<br>', $mo_ta);
-  echo '
+  $mo_ta = preg_replace('/([.!?])\s/', '$1<br>', $cate['mo_ta']);
+  ?>
   <div id="product-banner">
-    <img src="./img/' . $hinh_anh . '" alt="" />
+    <img src="./img/<?= $cate['hinh_anh'] ?>" alt="" />
     <div class="product-banner-content">
-      <h1>' . $ten . 's</h1>
-      <p>' . $mo_ta . '</p>
+      <h1><?= $cate['ten'] ?></h1>
+      <p><?= $mo_ta ?></p>
     </div>
   </div>';
-  ?>
+
   <div id="main-container">
     <div id="filter">
       <div class="card">
@@ -119,75 +119,82 @@
             <?php
             $listsize = $data['size'];
             foreach ($listsize as $item) {
-              extract($item);
-              echo '
-              <label class="container">
-                <p>' . $ten . '</p>
-                <input type="checkbox" />
-                <span class="checkmark"></span>
-              </label>';
-            };
             ?>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <button
-              style="border-top: 2px solid white"
-              class="btn"
-              data-bs-toggle="collapse"
-              href="#collapseFour">
-              <div>Sale</div>
-              <div><i class="fa-solid fa-plus"></i></div>
-            </button>
-          </div>
-          <div
-            id="collapseFour"
-            class="collapse"
-            data-bs-parent="#accordion">
-            <div class="card-body">
               <label class="container">
-                <p>Sale</p>
+                <p><?= $item['ten'] ?></p>
                 <input type="checkbox" />
                 <span class="checkmark"></span>
               </label>
-            </div>
+            <?php  }; ?>
           </div>
         </div>
       </div>
+
+      <div class="card">
+        <div class="card-header">
+          <button
+            style="border-top: 2px solid white"
+            class="btn"
+            data-bs-toggle="collapse"
+            href="#collapseFour">
+            <div>Sale</div>
+            <div><i class="fa-solid fa-plus"></i></div>
+          </button>
+        </div>
+        <div
+          id="collapseFour"
+          class="collapse"
+          data-bs-parent="#accordion">
+          <div class="card-body">
+            <label class="container">
+              <p>Sale</p>
+              <input type="checkbox" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="submit"><input type="submit" name="" id=""></div>
     </div>
+
     <div id="product">
       <div id="product-list">
         <?php
         $listpro = $data['dssp'];
         foreach ($listpro as $item) {
-          extract($item);
-          echo '
-          <a href="index.php?view=detail&id=' . $id . '" class="product-items">
-            <img src="./img/' . $img[0]['anh_chinh'] . '" alt="" />
-            <h2>' . $ten . 'a</h2>
-            <p>' . $gia . 'đ</p>
-            <button>Thêm vào giỏ hàng</button>
-          </a>';
-        };
         ?>
+          <a href="index.php?view=detail&idcate=<?= $item['id_dm'] ?>&id=<?= $item['id'] ?>" class="product-items">
+            <img src="./img/<?= $item['img'][0]['anh_chinh'] ?>" alt="" />
+            <h2><?= $item['ten'] ?></h2>
+            <p><?= number_format($item['gia']) ?>đ</p>
+            <button>Thêm vào giỏ hàng</button>
+          </a>
+        <?php     }; ?>
       </div>
       <div id="page">
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link" href="#" aria-label="Previous">
+            <!-- Trang trước -->
+            <?php $idcate = $_GET['idcate'];
+            $currentPage = $data['currentPage'];
+            ?>
+            <li class="page-item <?php echo ($currentPage == 1) ? 'disabled' : ''; ?>">
+              <a class="page-link" href="?view=product&idcate=<?php echo $idcate; ?>&page=<?php echo $currentPage - 1; ?>" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item">
-              <a class="page-link active-check" href="#">1</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+            <!-- Các trang -->
+            <?php
+            $totalPages = $data['totalPages'];
+            for ($i = 1; $i <= $totalPages; $i++) :
+            ?>
+              <li class="page-item ">
+                <a class="page-link <?php echo ($currentPage == $i) ? 'active-check' : ''; ?>" href="?view=product&idcate=<?php echo $idcate; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+              </li>
+            <?php endfor; ?>
+            <!-- Trang sau -->
+            <li class="page-item <?php echo ($currentPage == $totalPages) ? 'disabled' : ''; ?>">
+              <a class="page-link" href="?view=product&idcate=<?php echo $idcate; ?>&page=<?php echo $currentPage + 1; ?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="./public/css/index.css?v=<?php echo time(); ?>" />
 <main>
     <div id="banner">
         <div
@@ -54,53 +55,45 @@
         <h1>Sản phẩm mới ra mắt</h1>
         <div class="new">
             <?php
-            $listcate = $data['dssp'];
-            foreach ($listcate as $item) {
-                extract($item);
-                echo '
-                <a href="index.php?view=detail&id=' . $id . '" class="new-items">
-                    <img src="./img/' . $img[0]['anh_chinh'] . '" alt="" />
-                    <h2>' . $ten . '</h2>
-                    <p>' . $gia . 'đ</p>
-                    <button>Thêm vào giỏ hàng</button>
-                </a>';
-            };
+            $listnew = $data['dssp'];
+            foreach ($listnew as $item) {
             ?>
+                <a href="index.php?view=detail&idcate=<?= $item['id_dm'] ?>&id=<?= $item['id'] ?>" class="new-items">
+                    <img src="./img/<?= $item['img'][0]['anh_chinh'] ?>" alt="" />
+                    <h2><?= $item['ten'] ?></h2>
+                    <p><?= number_format($item['gia']) ?></p>
+                    <button>Thêm vào giỏ hàng</button>
+                </a>
+            <?php }; ?>
         </div>
     </div>
     <div id="introduct">
         <?php
-
-
-        $listcate = $data['dsspgt'];
-        foreach ($listcate as $item) {
-            extract($item);
-            $mo_ta = preg_replace('/([.!?])\s/', '$1<br>', $mo_ta);
-            echo '
-            <img src="./img/' . $img[0]['anh_chinh'] . '" alt="" />
-                <div>
-                <h1>' . $ten . '</h1>
-                <p>' . $mo_ta . '</p>
-                <button>Xem thêm</button>
-            </div>';
-        };
+        $introduct = $data['dsspgt'];
+        foreach ($introduct as $item) {
+            $mo_ta = preg_replace('/([.!?])\s/', '$1<br>', $item['mo_ta']);
         ?>
+            <img src="./img/<?= $item['img'][0]['anh_chinh'] ?>" alt="" />
+            <div>
+                <h1><?= $item['ten'] ?></h1>
+                <p><?= $mo_ta ?></p>
+                <a href="index.php?view=detail&idcate=<?= $item['id_dm'] ?>&id=<?= $item['id'] ?>"><button>Xem thêm</button></a>
+            </div>
+        <?php }; ?>
     </div>
     <div id="hot">
         <h1>Sản phẩm nổi bật</h1>
         <div class="hot">
             <?php
-            $listcate = $data['dssphot'];
-            foreach ($listcate as $item) {
-                extract($item);
-                echo '  
-                <div class="hot-items">
-                    <img src="./img/' . $img[0]['anh_chinh'] . '" alt="" />
-                    <h2>' . $ten . '</h2>
-                    <a href="index.php?view=detail&id=' . $id . '"><button>Xem thêm</button></a>
-                </div>';
-            };
+            $listhot = $data['dssphot'];
+            foreach ($listhot as $item) {
             ?>
+                <div class="hot-items">
+                    <img src="./img/<?= $item['img'][0]['anh_chinh'] ?>" alt="" />
+                    <h2><?= $item['ten'] ?></h2>
+                    <a href="index.php?view=detail&idcate=<?= $item['id_dm'] ?>&id=<?= $item['id'] ?>"><button>Xem thêm</button></a>
+                </div>
+            <?php }; ?>
         </div>
     </div>
     <div id="meet">
@@ -109,14 +102,12 @@
             <?php
             $listcate = $data['dsm'];
             foreach ($listcate as $item) {
-                extract($item);
-                echo '
-                <div class="meets">
-                    <img src="./img/' . $hinh_anh . '" alt="" />
-                    <h3>THE MOON X ' . $ten . '</h3>
-                </div>';
-            };
             ?>
+                <div class="meets">
+                    <img src="./img/<?= $item['hinh_anh'] ?>" alt="" />
+                    <h3>THE MOON X <?= $item['ten'] ?></h3>
+                </div>
+            <?php }; ?>
         </div>
     </div>
 </main>

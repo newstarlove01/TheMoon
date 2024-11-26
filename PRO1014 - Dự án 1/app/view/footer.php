@@ -71,7 +71,7 @@
 
 <script src="./public/js/style.js"></script>
 <script src="./public/js/index.js"></script>
-<script src="./public/js/product.js"></script>
+<script src="./public/js/product.js?v=<?php echo time(); ?>"></script>
 <script src="./public/js/detail.js"></script>
 <script src="./public/js/index.js"></script>
 <script src="./public/js/all.js"></script>

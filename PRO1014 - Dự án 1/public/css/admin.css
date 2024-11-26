@@ -1,0 +1,141 @@
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+header {
+  width: 100%;
+  height: 110%;
+  background-color: black;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  font-family: "Jura";
+  font-weight: bold;
+}
+.sidebar {
+  position: fixed;
+  width: 20%;
+  text-align: center;
+}
+
+.sidebar .logo {
+  padding: 10px;
+  border-bottom: 1px solid white;
+}
+
+.sidebar .logo img {
+  width: 100%;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.sidebar li a {
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-left: 10%;
+  font-family: "Jura";
+  font-weight: bold;
+  height: 100%;
+}
+
+nav {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  align-items: center;
+}
+
+nav h1 {
+  padding-left: 50px;
+}
+
+nav div {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+nav img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 2px solid white;
+  margin: 0 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+main {
+  width: 100%;
+}
+
+main .main-table {
+  padding: 5% 5% 0 5%;
+}
+
+main .main-table button {
+  margin: 2% 0;
+  height: 45px;
+  width: 20%;
+  font-size: 20px;
+  border: none;
+  background-color: black;
+  color: white;
+}
+
+main .main-table button:hover {
+  opacity: 50%;
+}
+
+main table {
+  border-collapse: collapse;
+  border: 2px solid black;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+main td,
+main th {
+  border: 2px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+main th {
+  background-color: #fab320;
+  font-weight: bold;
+}
+
+.active-check a {
+  color: #fab320;
+}
+.button {
+  text-align: center;
+}
+
+main .main-table table button {
+  width: 60%;
+}

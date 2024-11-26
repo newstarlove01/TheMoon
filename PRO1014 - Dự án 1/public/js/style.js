@@ -16,7 +16,6 @@ function updateImage() {
     imgElement.src = "./img/logo-ngang.png";
   }
 }
-
 window.addEventListener("load", updateImage);
 window.addEventListener("resize", updateImage);
 

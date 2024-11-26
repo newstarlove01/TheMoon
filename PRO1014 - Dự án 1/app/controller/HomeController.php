@@ -1,7 +1,6 @@
 <?php
 require_once('app/model/BannerModel.php');
 require_once('app/model/ProductModel.php');
-require_once('app/model/MeetModel.php');
 class HomeController
 {
     private $product;
@@ -13,7 +12,6 @@ class HomeController
     {
         $this->banner = new BannerModel();
         $this->product = new ProductModel();
-        $this->meet = new MeetModel();
     }
     public function view($data)
     {
@@ -36,7 +34,7 @@ class HomeController
         foreach ($this->data['dssphot'] as &$product) {
             $product['img'] = $this->product->getImg($product['id']) ?? []; 
         }
-        $this->data['dsm'] = $this->meet->getMeet();
+        $this->data['dsm'] = $this->banner->getMeet();
         $this->view($this->data);
     }
 }

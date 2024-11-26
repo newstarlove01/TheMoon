@@ -74,9 +74,28 @@ class ProductModel
     //     $param =[$data['name'],$data['amount'],$data['image'],$data['view'],$data['price'],$data['idcate'],$data['id']];
     //     return $this->db->update($sql,$param);
     // }
-    function get_all_cate_pro($idcate)
+    function get_all_cate_pro($idcate, $offset, $limit)
     {
-        $sql = "SELECT * FROM san_pham WHERE id_dm = $idcate";
-        return $this->db->getall($sql);
+        $sql = "SELECT * FROM san_pham WHERE id_dm = $idcate LIMIT $limit OFFSET $offset";
+        return $this->db->getAll($sql);
+    }
+
+    function get_count_cate_pro($idcate)
+    {
+        $sql = "SELECT COUNT(*) as total FROM san_pham WHERE id_dm = $idcate";
+        $result = $this->db->getOne($sql);
+        return $result['total'];
+    }
+    public function filterProducts($filters) {
+        $query = "SELECT * FROM products WHERE 1";  // Điều kiện mặc định
+
+        // Nếu có bộ lọc, thêm vào câu truy vấn
+        if (!empty($filters)) {
+            $query .= " AND " . implode(" AND ", $filters);
+        }
+
+        // Thực thi câu truy vấn và trả về kết quả
+        $result = $this->db->query($query);
+        return $result->fetchAll();
     }
 }

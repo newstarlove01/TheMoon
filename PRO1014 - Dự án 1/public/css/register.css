@@ -1,0 +1,58 @@
+.dangki {
+  width: 100%;
+  background-color: #000000;
+  margin-bottom: 15px;
+}
+.dang-ki {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+.dang-ki h1 {
+  margin: 2%;
+  color: #ffffff;
+  text-align: center;
+  font-family: "Jura";
+  font-weight: bold;
+}
+.dangki input {
+  width: 30%;
+  padding: 12px;
+  border: 1px solid #444;
+  background-color: #000000;
+  font-size: 16px;
+  font-family: "Darker Grotesque";
+  font-weight: 500;
+  color: white;
+  margin-bottom: 10px;
+}
+.login {
+  width: 30%;
+  height: 50px;
+  color: black;
+  background-color: #fab320;
+  border: 2px solid #fab320;
+  font-family: "Jura";
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.login:hover {
+    background-color: black;
+    color: #fab320;
+    border: 2px solid #fab320;
+}
+p a {
+  text-decoration: underline;
+  color: #ffffff;
+  margin-bottom: 50px;
+  
+}
+p {
+  font-size: 16px;
+  margin: 20px 0;
+  color: #ffffff;
+  text-align: center;
+  font-family: "Darker Grotesque";
+  font-weight: 500;
+}

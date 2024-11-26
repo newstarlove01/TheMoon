@@ -195,6 +195,24 @@ input[type="range"]::-webkit-slider-thumb {
 .container input:checked ~ .checkmark {
   background-color: #fab320;
 }
+.submit {
+  text-align: center;
+}
+input[type="submit"] {
+  width: 90%;
+  height: 45px;
+  color: #fab320;
+  background-color: black;
+  border: 2px solid #fab320;
+  font-family: "Jura";
+  font-size: 16px;
+  font-weight: bold;
+}
+
+input[type="submit"]:hover {
+  background-color: #fab320;
+  color: black;
+}
 
 /* Phần sản phẩm */
 #product-list a {

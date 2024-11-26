@@ -35,6 +35,7 @@ function getOne($sql){
   //$result= $stmt->setFetchmode(PDO::FETCH_ASSOC);
   return $this->stmt->fetch(PDO::FETCH_ASSOC);
 }
+
 function insert($sql , $param){
   $this->query($sql,$param);
   return $this->conn->lastInsertId();

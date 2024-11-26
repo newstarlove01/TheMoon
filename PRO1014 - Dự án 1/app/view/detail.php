@@ -1,7 +1,8 @@
+<link rel="stylesheet" href="./public/css/detail.css?v=<?php echo time(); ?>" />
 <?php
-$listpro = $data['spct'];
-extract($listpro);
-$mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $mo_ta);
+$product = $data['spct'];
+$cate = $data['dm'];
+$mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $product['mo_ta']);
 ?>
 <main>
   <div id="title">
@@ -9,38 +10,39 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $mo_ta);
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.php?view=home">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page"><?= $ten ?></li>
+        <li class="breadcrumb-item"><a href="index.php?view=product&idcate=<?= $product['id_dm'] ?>"><?= $cate['ten'] ?></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><?= $product['ten'] ?></li>
       </ol>
     </nav>
   </div>
   <div id="product-detail">
     <div class="slide-album">
-      <img class="slide-items" src="./img/<?= $img[0]['anh_chinh'] ?>" />
-      <img class="slide-items" src="./img/<?= $img[0]['album1'] ?>" />
-      <img class="slide-items" src="./img/<?= $img[0]['album2'] ?>" />
-      <img class="slide-items" src="./img/<?= $img[0]['album3'] ?>" />
+      <img class="slide-items" src="./img/<?= $product['img'][0]['anh_chinh'] ?>" />
+      <img class="slide-items" src="./img/<?= $product['img'][0]['album1'] ?>" />
+      <img class="slide-items" src="./img/<?= $product['img'][0]['album2'] ?>" />
+      <img class="slide-items" src="./img/<?= $product['img'][0]['album3'] ?>" />
       <div class="thumbnail">
         <img
           class="album-item"
-          src="./img/<?= $img[0]['anh_chinh'] ?>"
+          src="./img/<?= $product['img'][0]['anh_chinh'] ?>"
           onclick="pauseAndShow(1)" />
         <img
           class="album-item"
-          src="./img/<?= $img[0]['album1'] ?>"
+          src="./img/<?= $product['img'][0]['album1'] ?>"
           onclick="pauseAndShow(2)" />
         <img
           class="album-item"
-          src="./img/<?= $img[0]['album2'] ?>"
+          src="./img/<?= $product['img'][0]['album2'] ?>"
           onclick="pauseAndShow(3)" />
         <img
           class="album-item"
-          src="./img/<?= $img[0]['album3'] ?>"
+          src="./img/<?= $product['img'][0]['album3'] ?>"
           onclick="pauseAndShow(4)" />
       </div>
     </div>
     <div class="product-detail">
-      <h1><?= $ten ?></h1>
-      <h2><?= $gia ?> VNĐ</h2>
+      <h1><?= $product['ten'] ?></h1>
+      <h2><?= number_format($product['gia']) ?> VNĐ</h2>
       <!-- prettier-ignore -->
       <div class="size-title">
         <p>Cỡ</p>
@@ -172,15 +174,14 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $mo_ta);
       <?php
       $listpro = $data['dssplq'];
       foreach ($listpro as $item) {
-        extract($item);
-        echo '<a href="#" class="recommend-items">
-                <img src="./img/' . $img[0]['anh_chinh'] . '" alt="" />
-                <h2>' . $ten . '</h2>
-                <p>' . $gia . 'đ</p>
-                <button>Thêm vào giỏ hàng</button>
-              </a>';
-      };
       ?>
+        <a href="#" class="recommend-items">
+          <img src="./img/<?= $item['img'][0]['anh_chinh'] ?>" alt="" />
+          <h2><?= $item['ten'] ?></h2>
+          <p><?= number_format($item['gia']) ?>đ</p>
+          <button>Thêm vào giỏ hàng</button>
+        </a>
+      <?php }; ?>
     </div>
   </div>
 </main>

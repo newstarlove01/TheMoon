@@ -9,4 +9,8 @@ class BannerModel{
         $sql = "SELECT * FROM banner";
         return $this->db->getAll($sql);
     }
+    function getMeet(){
+        $sql = "SELECT * FROM meets";
+        return $this->db->getAll($sql);
+    }
 }
