@@ -141,6 +141,7 @@ class UserController
                 </script>';
                 } else {
                     echo '    
+
                 <script>
                     alert("Mật khẩu nhập lại không giống!");
                 </script>';
@@ -152,7 +153,7 @@ class UserController
             } else {
                 echo '    
                 <script>
-                    alert("Mật khẩu cũ không đúng! Vui lòng nhập lại");
+                    alert("Mật khẩu cũ không đúng! Vui lòng nhập lại!");
                 </script>';
                 echo '
                 <script>
