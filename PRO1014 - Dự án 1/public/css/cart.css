@@ -1,687 +1,152 @@
-
-.Giohang h1 {
-    text-align: center;
-    font-family: 'Jura', sans-serif;
-    font-size: 60px;
-    font-weight: bold;
-    margin: 2%;
+main {
+  margin: 0 2%;
+  color: white;
 }
 
-.Giohang {
-    margin: 0 2%;
+main h1 {
+  text-align: center;
+  font-family: "Jura";
+  font-weight: bold;
+  margin: 5%;
 }
 
-.Giohang .tieude {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 30px;
-    font-family: 'Inika', serif;
-    border-bottom: 1px solid white;
+table {
+  width: 100%;
 }
 
-.Giohang .tieude .gslt {
-    display: flex;
-    gap: 14rem;
+table thead {
+  border-bottom: 2px solid white;
+  font-size: 30px;
+  font-family: "Jura";
+  font-weight: bold;
+  text-align: right;
 }
 
-.Giohang .box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4rem 0 2rem;
+table tbody {
+  text-align: right;
+  font-size: 20px;
+  font-family: "Darker Grotesque";
+  font-weight: 500;
 }
 
-.Giohang .box p {
-    font-size: 20px;
-}
-
-.Giohang .box .gop {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-}
-
-.Giohang .box .gop input[type="radio"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
-    min-height: 24px;
-    border: 2px solid #FAB320;
-    background-color: #000;
-    border-radius: 50%;
-    cursor: pointer;
-    outline: none;
-}
-
-
-.Giohang .box .gop input[type="radio"]:checked {
-    background-color: #FAB320;
-    border-color: #FAB320;
-}
-
-.Giohang .box .gop input[type="radio"]:checked::before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    background-color: #000;
-    border-radius: 50%;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-}
-
-.Giohang .box img {
-    width: 110px;
-    height: 110px;
-}
-
-.Giohang .box .gop1 {
-    display: flex;
-    gap: 10.9rem;
+table th {
+  text-align: right; /* Căn thẻ th bên phải */
+  padding-right: 10px;
 }
 
 .soluong {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.soluong .tanggiam {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 206px;
-    height: 70px;
-    border: 1px solid white;
+.quantity {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  height: 50px;
+  border: 2px solid white;
+  overflow: hidden;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.soluong .tanggiam button {
-    background-color: black;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 24px;
-    text-align: center;
-    margin: 30px;
+table a {
+  text-decoration: none;
+  color: white;
+  width: 50%;
+  text-align: center;
+  margin-top: 10px;
 }
 
-.soluong .tanggiam input {
-    background-color: black;
-    border: none;
-    color: white;
-    width: 35px;
-    height: 24px;
-    text-align: center;
-    font-size: 18px;
+table a:hover {
+  color: #fab320;
+  text-decoration: underline;
 }
 
-.soluong .xoadi {
-    text-align: center;
-    color: white;
+table .option th {
+  padding-top: 50px;
 }
 
-.soluong .xoadi a {
-    color: white;
-    font-size: 18px;
+/* Phần input số lượng */
+.quantity {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  height: 50px;
+  border: 2px solid white;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.Giohang .xoa {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    padding: 3rem 0 2rem;
+.quantity button {
+  background-color: black;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 25px;
+  transition: background-color 0.2s;
 }
 
-.Giohang .xoa a {
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
+.input-box {
+  width: 100%;
+  text-align: center;
+  border: none;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+  background-color: black;
+  color: white;
 }
 
-.Giohang .xoa a:hover {
-    text-decoration: underline;
+.input-box::-webkit-inner-spin-button,
+.input-box::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.Giohang .tong {
-    width: 100%;
-    border-bottom: 1px solid white;
-    border-top: 1px solid white;
-    display: flex;
-    justify-content: space-between;
+table tfoot {
+  padding: 20px;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
 }
 
-.Giohang .tong p {
-    font-size: 30px;
+table tfoot th {
+  padding: 1% 0;
+  font-size: 30px;
+  font-family: "Jura";
+  font-weight: bold;
+  text-align: right;
 }
 
-.Giohang .thanhtoan {
-    padding: 3rem 0 0rem;
-    text-align: right;
-    margin-left: auto;
+.thanhtoan {
+  width: 100%;
+  text-align: right;
+  margin-top: 50px;
 }
 
-.Giohang .thanhtoan p {
-    font-size: 20px;
+.thanhtoan p {
+  font-size: 20px;
+  font-family: "Darker Grotesque";
+  font-weight: 500;
 }
 
-.Giohang .thanhtoan button {
-    width: 246px;
-    height: 63px;
-    background-color: black;
-    border: 1px solid #FAB320;
-    color: #FAB320;
-    font-size: 20px;
-    text-transform: uppercase;
+.thanhtoan button {
+  width: 15%;
+  height: 50px;
+  color: #fab320;
+  background-color: black;
+  border: 2px solid #fab320;
+  font-family: "Jura";
+  font-weight: bold;
+  font-size: 16px;
 }
 
-.Giohang .thanhtoan button:hover {
-    background-color: #FAB320;
-    color: black;
-}
-
-@media(max-width: 1024px) {
-    .Giohang h1 {
-        font-size: 40px;
-    }
-
-    .Giohang .tieude {
-        font-size: 20px;
-    }
-
-    .Giohang .tieude .gslt {
-        gap: 6rem;
-    }
-
-
-    /*Box*/
-    .Giohang .box {
-        padding: 2rem 0 0rem;
-        gap: 2rem;
-    }
-
-    .Giohang .box p {
-        font-size: 18px;
-    }
-
-    .Giohang .box .gop {
-        gap: 0.5rem;
-    }
-
-    .Giohang .box .gop input[type="radio"] {
-        width: 18px;
-        height: 18px;
-        min-width: 18px;
-        min-height: 18px;
-    }
-
-    .soluong {
-        gap: 0.5rem;
-    }
-
-    .soluong .tanggiam {
-        max-width: 120px;
-        height: 40px;
-    }
-
-    .soluong .tanggiam button {
-        font-size: 20px;
-        margin: 10px;
-    }
-
-    .soluong .tanggiam input {
-        width: 35px;
-        height: 24px;
-        font-size: 14px;
-    }
-
-    .soluong .xoadi a {
-        font-size: 16px;
-    }
-
-    .Giohang .xoa a {
-        font-size: 18px;
-    }
-
-    .Giohang .tong p {
-        font-size: 18px;
-    }
-
-    .Giohang .thanhtoan {
-        padding: 2rem 0 0rem;
-    }
-
-    .Giohang .thanhtoan p {
-        font-size: 18px;
-    }
-
-    .Giohang .thanhtoan button {
-        width: 180px;
-        height: 50px;
-        font-size: 16px;
-    }
-}
-
-@media(max-width: 768px) {
-    .Giohang h1 {
-        font-size: 40px;
-    }
-
-    .Giohang .tieude {
-        font-size: 20px;
-    }
-
-    .Giohang .tieude .gslt {
-        gap: 4.2rem;
-    }
-
-
-    /*Box*/
-    .Giohang .box {
-        padding: 2rem 0 0rem;
-        gap: 2rem;
-    }
-
-    .Giohang .box p {
-        font-size: 16px;
-    }
-
-    .Giohang .box .gop {
-        gap: 0.5rem;
-    }
-
-    .Giohang .box .gop input[type="radio"] {
-        width: 18px;
-        height: 18px;
-        min-width: 18px;
-        min-height: 18px;
-    }
-
-    .soluong {
-        gap: 0.5rem;
-    }
-
-    .soluong .tanggiam {
-        max-width: 120px;
-        height: 40px;
-    }
-
-    .soluong .tanggiam button {
-        font-size: 20px;
-        margin: 10px;
-    }
-
-    .soluong .tanggiam input {
-        width: 35px;
-        height: 24px;
-        font-size: 14px;
-    }
-
-    .soluong .xoadi a {
-        font-size: 16px;
-    }
-
-    .Giohang .xoa a {
-        font-size: 16px;
-    }
-
-    .Giohang .tong p {
-        font-size: 16px;
-    }
-
-    .Giohang .thanhtoan {
-        padding: 2rem 0 0rem;
-    }
-
-    .Giohang .thanhtoan p {
-        font-size: 16px;
-    }
-
-    .Giohang .thanhtoan button {
-        width: 180px;
-        height: 50px;
-        font-size: 16px;
-    }
-}
-
-@media(max-width:480px) {
-    body {
-        margin: 30px;
-    }
-
-    .Giohang h1 {
-        font-size: 30px;
-    }
-
-    .Giohang .tieude {
-        display: none;
-        font-size: 16px;
-    }
-
-    .Giohang .tieude .gslt {
-        display: flex;
-        gap: 2rem;
-    }
-
-
-    /*Box*/
-    .Giohang .box {
-        /* flex-wrap: wrap; */
-        gap: 1.3rem;
-        padding: 1rem 0 0rem;
-    }
-
-    .Giohang .box p {
-        font-size: 14px;
-    }
-
-    .Giohang .box .ten .chen::before {
-        content: "845.000đ";
-    }
-
-    .Giohang .box .p {
-        display: none;
-    }
-
-    .Giohang .box .gop {
-        gap: 0.5rem;
-    }
-
-    .Giohang .box img {
-        width: 100px;
-        height: 100px;
-    }
-
-    .Giohang .box .gop input[type="radio"] {
-        width: 12px;
-        height: 12px;
-        min-width: 12px;
-        min-height: 12px;
-    }
-
-    .soluong {
-        gap: 0.2rem;
-    }
-
-    .soluong .tanggiam {
-        max-width: 70px;
-        height: 25px;
-    }
-
-    .soluong .tanggiam button {
-        font-size: 14px;
-        margin: 1px;
-    }
-
-    .soluong .tanggiam input {
-        width: 20px;
-        height: 20px;
-        font-size: 10px;
-    }
-
-    .soluong .xoadi a {
-        font-size: 12px;
-    }
-
-    .Giohang .xoa a {
-        font-size: 14px;
-    }
-
-    .Giohang .tong p {
-        font-size: 14px;
-    }
-
-    .Giohang .thanhtoan {
-        padding: 2rem 0 0rem;
-    }
-
-    .Giohang .thanhtoan p {
-        font-size: 14px;
-    }
-
-    .Giohang .thanhtoan button {
-        width: 120px;
-        height: 40px;
-        font-size: 12px;
-        text-transform: uppercase;
-    }
-}
-
-@media(max-width:426px) {
-    .Giohang h1 {
-        font-size: 30px;
-    }
-
-    .Giohang .tieude {
-        display: none;
-        font-size: 16px;
-    }
-
-    .Giohang .tieude .gslt {
-        display: flex;
-        gap: 2rem;
-    }
-
-
-    /*Box*/
-    .Giohang .box {
-        gap: 1.3rem;
-        padding: 1rem 0 0rem;
-    }
-
-    .Giohang .box p {
-        font-size: 12px;
-    }
-
-    .Giohang .box .ten .chen::before {
-        content: "845.000đ";
-    }
-
-    .Giohang .box .p {
-        display: none;
-    }
-
-    .Giohang .box .gop {
-        gap: 0.5rem;
-    }
-
-    .Giohang .box img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .soluong .xoadi a {
-        font-size: 12px;
-    }
-
-    .Giohang .xoa {
-        padding: 1.5rem 0 1.5rem;
-    }
-
-    .Giohang .xoa a {
-        font-size: 12px;
-        align-content: center;
-    }
-
-    .Giohang .tong p {
-        font-size: 12px;
-    }
-
-    .Giohang .thanhtoan {
-        padding: 2rem 0 0rem;
-    }
-
-    .Giohang .thanhtoan p {
-        font-size: 12px;
-    }
-
-    .Giohang .thanhtoan button {
-        width: 120px;
-        height: 40px;
-        font-size: 12px;
-        text-transform: uppercase;
-    }
-}
-
-@media(max-width:376px) {
-    .Giohang h1 {
-        font-size: 30px;
-    }
-
-    .Giohang .tieude {
-        display: none;
-        font-size: 16px;
-    }
-
-    .Giohang .tieude .gslt {
-        display: flex;
-        gap: 2rem;
-    }
-
-
-    /*Box*/
-    .Giohang .box {
-        gap: 0;
-        padding: 1rem 0 0rem;
-    }
-
-    .Giohang .box .soluong {
-        padding-top: 30px;
-    }
-
-    .Giohang .box p {
-        font-size: 12px;
-    }
-
-    .Giohang .box .ten .chen::before {
-        content: "845.000đ";
-    }
-
-    .Giohang .box .p {
-        display: none;
-    }
-
-    .Giohang .box .gop {
-        gap: 0.5rem;
-    }
-
-    .Giohang .box img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .soluong .xoadi a {
-        font-size: 12px;
-    }
-
-    .Giohang .xoa {
-        padding: 1.5rem 0 1.5rem;
-    }
-
-    .Giohang .xoa a {
-        font-size: 12px;
-        align-content: center;
-    }
-
-    .Giohang .tong p {
-        font-size: 12px;
-    }
-
-    .Giohang .thanhtoan {
-        padding: 2rem 0 0rem;
-    }
-
-    .Giohang .thanhtoan p {
-        font-size: 12px;
-    }
-
-    .Giohang .thanhtoan button {
-        width: 120px;
-        height: 40px;
-        font-size: 12px;
-        text-transform: uppercase;
-    }
-}
-
-@media(max-width:320px) {
-    .Giohang h1 {
-        font-size: 27px;
-    }
-
-    .Giohang .tieude {
-        display: none;
-        font-size: 16px;
-    }
-
-    .Giohang .tieude .gslt {
-        display: flex;
-        gap: 2rem;
-    }
-
-
-    /*Box*/
-    .Giohang .box {
-        gap: 0;
-        padding: 1rem 0 0rem;
-    }
-
-    .Giohang .box .soluong {
-        padding-top: 30px;
-    }
-
-    .Giohang .box p {
-        font-size: 12px;
-    }
-
-    .Giohang .box .ten .chen::before {
-        content: "845.000đ";
-    }
-
-    .Giohang .box .p {
-        display: none;
-    }
-
-    .Giohang .box .gop {
-        gap: 0.5rem;
-    }
-
-    .Giohang .box img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .soluong .xoadi a {
-        font-size: 12px;
-    }
-
-    .Giohang .xoa {
-        padding: 1.5rem 0 1.5rem;
-    }
-
-    .Giohang .xoa a {
-        font-size: 12px;
-        align-content: center;
-    }
-
-    .Giohang .tong p {
-        font-size: 12px;
-    }
-
-    .Giohang .thanhtoan {
-        padding: 2rem 0 0rem;
-    }
-
-    .Giohang .thanhtoan p {
-        font-size: 12px;
-    }
-
-    .Giohang .thanhtoan button {
-        width: 120px;
-        height: 40px;
-        font-size: 12px;
-        text-transform: uppercase;
-    }
+.thanhtoan button:hover {
+  background-color: #fab320;
+  color: black;
 }

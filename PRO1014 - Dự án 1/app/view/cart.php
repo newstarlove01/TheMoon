@@ -1,110 +1,64 @@
+<link rel="stylesheet" href="./public/css/cart.css?v=<?php echo time(); ?>" />
 <main>
-    <div class="Giohang">
-        <h1>Giỏ hàng</h1>
-        <div class="tieude">
-            <div class="sp">
-                <p>Sản phẩm</p>
-            </div>
-            <div class="gslt">
-                <p>Giá</p>
-                <p>Số lượng</p>
-                <p>Tổng</p>
-            </div>
-        </div>
-    
-        <div class="box">
-            <div class="gop">
-                <input type="radio">
-                <img src="img/nhan1.jpg" alt="">
-                <div class="ten">
-                    <p>Nhẫn Bạc S925 Black Sun Helios Silver Original</p>
-                    <p class="chen"></p>
-                    <p>Size 7</p>
-                </div>
-            </div>
-            <!-- <div class="gop1"> -->
-                <p class="p">845.000đ</p>
-                <div class="soluong">
-                    <div class="tanggiam">
-                        <button>-</button>
-                        <input type="text" value="1">
-                        <button>+</button>
-                    </div>
-                    <div class="xoadi">
-                        <a href="">Xóa đi</a>
-                    </div>
-                </div>
-            <!-- </div> -->
-                <p class="p">845.000đ</p>
-        </div>
-
-
-        <div class="box">
-            <div class="gop">
-                <input type="radio">
-                <img src="img/nhan3.jpg" alt="">
-                <div class="ten">
-                    <p>Nhẫn Bạc S925 Black Sun Helios Silver Original</p>
-                    <p class="chen"></p>
-                    <p>Size 7</p>
-                </div>
-            </div>
-            <!-- <div class="gop1"> -->
-                <p class="p">845.000đ</p>
-                <div class="soluong">
-                    <div class="tanggiam">
-                        <button>-</button>
-                        <input type="text" value="1">
-                        <button>+</button>
-                    </div>
-                    <div class="xoadi">
-                        <a href="">Xóa đi</a>
-                    </div>
-                </div>
-            <!-- </div> -->
-                <p class="p">845.000đ</p>
-        </div>
-
-
-        <div class="box">
-            <div class="gop">
-                <input type="radio">
-                <img src="img/nhan4.jpg" alt="">
-                <div class="ten">
-                    <p>Nhẫn Bạc S925 Black Sun Helios Silver Original</p>
-                    <p class="chen"></p>
-                    <p>Size 7</p>
-                </div>
-            </div>
-            <!-- <div class="gop1"> -->
-                <p class="p">845.000đ</p>
-                <div class="soluong">
-                    <div class="tanggiam">
-                        <button>-</button>
-                        <input type="text" value="1">
-                        <button>+</button>
-                    </div>
-                    <div class="xoadi">
-                        <a href="">Xóa đi</a>
-                    </div>
-                </div>
-            <!-- </div> -->
-                <p class="p">845.000đ</p>
-        </div>
-
-        <div class="xoa">
-            <a href="">Xóa giỏ hàng</a> |
-            <a href="">Tiếp tục mua hàng</a>
-        </div>
-
-        <div class="tong">
-            <p>Tổng cộng</p>
-            <p>1.830.000đ</p>
-        </div>
-
-        <div class="thanhtoan">
-            <p>Đã bao gồm thuế. Phí vận chuyển được tính khi thanh toán.</p>
-            <a href="index.php?view=pay"><button >Thanh Toán</button></a>
-        </div>
+    <h1>Giỏ hàng</h1>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 50%; text-align: left;">Sản phẩm</th>
+                <th style="width: 15%;">Giá</th>
+                <th style="width: 20%;">Số lượng</th>
+                <th style="width: 15%;">Tổng</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (isset($_SESSION['cart'])) { ?>
+                <?php foreach ($_SESSION['cart'] as $productId => $sizes) { ?>
+                    <?php foreach ($sizes as $size => $item) { ?>
+                        <tr>
+                            <th style="display: flex; align-items: center; gap:20px; text-align: left">
+                                <img width="20%" src="img/<?= $item['img'][0]['anh_chinh'] ?>" alt="">
+                                <div style="display: flex; flex-direction: column;">
+                                    <p><?= $item['ten'] ?></p>
+                                    <p><?= $item['sizename'][0]['ten'] ?></p>
+                                </div>
+                            </th>
+                            <th>
+                                <p class="p"><?= number_format($item['gia']) ?>đ</p>
+                            </th>
+                            <th>
+                                <div class="soluong">
+                                    <div class="quantity">
+                                        <a href="index.php?view=decrease&id=<?= $item['id'] ?>&sizeid=<?= $item['size'] ?>"><button type="button" class="minus" aria-label="Decrease">&minus;</button></a>
+                                        <input name="quantity" type="number" class="input-box" value="<?= $item['quantity'] ?>" min="1" max="50">
+                                        <a href="index.php?view=increase&id=<?= $item['id'] ?>&sizeid=<?= $item['size'] ?>"><button type="button" class="plus" aria-label="Increase">&plus;</button></a>
+                                    </div>
+                                    <a href="index.php?view=remove&id=<?= $item['id'] ?>&sizeid=<?= $item['size'] ?>">Xóa đi</a>
+                                </div>
+                            </th>
+                            <th>
+                                <p class="p"><?= number_format($item['total_price']) ?>đ</p>
+                            </th>
+                        </tr>
+                    <?php } ?>
+                <?php } ?>
+            <?php } ?>
+            <tr class="option">
+                <th><a href="index.php?view=removeall">Xoá giỏ hàng</a></th>
+                <th style="text-align: left;"><a href="index.php">Tiếp tục mua hàng</a></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tbody>
+        <tfoot>
+            <th style="text-align: left;">Tổng cộng</th>
+            <th></th>
+            <th></th>
+            <th style="text-align: right;"><?= number_format($_SESSION['total_cart']) ?>đ</th>
+        </tfoot>
+    </table>
+    <div class="thanhtoan">
+        <p>Đã bao gồm thuế. Phí vận chuyển được tính khi thanh toán.</p>
+        <a href="index.php?view=pay"><button>Thanh Toán</button></a>
     </div>
 </main>
+<script src="./public/js/cart.js?v=<?php echo time(); ?>"></script>

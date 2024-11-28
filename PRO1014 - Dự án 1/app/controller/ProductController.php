@@ -17,6 +17,29 @@ class ProductController
         require_once 'app/view/' . $view . '.php';
     }
 
+    public function search()
+    {
+        $searchKeyword = isset($_POST['search']) ? trim($_POST['search']) : '';
+
+        $currentPage = isset($_GET['page']) ? max((int)$_GET['page'], 1) : 1; // Mặc định trang 1 nếu không có
+        $itemsPerPage = 9;
+        $offset = ($currentPage - 1) * $itemsPerPage;
+
+        $totalProducts = $this->product->get_count_search($searchKeyword);
+        $totalPages = ceil($totalProducts / $itemsPerPage);
+
+        $this->data['currentPage'] = $currentPage;
+        $this->data['totalPages'] = $totalPages;  // Truyền biến tổng số trang
+        $this->data['dssp'] = $this->product->getSearch($searchKeyword, $itemsPerPage, $offset);
+        $this->data['searchKeyword'] = $searchKeyword; // Truyền từ khóa tìm kiếm vào view
+
+        foreach ($this->data['dssp'] as &$product) {
+            $product['img'] = $this->product->getImg($product['id']) ?? [];
+        }
+
+        $this->view('search', $this->data);
+    }
+
     function product()
     {
         if (isset($_GET['idcate']) && $_GET['idcate'] > 0) {

@@ -13,6 +13,6 @@
         </div>
         <button type="submit" class="login" name="sub">TIẾP THEO</button>
         <p>Bạn đã có tài khoản? <a href="index.php?view=login">Đăng nhập ngay</a></p>
-        <p><a href="index.php?view=home">Quay lại cửa hàng </a></p>
+        <p><a href="index.php">Quay lại cửa hàng </a></p>
     </form>
 </div>

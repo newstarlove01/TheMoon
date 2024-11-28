@@ -87,8 +87,8 @@
   font-weight: 900;
   font-size: 25px;
 }
-
 #product-detail .size-group {
+  text-align: left;
   width: 100%;
 }
 
@@ -241,7 +241,7 @@
 
 #danh-gia .khach-hang .avatar img {
   width: 120px;
-
+  border-radius: 100%;
 }
 
 #danh-gia .khach-hang h5 {

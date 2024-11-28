@@ -32,6 +32,10 @@ class ProductModel
         $sql = "SELECT * FROM size WHERE id_dm = $id";
         return $this->db->getAll($sql);
     }
+    function getSizeName($id){
+        $sql = "SELECT * FROM size WHERE id = $id";
+        return $this->db->getAll($sql);
+    }
     function getSizeDetail($id)
     {
         $sql = "SELECT * FROM size WHERE id_dm = (SELECT id_dm FROM san_pham WHERE id=$id) LIMIT 7";
@@ -86,7 +90,19 @@ class ProductModel
         $result = $this->db->getOne($sql);
         return $result['total'];
     }
-    public function filterProducts($filters) {
+    function getSearch($keyword, $limit, $offset)
+    {
+        $sql = "SELECT * FROM san_pham WHERE ten LIKE '%$keyword%' OR mo_ta LIKE '%$keyword%' LIMIT $limit OFFSET $offset";
+        return $this->db->getAll($sql);
+    }
+    function get_count_search($keyword)
+    {
+        $sql = "SELECT COUNT(*) as total FROM san_pham WHERE ten LIKE '%$keyword%' OR mo_ta LIKE '%$keyword%'";
+        $result = $this->db->getOne($sql);
+        return $result['total'];
+    }
+    public function filterProducts($filters)
+    {
         $query = "SELECT * FROM products WHERE 1";  // Điều kiện mặc định
 
         // Nếu có bộ lọc, thêm vào câu truy vấn

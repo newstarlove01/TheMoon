@@ -16,6 +16,6 @@
         </div>
         <button onclick="check()" type="submit" class="login" name="sub">ĐĂNG KÍ</button>
         <p>Bạn đã có tài khoản? <a href="index.php?view=login">Đăng nhập ngay</a></p>
-        <p><a href="index.php?view=home">Quay lại cửa hàng </a></p>
+        <p><a href="index.php">Quay lại cửa hàng </a></p>
     </form>
 </div>

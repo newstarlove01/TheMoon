@@ -4,12 +4,19 @@ require_once 'app/controller/HeaderController.php';
 require_once 'app/controller/HomeController.php';
 require_once 'app/controller/ProductController.php';
 require_once 'app/controller/UserController.php';
+require_once 'app/controller/CartController.php';
 
+session_start();
+// session_unset();
 $db = new Database();
 $header = new HeaderController();
 $header->header();
-$view = $_GET['view'] ?? 'home';
+$view = $_GET['view'] ?? '';
 switch ($view) {
+    case 'search':
+        $product = new ProductController();
+        $product->search();
+        break;
     case 'home':
         $home = new HomeController();
         $home->home();
@@ -64,6 +71,30 @@ switch ($view) {
     case 'checkpass':
         $checkpass = new UserController();
         $checkpass->checkpass();
+        break;
+    case 'addcart':
+        $addcart = new CartController();
+        $addcart->addcart();
+        break;
+    case 'cart':
+        $cart = new CartController();
+        $cart->viewcart();
+        break;
+    case 'decrease':
+        $decrease = new CartController();
+        $decrease->decrease();
+        break;
+    case 'increase':
+        $increase = new CartController();
+        $increase->increase();
+        break;
+    case 'remove':
+        $remove = new CartController();
+        $remove->remove();
+        break;
+    case 'removeall':
+        $removeall = new CartController();
+        $removeall->removeall();
         break;
     default:
         $home = new HomeController();

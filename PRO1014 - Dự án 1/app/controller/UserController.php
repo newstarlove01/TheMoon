@@ -94,7 +94,6 @@ class UserController
     }
     function logout()
     {
-        session_start();
         session_destroy();
         echo '
         <script>
@@ -107,7 +106,6 @@ class UserController
             $email = $_POST['email'];
             $result = $this->user->checkmail($email);
             if (is_array($result)) {
-                session_start();
                 $_SESSION['email'] = $email;
                 echo '<script>location.href="index.php?view=changepass"</script>';
             } else {

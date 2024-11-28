@@ -11,6 +11,6 @@
         <p><a href="index.php?view=password">Quên mật khẩu</a></p>
         <button onclick="check()" type="submit" class="login" name="sub">ĐĂNG NHẬP</button>
         <p>Bạn đã có tài khoản? <a href="index.php?view=register">Đăng kí ngay</a></p>
-        <p><a href="index.php?view=home">Quay lại cửa hàng </a></p>
+        <p><a href="index.php">Quay lại cửa hàng </a></p>
     </form>
 </div>

@@ -25,13 +25,13 @@ class Database
     $this->stmt->execute($param);
     return $this->stmt;
 }
-function getAll($sql){
-  $stmt=$this->query($sql);
+function getAll($sql, $param = []){
+  $stmt=$this->query($sql, $param);
   //$result= $stmt->setFetchmode(PDO::FETCH_ASSOC);
   return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-function getOne($sql){
-  $stmt=$this->query($sql);
+function getOne($sql, $param = []){
+  $stmt=$this->query($sql, $param);
   //$result= $stmt->setFetchmode(PDO::FETCH_ASSOC);
   return $this->stmt->fetch(PDO::FETCH_ASSOC);
 }
