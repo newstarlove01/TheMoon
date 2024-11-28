@@ -123,8 +123,8 @@ class UserController
     function checkpass()
     {
         if (isset($_POST['sub'])) {
-            $data['emailpass'] = $_SESSION['email'];
-            $result = $this->user->checkmail($data['emailpass']);
+            $email = $_POST['email'];
+            $result = $this->user->checkmail($email);
             $oldpass = $_POST['oldpass'];
             var_dump($oldpass);
             $data['newpass'] = $_POST['newpass'];

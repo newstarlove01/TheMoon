@@ -53,7 +53,12 @@
             <th style="text-align: left;">Tổng cộng</th>
             <th></th>
             <th></th>
-            <th style="text-align: right;"><?= number_format($_SESSION['total_cart']) ?>đ</th>
+            <?php if ($_SESSION['total_cart']) {
+                $total = $_SESSION['total_cart'];
+            } else {
+                $total = 0;
+            } ?>
+            <th style="text-align: right;"><?= number_format($total) ?>đ</th>
         </tfoot>
     </table>
     <div class="thanhtoan">
