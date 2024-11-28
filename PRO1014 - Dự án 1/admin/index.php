@@ -23,6 +23,9 @@ switch ($view) {
     case 'category':
         $cate = new CategoryController();
         $cate->getAllcate();
+    case 'addcate':
+        $cate = new CategoryController();
+        $cate->addcate();
     default:
         $cate = new CategoryController();
         $cate->getAllcate();

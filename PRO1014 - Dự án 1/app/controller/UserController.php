@@ -83,11 +83,11 @@ class UserController
                 $this->user->insertUser($data);
                 echo '    
                 <script>
-                    alert("Đăng nhập thành công");
+                    alert("Đăng ký thành công");
                 </script>';
                 echo '
                 <script>
-                    location.href="index.php?view=home"
+                    location.href="index.php?view=login"
                 </script>';
             }
         }
