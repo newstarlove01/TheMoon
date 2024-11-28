@@ -52,6 +52,11 @@ switch ($view) {
     case 'editprofile':
         $editprofile = new UserController();
         $editprofile->editprofile();
+        break;
+    case 'changepassprofile':
+        $checkpassprofile = new UserController();
+        $checkpassprofile->changepassprofile();
+        break;
     case 'logout':
         $logout = new UserController();
         $logout->logout();

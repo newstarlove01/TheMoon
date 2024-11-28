@@ -36,7 +36,7 @@ $user = $data['user'];
     </div>
     <div class="profile">
         <h2>Mật khẩu</h2>
-        <form method="post" action="index.php?view=checkpass">
+        <form method="post" action="index.php?view=changepassprofile">
             <div class="profile-detail">
                 <input type="hidden" name="email" value="<?= $user['email'] ?>">
                 <label for="">Mật khẩu cũ</label> <br>

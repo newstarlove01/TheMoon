@@ -40,13 +40,13 @@ class UserModel
     function updateUser($data)
     {
         $sql = "UPDATE khach_hang SET mat_khau = ? WHERE email = ?";
-        $param = [$data['newpass'], $data['emailpass']];
+        $param = [$data['newpass'], $data['email']];
         return $this->db->update($sql, $param);
     }
     function updateProfile($data)
     {
         $sql = "UPDATE khach_hang SET ho = ?,ten = ?, email = ?, sdt = ? WHERE id = ?";
-        $param = [$data['firstname'], $data['lastname'], $data['emailprofile'], $data['sdt'], $data['idprofile']];
+        $param = [$data['firstname'], $data['lastname'], $data['email'], $data['sdt'], $data['idprofile']];
         return $this->db->update($sql, $param);
     }
     function deleteUser($id)

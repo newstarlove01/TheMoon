@@ -123,10 +123,9 @@ class UserController
     function checkpass()
     {
         if (isset($_POST['sub'])) {
-            $email = $_POST['email'];
-            $result = $this->user->checkmail($email);
+            $data['email'] = $_SESSION['email'];
+            $result = $this->user->checkmail($data['email']);
             $oldpass = $_POST['oldpass'];
-            var_dump($oldpass);
             $data['newpass'] = $_POST['newpass'];
             $data['renewpass'] = $_POST['renewpass'];
             if ($result['mat_khau'] === $oldpass) {
@@ -174,15 +173,60 @@ class UserController
             $data['idprofile'] = $_POST['id'];
             $data['firstname'] = $_POST['firstname'];
             $data['lastname'] = $_POST['lastname'];
-            $data['emailprofile'] = $_POST['email'];
-            $data['password'] = $_POST['passwork'];
+            $data['email'] =  $_POST['email'];
             $data['sdt'] = $_POST['sdt'];
+            $_SESSION['password'] = $_POST['password'];
+            $_SESSION['email'] = $data['email'];
             $this->user->updateProfile($data);
-            $this->data['user'] = $this->user->checkmail($data['emailprofile']);
-            
-            $result = $this->user->checkUser($data['emailprofile'], $data['password']);
+            $this->data['user'] = $this->user->checkmail($data['email']);
+
+            $result = $this->user->checkUser($_SESSION['email'], $_SESSION['password']);
             $_SESSION['user'] = $result;
-            
+            echo '    
+            <script>
+                alert("Đổi thông tin thành công!");
+            </script>';
+            echo '
+            <script>
+                location.href="index.php?view=profile"
+            </script>';
+        }
+    }
+    function changepassprofile()
+    {
+        if (isset($_POST['sub'])) {
+            $email = $_POST['email'];
+            $data['email'] = $email;
+            $result = $this->user->checkmail($email);
+            $oldpass = $_POST['oldpass'];
+            $data['newpass'] = $_POST['newpass'];
+            $data['renewpass'] = $_POST['renewpass'];
+            if (is_array($result)) {
+                $_SESSION['email'] = $email;
+            }
+            if ($result['mat_khau'] === $oldpass) {
+                if ($data['newpass'] === $data['renewpass']) {
+                    $this->user->updateUser($data);
+                    echo '    
+                <script>
+                    alert("Đổi mật khẩu thành công!");
+                </script>';
+                } else {
+                    echo '    
+                <script>
+                    alert("Mật khẩu nhập lại không giống!");
+                </script>';
+                }
+            } else {
+                echo '    
+                <script>
+                    alert("Mật khẩu cũ không đúng! Vui lòng nhập lại");
+                </script>';
+            }
+            echo '
+            <script>
+                location.href="index.php?view=profile"
+            </script>';
         }
     }
 }
