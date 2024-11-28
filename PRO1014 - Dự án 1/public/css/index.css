@@ -30,10 +30,7 @@
 }
 
 #new .new-items {
-  display: flex;
-  flex-direction: column; 
-  justify-content: space-around;
-  height: 100%;
+  height: auto;
   margin-top: 20px;
   transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
@@ -47,7 +44,6 @@
   font-size: 16px;
   font-family: "Merriweather";
   font-weight: 900;
-  height: 30px;
 }
 
 #new p {
@@ -58,7 +54,7 @@
 
 #new button {
   width: 100%;
-  height: 45px;
+  height: 10%;
   color: #fab320;
   background-color: black;
   border: 2px solid #fab320;
@@ -153,7 +149,6 @@
   font-weight: 900;
   font-size: 30px;
   margin-top: 20px;
-  max-height: 100px;
 }
 
 #hot button {
