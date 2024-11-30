@@ -2,6 +2,9 @@
 <div class="dang-ki">
     <h1>Quên mật khẩu</h1>
     <form action="index.php?view=checkpass" method="POST">
+    <div class="dangki">
+            <input type="number" id="resetcode" name="resetcode" required placeholder="Mã khôi phục">
+        </div>
         <div class="dangki">
             <input type="password" id="oldpass" name="oldpass" required placeholder="Mật khẩu cũ">
         </div>

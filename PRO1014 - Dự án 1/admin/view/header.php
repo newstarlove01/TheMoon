@@ -73,8 +73,8 @@ function isActive($currentView, $menuView)
                 Đánh giá
               </a>
             </li>
-            <li class="<?= isActive($view, 'post') ?>">
-              <a href="">
+            <li class="<?= isActive($view, 'blog') ?>">
+              <a href="index.php?view=blog">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 Bài viết
               </a>
@@ -85,8 +85,8 @@ function isActive($currentView, $menuView)
                 Đơn hàng
               </a>
             </li>
-            <li>
-              <a href="">
+            <li class="<?= isActive($view, 'analytics') ?>">
+              <a href="index.php?view=analytics">
                 <i class="fa-solid fa-bell"></i>
                 Thống kê
               </a>
@@ -100,6 +100,6 @@ function isActive($currentView, $menuView)
         <h1>Trang quản trị của The Moon</h1>
         <div>
           <a href="index.php?view=logout">Đăng xuất</a>
-          <img src="../img/avatar.jpg" alt="" />
+          <img src="../img/<?=$_SESSION['user']['avatar'] ?>" alt="" />
         </div>
       </nav>

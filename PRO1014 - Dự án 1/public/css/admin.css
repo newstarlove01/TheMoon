@@ -1,15 +1,16 @@
 body {
   width: 100%;
-  height: 100%;
+  height: 1000px;
   margin: 0;
 }
 header {
   width: 100%;
-  height: 110%;
+  height: 100%;
   background-color: black;
 }
 
 .head {
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 4fr;
   font-family: "Jura";
@@ -57,7 +58,7 @@ header {
 
 nav {
   width: 100%;
-  height: 10%;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   background-color: black;
@@ -92,7 +93,7 @@ main {
 }
 
 main .main-table {
-  padding: 5% 5% 0 5%;
+  margin: 2%;
 }
 
 main .main-table button {
@@ -138,4 +139,83 @@ main th {
 
 main .main-table table button {
   width: 60%;
+}
+
+.control {
+  margin: 2%;
+}
+
+.control label {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.control img {
+  width: 30%;
+}
+
+.control button {
+  margin: 2% 0;
+  height: 45px;
+  width: 20%;
+  font-size: 20px;
+  border: none;
+  background-color: black;
+  color: white;
+}
+
+.control textarea {
+  height: 200px;
+}
+
+.control button:hover {
+  opacity: 50%;
+}
+
+
+#page nav {
+  margin-top: 50px;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#page .active-check  {
+  background-color: black;
+  color: white;
+}
+
+ /* Ẩn checkbox mặc định */
+ input[type="checkbox"] {
+  display: none;
+}
+
+/* Tạo checkbox tùy chỉnh */
+.custom-checkbox {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 5px; /* Bo góc (tùy chọn) */
+  position: relative;
+  cursor: pointer;
+}
+
+/* Hiệu ứng khi checkbox được chọn */
+input[type="checkbox"]:checked + .custom-checkbox {
+  background-color: #fab320; /* Màu nền khi chọn */
+  border-color: black;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  width: 10px;
+  height: 20px;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
 }

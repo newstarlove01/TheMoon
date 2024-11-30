@@ -20,35 +20,54 @@ class Database
       echo "Connection failed: " . $e->getMessage();
     }
   }
-  function query($sql, $param=[]){
-    $this->stmt=$this->conn->prepare($sql);
+  function query($sql, $param = [])
+  {
+    $this->stmt = $this->conn->prepare($sql);
     $this->stmt->execute($param);
     return $this->stmt;
-}
-function getAll($sql, $param = []){
-  $stmt=$this->query($sql, $param);
-  //$result= $stmt->setFetchmode(PDO::FETCH_ASSOC);
-  return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-function getOne($sql, $param = []){
-  $stmt=$this->query($sql, $param);
-  //$result= $stmt->setFetchmode(PDO::FETCH_ASSOC);
-  return $this->stmt->fetch(PDO::FETCH_ASSOC);
-}
+  }
+  function getAll($sql, $param = [])
+  {
+    $stmt = $this->query($sql, $param);
+    //$result= $stmt->setFetchmode(PDO::FETCH_ASSOC);
+    return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+  function getOne($sql, $param = [])
+  {
+    $stmt = $this->query($sql, $param);
+    //$result= $stmt->setFetchmode(PDO::FETCH_ASSOC);
+    return $this->stmt->fetch(PDO::FETCH_ASSOC);
+  }
 
-function insert($sql , $param){
-  $this->query($sql,$param);
-  return $this->conn->lastInsertId();
-}
-function delete($sql , $param){
-  $this->query($sql,$param);
-}
-function update($sql,$param) {
-  $this->query($sql,$param);
-}
-function __destruct()
-{
-  unset($this->conn);
-}
-}
+  function insert($sql, $param)
+  {
+    $this->query($sql, $param);
+    return $this->conn->lastInsertId();
+  }
+  function delete($sql, $param)
+  {
+    $this->query($sql, $param);
+  }
+  function update($sql, $param)
+  {
+    $this->query($sql, $param);
+  }
+  public function beginTransaction()
+  {
+    $this->conn->beginTransaction();
+  }
 
+  public function commit()
+  {
+    $this->conn->commit();
+  }
+
+  public function rollBack()
+  {
+    $this->conn->rollBack();
+  }
+  function __destruct()
+  {
+    unset($this->conn);
+  }
+}

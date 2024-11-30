@@ -5,6 +5,7 @@ require_once 'app/controller/HomeController.php';
 require_once 'app/controller/ProductController.php';
 require_once 'app/controller/UserController.php';
 require_once 'app/controller/CartController.php';
+require_once 'app/controller/InformationController.php';
 
 session_start();
 // session_unset();
@@ -36,6 +37,18 @@ switch ($view) {
     case 'login':
         $login = new UserController();
         $login->viewlogin();
+        break;
+    case 'about':
+        $about = new InformationController();
+        $about->about();
+        break;
+    case 'blog':
+        $blog = new InformationController();
+        $blog->blog();
+        break;
+    case 'blog_detail':
+        $blog_detail = new InformationController();
+        $blog_detail->blogDetail();
         break;
     case 'checkuser':
         $checkuser = new UserController();

@@ -1,5 +1,5 @@
 <?php
-require_once('app/model/BannerModel.php');
+require_once('app/model/InformationModel.php');
 require_once('app/model/ProductModel.php');
 class HomeController
 {
@@ -10,7 +10,7 @@ class HomeController
     //$data = {dsdm: [], dssp: []}
     function __construct()
     {
-        $this->banner = new BannerModel();
+        $this->banner = new InformationModel();
         $this->product = new ProductModel();
     }
     public function view($data)

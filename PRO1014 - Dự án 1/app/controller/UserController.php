@@ -1,4 +1,12 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpMailer/src/Exception.php';
+require 'phpMailer/src/PHPMailer.php';
+require 'phpMailer/src/SMTP.php';
+
 require_once('app/model/UserModel.php');
 class UserController
 {
@@ -37,22 +45,30 @@ class UserController
             $email = $_POST['email'];
             $password = $_POST['password'];
             $result = $this->user->checkUser($email, $password);
-            $_SESSION['user'] = $result;
             if (is_array($result)) {
-                if ($result['admin'] == 1) {
-                    header('location:admin/index.php');
+                if ($result['trang_thai'] == 1) {
+                    $_SESSION['user'] = $result;
+                    if ($result['admin'] == 1) {
+                        header('location:admin/index.php');
+                    } else {
+                        echo '<script>alert("Đăng nhập thành công - Chào mừng ' . $_SESSION['user']['ten'] . ' ' . $_SESSION['user']['ho'] . '!");</script>';
+                        echo '<script>location.href="index.php"</script>';
+                    }
                 } else {
-                    echo '<script>alert("Đăng nhập thành công - Chào mừng ' . $_SESSION['user']['ten'] . ' ' . $_SESSION['user']['ho'] . '!");</script>';
-                    echo '<script>location.href="index.php"</script>';
+                    echo '<script>alert("Tài khoản đã bị khoá!");</script>';
+                    //     echo '<script>
+                    //     window.historyback()
+                    // </script>';
+                    echo '
+                <script>
+                    location.href="index.php?view=login"
+                </script>';
                 }
             } else {
                 echo '    
                 <script>
                     alert("Đăng nhập thất bại - Sai thông tin hoặc chưa có tài khoản, Xin vui lòng đăng ký!");
                 </script>';
-                //     echo '<script>
-                //     window.historyback()
-                // </script>';
                 echo '
                 <script>
                     location.href="index.php?view=login"
@@ -68,6 +84,7 @@ class UserController
             $data['ten'] = $_POST['lastname'];
             $data['email'] = $_POST['email'];
             $data['mat_khau'] = $_POST['password'];
+            $data['mat_khau_moi'] = $_POST['repassword'];
 
             $result = $this->user->checkmail($data['email']);
             if ($result) {
@@ -80,15 +97,26 @@ class UserController
                     location.href="index.php?view=register"
                 </script>';
             } else {
-                $this->user->insertUser($data);
-                echo '    
-                <script>
-                    alert("Đăng ký thành công");
-                </script>';
-                echo '
-                <script>
-                    location.href="index.php?view=login"
-                </script>';
+                if ($data['mat_khau'] === $data['mat_khau_moi']) {
+                    $this->user->insertUser($data);
+                    echo '    
+                    <script>
+                        alert("Đăng ký thành công!");
+                    </script>';
+                    echo '
+                    <script>
+                        location.href="index.php?view=login"
+                    </script>';
+                } else {
+                    echo '    
+                    <script>
+                        alert("Đăng ký thất bại! Mật khẩu nhập lại không đúng.");
+                    </script>';
+                    echo '
+                    <script>
+                        location.href="index.php?view=register"
+                    </script>';
+                }
             }
         }
     }
@@ -107,6 +135,33 @@ class UserController
             $result = $this->user->checkmail($email);
             if (is_array($result)) {
                 $_SESSION['email'] = $email;
+                $reset_code = random_int(100000, 999999);
+                $this->user->updateResetCode($email, $reset_code);
+
+                $mail = new PHPMailer(true);
+
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'thanhphuc2005.work@gmail.com';
+                $mail->Password = 'oyrtccvhnukedlsn';
+                $mail->SMTPSecure = 'ssl';
+                $mail->Port = 465;
+
+                $mail->setFrom('thanhphuc2005.work@gmail.com');
+
+                $mail->addAddress($email);
+
+                $mail->isHTML(true);
+
+                $mail->Subject = "Verffication code";
+                $mail->Body = $reset_code;
+
+                $mail->send();
+                echo '    
+                <script>
+                    alert("Đã gửi mã khôi phục đến ' . $email . '!");
+                </script>';
                 echo '<script>location.href="index.php?view=changepass"</script>';
             } else {
                 echo '    
@@ -125,25 +180,36 @@ class UserController
         if (isset($_POST['sub'])) {
             $data['email'] = $_SESSION['email'];
             $result = $this->user->checkmail($data['email']);
+            $reset_code = $_POST['resetcode'];
             $oldpass = $_POST['oldpass'];
             $data['newpass'] = $_POST['newpass'];
             $data['renewpass'] = $_POST['renewpass'];
-            if ($result['mat_khau'] === $oldpass) {
-                if ($data['newpass'] === $data['renewpass']) {
-                    $this->user->updateUser($data);
-                    echo '    
+            if ($reset_code == $result['reset_code']) {
+                if ($result['mat_khau'] === $oldpass) {
+                    if ($data['newpass'] === $data['renewpass']) {
+                        $this->user->updateUser($data);
+                        echo '    
                 <script>
                     alert("Đổi mật khẩu thành công!");
                 </script>';
-                    echo '
+                        echo '
                 <script>
                     location.href="index.php?view=login"
                 </script>';
-                } else {
-                    echo '    
-
+                    } else {
+                        echo '    
                 <script>
                     alert("Mật khẩu nhập lại không giống!");
+                </script>';
+                        echo '
+                <script>
+                    location.href="index.php?view=changepass"
+                </script>';
+                    }
+                } else {
+                    echo '    
+                <script>
+                    alert("Mật khẩu cũ không đúng! Vui lòng nhập lại");
                 </script>';
                     echo '
                 <script>
@@ -153,7 +219,7 @@ class UserController
             } else {
                 echo '    
                 <script>
-                    alert("Mật khẩu cũ không đúng! Vui lòng nhập lại!");
+                    alert("Mã xác nhận không đúng! Vui lòng nhập lại");
                 </script>';
                 echo '
                 <script>
@@ -176,6 +242,17 @@ class UserController
             $data['lastname'] = $_POST['lastname'];
             $data['email'] =  $_POST['email'];
             $data['sdt'] = $_POST['sdt'];
+            $data['address'] = $_POST['address'];
+            $data['image'] = $_FILES['image']['name'];
+            $data['image_old'] = $_POST['image_old'];
+            if ($data['image'] == "") {
+                $data['image'] = $data['image_old'];
+            } else {
+                $file = './img/' . $data['image'];
+                move_uploaded_file($_FILES['image']['tmp_name'], $file);
+                $file_old = './img/' . $data['image_old'];
+                unlink($file_old);
+            }
             $_SESSION['password'] = $_POST['password'];
             $_SESSION['email'] = $data['email'];
             $this->user->updateProfile($data);

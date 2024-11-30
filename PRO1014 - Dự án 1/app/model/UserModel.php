@@ -45,13 +45,35 @@ class UserModel
     }
     function updateProfile($data)
     {
-        $sql = "UPDATE khach_hang SET ho = ?,ten = ?, email = ?, sdt = ? WHERE id = ?";
-        $param = [$data['firstname'], $data['lastname'], $data['email'], $data['sdt'], $data['idprofile']];
+        $sql = "UPDATE khach_hang SET ho = ?,ten = ?, email = ?, sdt = ?, dia_chi = ?, avatar = ? WHERE id = ?";
+        $param = [$data['firstname'], $data['lastname'], $data['email'], $data['sdt'], $data['address'], $data['image'], $data['idprofile']];
         return $this->db->update($sql, $param);
     }
     function deleteUser($id)
     {
         $sql = "DELETE FROM khach_hang WHERE id = ?";
         return $this->db->delete($sql, [$id]);
+    }
+    function getAllUser()
+    {
+        $sql = "SELECT * FROM khach_hang";
+        return $this->db->getAll($sql);
+    }
+    function getCountAllUser()
+    {
+        $sql = "SELECT COUNT(*) as total FROM khach_hang";
+        $result = $this->db->getOne($sql);
+        return $result['total'];
+    }
+    function updateUserAdmin($data)
+    {
+        $sql = "UPDATE khach_hang SET trang_thai = ?, admin = ? WHERE id = ?";
+        $param = [$data['status'], $data['admin'], $data['id']];
+        return $this->db->update($sql, $param);
+    }
+    function updateResetCode($email, $reset_code){
+        $sql = "UPDATE khach_hang SET reset_code = ? WHERE email = ?";
+        $param = [$reset_code, $email];
+        return $this->db->update($sql, $param);
     }
 }

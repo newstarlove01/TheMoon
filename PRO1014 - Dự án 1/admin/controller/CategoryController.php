@@ -20,7 +20,16 @@ class CategoryController
     }
     function getAllcate()
     {
-        $this->data['cate'] = $this->category->getCate();
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $itemsPerPage = 9;  
+        $offset = ($currentPage - 1) * $itemsPerPage; 
+
+        $this->data['cate'] = $this->category->getAllCate($offset, $itemsPerPage);
+        $totalProducts = $this->category->getCountAllCate();
+        $totalPages = ceil($totalProducts / $itemsPerPage);
+
+        $this->data['currentPage'] = $currentPage;
+        $this->data['totalPages'] = $totalPages;  // Truyền biến tổng số trang
         $this->renderview('category', $this->data);
     }
     function viewAdd()
@@ -34,19 +43,19 @@ class CategoryController
             $this->data['detail_cate'] = $this->category->getIdCate($id);
             $this->renderview('editcate', $this->data);
         }
-        // $this->renderview('editcate', $this->data);
     }
     function addCate()
     {
-        if (isset($_POST['subi'])) {
+        if (isset($_POST['sub'])) {
             $data = [];
             $data['name'] = $_POST['name'];
+            $data['description'] = $_POST['description'];
             $data['image'] = $_FILES["image"]["name"];
             $file = '../img/' . $data['image'];
             move_uploaded_file($_FILES['image']['tmp_name'], $file);
             $this->category->insertCate($data);
             echo '<script>alert("Thêm danh mục thành công");</script>';
-            echo '<script>location.href="index.php?page=category";</script>';
+            echo '<script>location.href="index.php?view=category";</script>';
         }
     }
 
@@ -55,6 +64,7 @@ class CategoryController
         if (isset($_POST['sub'])) {
             $data = [];
             $data['name'] = $_POST['name'];
+            $data['description'] = $_POST['description'];
             $data['image'] = $_FILES['image']['name'];
             $data['id'] = $_POST['idcate'];
             $data['image_old'] = $_POST['image_old'];
@@ -68,26 +78,26 @@ class CategoryController
             }
             $this->category->updateCate($data);
             echo '<script>alert("Cập nhật danh mục thành công");</script>';
-            echo '<script>location.href="index.php?page=category";</script>';
+            echo '<script>location.href="index.php?view=category";</script>';
         }
     }
 
-    // function delCate()
-    // {
-    //     if (isset($_GET['id']) && ($_GET['id'])) {
-    //         $id = $_GET['id'];
-    //         $data = $this->product->get_all_cate_pro($id);
-    //         if (count($data) > 0) {
-    //             echo '<script>alert("Danh mục đang chứa ' . count($data) . ' sản phẩm");</script>';
-    //             echo '<script>location.href="index.php?page=category";</script>';
-    //         } else {
-    //             $cate = $this->category->getIdcate($id);
-    //             $file = '../img/' . $cate['image'];
-    //             unlink($file);
-    //             $this->category->delCate($id);
-    //             echo '<script>alert("Xoá danh mục thành công");</script>';
-    //             echo '<script>location.href="index.php?page=category";</script>';
-    //         }
-    //     }
-    // }
+    function delCate()
+    {
+        if (isset($_GET['id']) && ($_GET['id'])) {
+            $id = $_GET['id'];
+            $data = $this->product->check_cate_pro($id);
+            if (count($data) > 0) {
+                echo '<script>alert("Danh mục đang chứa ' . count($data) . ' sản phẩm");</script>';
+                echo '<script>location.href="index.php?view=category";</script>';
+            } else {
+                $cate = $this->category->getIdcate($id);
+                $file = '../img/' . $cate['image'];
+                unlink($file);
+                $this->category->delCate($id);
+                echo '<script>alert("Xoá danh mục thành công");</script>';
+                echo '<script>location.href="index.php?view=category";</script>';
+            }
+        }
+    }
 }

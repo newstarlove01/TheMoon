@@ -1,0 +1,83 @@
+main {
+  width: 100%;
+  color: white;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  font-family: "Jura";
+  font-weight: bold;
+  margin-bottom: 10%;
+}
+
+.title h1 {
+  margin: 5% 5% 2% 5%;
+  font-size: 60px;
+}
+
+.img-title {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 100%;
+  text-align: center;
+}
+
+.img-title img {
+  width: 100%;
+  padding: 2%;
+}
+
+.about {
+  text-align: center;
+  margin: 5% 5% 2% 5%;
+}
+
+.about h1 {
+  font-family: "Jura";
+  font-weight: bold;
+}
+
+.about-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1%;
+}
+
+.about-items img {
+  width: 100%;
+}
+
+.about-items p {
+  font-size: 25px;
+  text-align: left;
+  font-family: "Darker Grotesque";
+  font-weight: 500;
+}
+
+.address {
+  text-align: left;
+  margin: 5% 5% 2% 5%;
+}
+
+.address-item {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 1%;
+}
+
+.address h1 {
+  font-family: "Jura";
+  font-weight: bold;
+}
+
+.address-item img {
+  width: 100%;
+}
+
+.address-item p {
+    font-size: 25px;
+    text-align: left;
+    font-family: "Darker Grotesque";
+    font-weight: 500;
+  }
