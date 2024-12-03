@@ -43,7 +43,7 @@
         $currentPage = $data['currentPage'];
         ?>
         <li class="page-listblog <?php echo ($currentPage == 1) ? 'disabled' : ''; ?>">
-          <a class="page-link" href="?view=product&page=<?php echo 1; ?>" aria-label="Previous">
+          <a class="page-link" href="?view=blog&page=<?php echo 1; ?>" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
@@ -53,12 +53,12 @@
         for ($i = 1; $i <= $totalPages; $i++) :
         ?>
           <li class="page-listblog ">
-            <a class="page-link <?php echo ($currentPage == $i) ? 'active-check' : ''; ?>" href="?view=product&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <a class="page-link <?php echo ($currentPage == $i) ? 'active-check' : ''; ?>" href="?view=blog&page=<?php echo $i; ?>"><?php echo $i; ?></a>
           </li>
         <?php endfor; ?>
         <!-- Trang sau -->
         <li class="page-listblog <?php echo ($currentPage == $totalPages) ? 'disabled' : ''; ?>">
-          <a class="page-link" href="?view=product&page=<?php echo $totalPages; ?>" aria-label="Next">
+          <a class="page-link" href="?view=blog&page=<?php echo $totalPages; ?>" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>

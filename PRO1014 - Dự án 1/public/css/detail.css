@@ -220,6 +220,74 @@
   font-family: "Darker Grotesque";
 }
 
+#danh-gia form {
+  margin-bottom: 10%;
+}
+
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+.rate:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.rate:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+}
+.rate:not(:checked) > label:before {
+  content: '★ ';
+}
+.rate > input:checked ~ label {
+  color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+
+#danh-gia textarea {
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  padding: 1%;
+  height: 150px;
+  margin-bottom: 1%;
+}
+
+#danh-gia button {
+  font-size: 20px;
+  height: 50px;
+  width: 15%;
+  float: right;
+  color: #fab320;
+  background-color: black;
+  border: 2px solid #fab320;
+  font-family: "Jura";
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#danh-gia button:hover {
+  background-color: #fab320;
+  color: black;
+}
+
 #danh-gia h3 {
   margin-left: 20px;
   border-bottom: 2px solid white;
@@ -231,6 +299,8 @@
 #danh-gia h4 {
   font-family: "Jura";
   font-size: 20px;
+  border-top: 1px solid white;
+  padding-top: 2%;
 }
 
 #danh-gia .khach-hang .avatar {
@@ -239,9 +309,17 @@
   margin-top: 50px;
 }
 
-#danh-gia .khach-hang .avatar img {
-  width: 120px;
-  border-radius: 100%;
+#danh-gia .khach-hang .avatar .image-container {
+  aspect-ratio: 1;
+  width: 5%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+#danh-gia .khach-hang .avatar .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 #danh-gia .khach-hang h5 {
@@ -255,13 +333,17 @@
 }
 
 #danh-gia .khach-hang .file {
-    display: flex;
-    gap: 20px;
+  width: 100%;
+  padding-bottom: 50px;
 }
 
 #danh-gia .khach-hang .file img {
-    width: 200px;
-    height: 200px;
+  width: 150px;
+  height: 150px;
+}
+
+.blank {
+  color: gray;
 }
 
 #page {
@@ -279,11 +361,11 @@
 }
 
 #body hr {
-    width: 100%;               
-    background-color:white;
-    height: 3px;
-    margin-top: 30px;
-  }
+  width: 100%;
+  background-color: white;
+  height: 3px;
+  margin-top: 30px;
+}
 /* Phần gợi ý */
 #recommend {
   margin: 0 2%;
@@ -376,9 +458,8 @@
   #product-detail .product-detail {
     width: 100%;
   }
-} 
+}
 
 /* @media (min-width: 1024px) {
 
 } */
-

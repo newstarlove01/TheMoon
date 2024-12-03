@@ -1,20 +1,43 @@
 <?php
 require_once('app/model/ProductModel.php');
 require_once('app/model/CartModel.php');
+require_once('app/model/UserModel.php');
 
 class CartController
 {
     private $product;
     private $cart;
+    private $user;
     private $data;
     function __construct()
     {
         $this->product = new ProductModel();
         $this->cart = new CartModel();
+        $this->user = new UserModel();
     }
     public function view($view, $data)
     {
         require_once 'app/view/' . $view . '.php';
+    }
+    function viewcart()
+    {
+        $this->view('cart', $this->data);
+    }
+    function viewPayment()
+    {
+        $email = $_SESSION['user']['email'];
+        $this->data['user'] = $this->user->checkmail($email);
+        if (is_array($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            if (isset($_SESSION['user'])) {
+                $this->view('payment', $this->data);
+            } else {
+                echo '<script>alert("Bạn cần đăng nhập để thanh toán!");</script>';
+                echo '<script>location.href="index.php?view=cart";</script>';
+            }
+        } else {
+            echo '<script>alert("Giỏ hàng của bạn đang trống!");</script>';
+            echo '<script>location.href="index.php?view=cart";</script>';
+        }
     }
     function addCart()
     {
@@ -54,11 +77,6 @@ class CartController
             $_SESSION['total_cart'] = $total_cart;
         }
         echo '<script>location.href="index.php?view=detail&idcate=' . $product['id_dm'] . '&id=' . $id . '";</script>';
-    }
-
-    function viewcart()
-    {
-        $this->view('cart', $this->data);
     }
     function increase()
     {
@@ -140,6 +158,50 @@ class CartController
             echo '<script>location.href="index.php?view=cart";</script>';
         } else {
             echo '<script>alert("Giỏ hàng của bạn đang trống!"); location.href="index.php?view=cart";</script>';
+        }
+    }
+    function checkDiscount()
+    {
+        if (isset($_POST['sub'])) {
+            $discount = $_POST['discount'];
+            $_SESSION['discount'] = $this->cart->checkDiscount($discount);
+            $total = $_SESSION['total_cart'];
+            if (is_array($_SESSION['discount']) && !empty($_SESSION['discount'])) {
+                if ($_SESSION['discount']['loai_km'] == 'phan_tram') {
+                    $_SESSION['discount']['sotien'] = $total * (1 / $_SESSION['discount']['gia_tri_km']);
+                    $total = $total - $_SESSION['discount']['sotien'];
+                } else {
+                    $_SESSION['discount']['sotien'] = $_SESSION['discount']['gia_tri_km'];
+                    $total = $total - $_SESSION['discount']['gia_tri_km'];
+                }
+                $_SESSION['discount']['ten'] = $discount;
+            } else {
+                $total = $total;
+                echo '<script>alert("Mã khuyến mãi không hợp lệ hoặc hết hạn sử dụng!");</script>';
+            }
+            $_SESSION['total_pay'] = $total;
+        }
+        echo '<script>location.href="index.php?view=payment";</script>';
+    }
+    function addPayment()
+    {
+        if (isset($_POST['sub'])) {
+            $data = [];
+            $data['userid'] = $_POST['userid'];
+            $data['discount'] =  $_SESSION['discount']['id'] ?? null;
+            $data['total_product'] = $_SESSION['total_cart'];
+            $data['total_discount'] =  $_SESSION['discount']['sotien'] ?? [];
+            $data['total'] = $_SESSION['total_pay'];
+            $data['address'] = $_POST['address'] . ', ' . $_POST['city'];
+            $data['payment'] = $_POST['payment'];
+
+            $this->cart->insertOrder($data);
+            unset($_SESSION['discount']);
+            unset($_SESSION['cart']);
+            unset($_SESSION['total_cart']);
+            unset($_SESSION['total_pay']);
+            echo '<script>alert("Đơn hàng đã đc đặt thành công!");</script>';
+            echo '<script>location.href="index.php?view=profile";</script>';
         }
     }
 }

@@ -24,24 +24,25 @@ class CategoryController
         $itemsPerPage = 9;  
         $offset = ($currentPage - 1) * $itemsPerPage; 
 
-        $this->data['cate'] = $this->category->getAllCate($offset, $itemsPerPage);
         $totalProducts = $this->category->getCountAllCate();
         $totalPages = ceil($totalProducts / $itemsPerPage);
 
         $this->data['currentPage'] = $currentPage;
         $this->data['totalPages'] = $totalPages;  // Truyền biến tổng số trang
+
+        $this->data['cate'] = $this->category->getAllCate($offset, $itemsPerPage);
         $this->renderview('category', $this->data);
     }
     function viewAdd()
     {
-        $this->renderview('addcate');
+        $this->renderview('add_cate');
     }
     function viewEdit()
     {
         if (isset($_GET['id']) && ($_GET['id'] > 0)) {
             $id = $_GET['id'];
             $this->data['detail_cate'] = $this->category->getIdCate($id);
-            $this->renderview('editcate', $this->data);
+            $this->renderview('edit_cate', $this->data);
         }
     }
     function addCate()

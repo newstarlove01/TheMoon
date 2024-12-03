@@ -18,18 +18,17 @@
     <tbody>
       <?php
       $listcate = $data['cate'];
-      foreach ($listcate as $item) {
-        extract($item);
+      for ($i = 0; $i < count($listcate); $i++) {
       ?>
         <tr>
-          <td><?= $id ?></td>
-          <td><?= $ten ?></td>
-          <td><?= subword($mo_ta, 20) ?></td>
-          <td><img width="100%" src="../img/<?= $hinh_anh ?>" alt=""></td>
-          <td><?= $ngay_nhap ?></td>
+          <td><?= $i + 1 ?></td>
+          <td><?= $listcate[$i]['ten'] ?></td>
+          <td><?= subword($listcate[$i]['mo_ta'], 20) ?></td>
+          <td><img width="100%" src="../img/<?= $listcate[$i]['hinh_anh'] ?>" alt=""></td>
+          <td><?= $listcate[$i]['ngay_nhap'] ?></td>
           <td class="button">
-            <a href="index.php?view=editcate&id=<?= $id ?>"><button>Sửa</button></a>
-            <a href="index.php?view=del_cate&id=<?= $id ?>"><button>Xoá</button></a>
+            <a href="index.php?view=editcate&id=<?= $listcate[$i]['id'] ?>"><button>Sửa</button></a>
+            <a href="index.php?view=del_cate&id=<?= $listcate[$i]['id'] ?>"><button>Xoá</button></a>
           </td>
         </tr>
       <?php }; ?>
@@ -42,7 +41,7 @@
         $currentPage = $data['currentPage'];
         ?>
         <li class="page-item <?php echo ($currentPage == 1) ? 'disabled' : ''; ?>">
-          <a class="page-link" href="?view=product&page=<?php echo 1; ?>" aria-label="Previous">
+          <a class="page-link" href="?view=category&page=<?php echo 1; ?>" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
@@ -52,12 +51,12 @@
         for ($i = 1; $i <= $totalPages; $i++) :
         ?>
           <li class="page-item ">
-            <a class="page-link <?php echo ($currentPage == $i) ? 'active-check' : ''; ?>" href="?view=product&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <a class="page-link <?php echo ($currentPage == $i) ? 'active-check' : ''; ?>" href="?view=category&page=<?php echo $i; ?>"><?php echo $i; ?></a>
           </li>
         <?php endfor; ?>
         <!-- Trang sau -->
         <li class="page-item <?php echo ($currentPage == $totalPages) ? 'disabled' : ''; ?>">
-          <a class="page-link" href="?view=product&page=<?php echo $totalPages; ?>" aria-label="Next">
+          <a class="page-link" href="?view=category&page=<?php echo $totalPages; ?>" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>

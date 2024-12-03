@@ -53,6 +53,20 @@
                 echo $material;
                 ?>
             </select>
+            <label for="">Trạng thái</label>
+            <select name="status" id="status" class="form-control">
+                <?php
+                $status = '';
+                if (isset($detail_pro['trang_thai']) && $detail_pro['trang_thai'] === 1) {
+                    $status .= '<option value="1" selected>Có</option>';
+                    $status .= '<option value="0">Không</option>';
+                } else {
+                    $status .= '<option value="1">Có</option>';
+                    $status .= '<option value="0" selected>Không</option>';
+                }
+                echo $status;
+                ?>
+            </select>
             <label for="">Hình ảnh</label>
             <input type="file" name="anh_chinh" id="anh_chinh" class="form-control"><br>
             <img width="20%" src="../img/<?= $detail_pro['img'][0]['anh_chinh'] ?>"> <br>

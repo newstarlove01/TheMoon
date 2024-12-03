@@ -1,0 +1,198 @@
+main {
+  margin: 5% 2%;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 5%;
+  color: white;
+  border-top: 1px solid white;
+}
+
+.form {
+  border-right: 1px solid white;
+  padding-right: 10%;
+}
+
+.form label {
+  font-size: 30px;
+  margin-top: 30px;
+  font-family: "Jura";
+  font-weight: bold;
+}
+
+.form input,
+select {
+  width: 100%;
+  margin-bottom: 30px;
+  height: 50px;
+  background-color: black;
+  border: 2px solid white;
+  padding-left: 2%;
+  color: white;
+  font-family: "Darker Grotesque";
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.form .name {
+  display: flex;
+  gap: 5%;
+}
+
+.form .payment {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form .payment label {
+  width: 100%;
+  margin: 0;
+  padding: 2%;
+  height: 50px;
+  line-height: 20px;
+  text-align: left;
+  background-color: black;
+  border-radius: 0;
+  border: 1px solid white;
+  color: white;
+  font-family: "Darker Grotesque";
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.form .payment .checked:checked {
+  background-color: #fab320;
+  border: 1px solid #fab320;
+}
+
+.payment .btn:hover {
+  background-color: #fab320;
+  color: black;
+  border: 1px solid #fab320;
+}
+
+.payment .btn-check:checked + .btn {
+  background-color: #fab320;
+  color: black;
+  border: 1px solid #fab320;
+}
+
+.form button {
+  width: 100%;
+  margin-top: 10%;
+  height: 55px;
+  font-family: "Jura";
+  font-weight: bold;
+  font-size: 20px;
+  background-color: black;
+  border: 2px solid #fab320;
+  color: #fab320;
+}
+
+.form button:hover {
+  background-color: #fab320;
+  color: black;
+}
+
+.cart {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 5%;
+  align-items: center;
+  font-family: "Darker Grotesque";
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.cart-item .image {
+  width: 100%;
+  position: relative;
+}
+
+.cart-item .image .image-container {
+  aspect-ratio: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cart-item .image .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-item .image span {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  height: 25%;
+  width: 25%;
+  background-color: #fff;
+  border-radius: 50%;
+  color: black;
+  text-align: center;
+  font-family: "Darker Grotesque";
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.cart-item .product h5 {
+  font-family: "Jura";
+  font-weight: bold;
+}
+
+.discount {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3%;
+}
+
+.discount input {
+  height: 50px;
+  border: 2px solid white;
+  background-color: black;
+  color: white;
+  padding-left: 3%;
+}
+
+.discount button {
+  height: 50px;
+  color: #fab320;
+  background-color: black;
+  border: 2px solid #fab320;
+  font-family: "Jura";
+  font-weight: bold;
+}
+
+.discount button:hover {
+  background-color: #fab320;
+  color: black;
+}
+
+.total {
+  margin-top: 30px;
+}
+
+.total-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total-item p {
+  font-family: "Darker Grotesque";
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.total-item h6 {
+  font-family: "Jura";
+  font-weight: bold;
+  font-size: 20px;
+}

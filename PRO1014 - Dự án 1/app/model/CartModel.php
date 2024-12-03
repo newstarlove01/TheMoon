@@ -7,45 +7,103 @@ class CartModel
     {
         $this->db = new Database();
     }
-
-    function createOrder($data)
+    function getAllDiscount($limit, $offset)
     {
-        $sql = "INSERT INTO orders(user_id, total_price, status, created_at) VALUES (?, ?, ?, ?)";
-        $param = [$data['user_id'], $data['total_price'], $data['status'], $data['created_at']];
+        $sql = "SELECT * FROM khuyen_mai LIMIT $limit OFFSET $offset";
+        return $this->db->getAll($sql);
+    }
+    function getIdDiscount($id)
+    {
+        $sql = "SELECT * FROM khuyen_mai WHERE id = $id";
+        return $this->db->getOne($sql);
+    }
+    function getCountAllDiscount()
+    {
+        $sql = "SELECT COUNT(*) as total FROM khuyen_mai";
+        $result = $this->db->getOne($sql);
+        return $result['total'];
+    }
+    function insertDiscount($data)
+    {
+        $sql = "INSERT INTO khuyen_mai(ten,mo_ta,loai_km,gia_tri_km,ngay_bat_dau,ngay_ket_thuc) VALUES(?,?,?,?,?,?)";
+        $param = [$data['name'], $data['description'], $data['type'], $data['value'], $data['start'], $data['end']];
         return $this->db->insert($sql, $param);
     }
-
-    function addOrderDetail($orderId, $productId, $size, $quantity, $price)
+    function updateDiscount($data)
     {
-        // SQL để thêm chi tiết đơn hàng vào bảng 'order_details'
-        $sql = "INSERT INTO order_details (order_id, product_id, size, quantity, price)
-            VALUES (?, ?, ?, ?, ?)";
-
-        // Mảng tham số để thay thế vào dấu hỏi trong câu lệnh SQL
-        $param = [$orderId, $productId, $size, $quantity, $price];
-
-        // Thực hiện câu lệnh SQL bằng phương thức 'insert' của lớp database
-        return $this->db->insert($sql, $param);
+        $sql = "UPDATE khuyen_mai SET ten = ?, mo_ta = ?, loai_km = ?, gia_tri_km = ?, ngay_bat_dau = ?, ngay_ket_thuc = ?,trang_thai = ? WHERE id = ?";
+        $param = [$data['name'], $data['description'], $data['type'], $data['value'], $data['start'], $data['end'], $data['status'], $data['id']];
+        return $this->db->update($sql, $param);
     }
-    function updateOrderTotal($orderId)
+    function checkDiscount($discount)
     {
-        // SQL để tính tổng giá trị đơn hàng từ bảng 'order_details'
-        $sql = "SELECT SUM(quantity * price) AS total FROM order_details WHERE order_id = ?";
+        $sql = "SELECT * FROM khuyen_mai WHERE trang_thai = 1 AND ten LIKE '%$discount%'";
+        return $this->db->getOne($sql);
+    }
+    function insertOrder($data)
+    {
+        try {
+            $this->db->beginTransaction();
 
-        // Mảng tham số để thay thế vào dấu hỏi trong câu lệnh SQL
-        $param = [$orderId];
+            $sqlOrder = "INSERT INTO don_hang(id_kh, id_km, tong_tien_sp, tien_giam_gia, tong_tien, dia_chi, phuong_thuc_tt) VALUES(?,?,?,?,?,?,?)";
+            $paramOrder = [
+                $data['userid'],
+                $data['discount'],
+                $data['total_product'],
+                $data['total_discount'],
+                $data['total'],
+                $data['address'],
+                $data['payment']
+            ];
 
-        // Thực hiện câu lệnh SQL và lấy kết quả
-        $result = $this->db->getAll($sql, $param);
+            $lastProductId = $this->db->insert($sqlOrder, $paramOrder);
 
-        // Kiểm tra nếu có kết quả và lấy giá trị tổng cộng
-        $total = $result[0]['total'];
+            if (isset($_SESSION['cart'])) {
+                foreach ($_SESSION['cart'] as $productId => $sizes) {
+                    foreach ($sizes as $size => $item) {
+                        // SQL để thêm sản phẩm vào bảng chi tiết đơn hàng
+                        $sqlDetail = "INSERT INTO chi_tiet_don_hang (id_dh, id_sp, so_luong, size, gia_sp, tong_tien) VALUES (?,?,?,?,?,?)";
+                        $paramDetail = [
+                            $lastProductId,
+                            $item['id'],
+                            $item['quantity'],
+                            $item['sizename'][0]['ten'],
+                            $item['gia'],
+                            $item['total_price']
+                        ];
+                        $this->db->insert($sqlDetail, $paramDetail);
+                    }
+                }
+            }
 
-        // SQL để cập nhật tổng giá trị đơn hàng vào bảng 'orders'
-        $updateSql = "UPDATE orders SET total_price = ? WHERE id = ?";
+            // Xác nhận giao dịch
+            $this->db->commit();
 
-        // Cập nhật tổng giá trị đơn hàng
-        $updateParam = [$total, $orderId];
-        return $this->db->update($updateSql, $updateParam);
+            return $lastProductId;
+        } catch (Exception $e) {
+            // Hoàn tác nếu có lỗi
+            $this->db->rollBack();
+            throw $e; // Ném lỗi để controller xử lý
+        }
+    }
+    function getCountAllOrder()
+    {
+        $sql = "SELECT COUNT(*) as total FROM don_hang";
+        $result = $this->db->getOne($sql);
+        return $result['total'];
+    }
+    function getAllOrder($offset, $limit)
+    {
+        $sql = "SELECT * FROM don_hang LIMIT $limit OFFSET $offset";
+        return $this->db->getAll($sql);
+    }
+    function confirmOrder($id)
+    {
+        $sql = "UPDATE don_hang SET trang_thai = 1 WHERE id = $id";
+        $this->db->update($sql);
+    }
+    function getUserOrder($id){
+        $sql = "SELECT * FROM chi_tiet_don_hang WHERE id_dh = (SELECT id FROM don_hang WHERE trang_thai = 1 AND id_kh = $id)";
+        return $this->db->getAll($sql);
     }
 }

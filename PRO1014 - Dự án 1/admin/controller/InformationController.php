@@ -32,14 +32,14 @@ class InformationController
     }
     function viewAddBlog()
     {
-        $this->renderview('addblog');
+        $this->renderview('add_blog');
     }
     function viewEditBlog()
     {
         if (isset($_GET['id']) && ($_GET['id'] > 0)) {
             $id = $_GET['id'];
             $this->data['detail_blog'] = $this->information->getIdBLog($id);
-            $this->renderview('editblog', $this->data);
+            $this->renderview('edit_blog', $this->data);
         }
     }
     function getAllBlog()

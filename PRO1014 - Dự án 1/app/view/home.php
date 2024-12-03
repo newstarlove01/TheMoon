@@ -58,8 +58,8 @@
                 <a href="index.php?view=detail&idcate=<?= $item['id_dm'] ?>&id=<?= $item['id'] ?>" class="new-items">
                     <img src="./img/<?= $item['img'][0]['anh_chinh'] ?>" alt="" />
                     <h2><?= $item['ten'] ?></h2>
-                    <p><?= number_format($item['gia']) ?></p>
-                    <button>Thêm vào giỏ hàng</button>
+                    <p><?= number_format($item['gia']) ?>đ</p>
+                    <button>Chọn size</button>
                 </a>
             <?php }; ?>
         </div>

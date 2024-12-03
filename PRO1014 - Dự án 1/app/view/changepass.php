@@ -6,9 +6,6 @@
             <input type="number" id="resetcode" name="resetcode" required placeholder="Mã khôi phục">
         </div>
         <div class="dangki">
-            <input type="password" id="oldpass" name="oldpass" required placeholder="Mật khẩu cũ">
-        </div>
-        <div class="dangki">
             <input type="password" id="newpass" name="newpass" required placeholder="Mật khẩu mới">
         </div>
         <div class="dangki">

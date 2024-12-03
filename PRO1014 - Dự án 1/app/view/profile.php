@@ -1,6 +1,9 @@
 <link rel="stylesheet" href="./public/css/profile.css?v=<?php echo time(); ?>" />
 <?php
 $user = $data['user'];
+// print_r("<pre>");
+// print_r($user['order']);
+// print_r("</pre>");
 ?>
 <main>
     <h1>Quản lý tài khoản</h1>
@@ -57,7 +60,21 @@ $user = $data['user'];
     <div class="profile">
         <h2>Đơn hàng đã mua</h2>
         <div class="profile-detail">
-
+            <div class="order">
+                <?php for ($i = 0; $i < count($user['order']); $i++) { ?>
+                    <div class="order-detail">
+                        <div class="image">
+                            <img src="./img/<?= $user['order'][$i]['img'][0]['anh_chinh'] ?>" alt="">
+                            <span><?= $user['order'][$i]['so_luong'] ?></span>
+                        </div>
+                        <div>
+                            <h3><?= $user['order'][$i]['product']['ten'] ?></h3>
+                            <h4><?= $user['order'][$i]['size'] ?></h4>
+                        </div>
+                        <h5><?= number_format($user['order'][$i]['tong_tien']) ?>đ</h5>
+                    </div>
+                <?php }; ?>
+            </div>
         </div>
     </div>
 </main>

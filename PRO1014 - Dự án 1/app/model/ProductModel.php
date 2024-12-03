@@ -9,9 +9,9 @@ class ProductModel
     }
     function getProduct($sp)
     {
-        $sql = "SELECT * FROM san_pham";
+        $sql = "SELECT * FROM san_pham WHERE trang_thai = 1";
         if ($sp == 1) {
-            $sql .= " WHERE hot = 1 LIMIT 2";
+            $sql .= " AND hot = 1 LIMIT 2";
         } elseif ($sp == 2) {
             $sql .= " ORDER BY ngay_nhap DESC LIMIT 4";
         } elseif ($sp == 3) {
@@ -52,35 +52,35 @@ class ProductModel
     }
     function getRelatePro($id)
     {
-        $sql = "SELECT * FROM san_pham WHERE id_dm = (SELECT id_dm FROM san_pham WHERE id=$id) LIMIT 4";
+        $sql = "SELECT * FROM san_pham WHERE trang_thai = 1 AND id_dm = (SELECT id_dm FROM san_pham WHERE id=$id) LIMIT 4";
         return $this->db->getAll($sql);
     }
 
     function check_cate_pro($idcate)
     {
-        $sql = "SELECT * FROM san_pham WHERE id_dm = $idcate";
+        $sql = "SELECT * FROM san_pham WHERE trang_thai = 1 AND id_dm = $idcate";
         return $this->db->getAll($sql);
     }
     function get_all_cate_pro($idcate, $offset, $limit)
     {
-        $sql = "SELECT * FROM san_pham WHERE id_dm = $idcate LIMIT $limit OFFSET $offset";
+        $sql = "SELECT * FROM san_pham WHERE trang_thai = 1 AND id_dm = $idcate LIMIT $limit OFFSET $offset";
         return $this->db->getAll($sql);
     }
 
     function get_count_cate_pro($idcate)
     {
-        $sql = "SELECT COUNT(*) as total FROM san_pham WHERE id_dm = $idcate";
+        $sql = "SELECT COUNT(*) as total FROM san_pham WHERE trang_thai = 1 AND id_dm = $idcate";
         $result = $this->db->getOne($sql);
         return $result['total'];
     }
     function getSearch($keyword, $limit, $offset)
     {
-        $sql = "SELECT * FROM san_pham WHERE ten LIKE '%$keyword%' OR mo_ta LIKE '%$keyword%' LIMIT $limit OFFSET $offset";
+        $sql = "SELECT * FROM san_pham WHERE trang_thai = 1 AND ten LIKE '%$keyword%' OR mo_ta LIKE '%$keyword%' LIMIT $limit OFFSET $offset";
         return $this->db->getAll($sql);
     }
     function get_count_search($keyword)
     {
-        $sql = "SELECT COUNT(*) as total FROM san_pham WHERE ten LIKE '%$keyword%' OR mo_ta LIKE '%$keyword%'";
+        $sql = "SELECT COUNT(*) as total FROM san_pham WHERE trang_thai = 1 AND ten LIKE '%$keyword%' OR mo_ta LIKE '%$keyword%'";
         $result = $this->db->getOne($sql);
         return $result['total'];
     }
@@ -166,7 +166,7 @@ class ProductModel
             // Bắt đầu transaction
             $this->db->beginTransaction();
 
-            $sqlProduct = "UPDATE san_pham SET id_dm = ?, ten = ?, gia = ?, mo_ta = ?, hot = ?, chat_lieu = ?, so_luong = ? WHERE id = ?";
+            $sqlProduct = "UPDATE san_pham SET id_dm = ?, ten = ?, gia = ?, mo_ta = ?, hot = ?, chat_lieu = ?, so_luong = ?, trang_thai = ? WHERE id = ?";
             $paramProduct = [
                 $data['idcate'],
                 $data['name'],
@@ -175,6 +175,7 @@ class ProductModel
                 $data['hot'],
                 $data['material'],
                 $data['amount'],
+                $data['status'],
                 $data['id']
             ];
             $this->db->update($sqlProduct, $paramProduct);
@@ -218,5 +219,49 @@ class ProductModel
             $this->db->rollBack();
             throw $e; // Ném lỗi để controller xử lý
         }
+    }
+    function checkOrder($id_kh, $id_sp)
+    {
+        $sql = "SELECT * FROM chi_tiet_don_hang WHERE id_dh = (SELECT id FROM don_hang WHERE id_kh = $id_kh) AND id_sp = $id_sp";
+        return $this->db->getAll($sql);
+    }
+    function checkReview($id_kh, $id_sp)
+    {
+        $sql = "SELECT * FROM danh_gia WHERE id_sp = $id_sp AND id_kh = $id_kh";
+        return $this->db->getAll($sql);
+    }
+    function addReview($data)
+    {
+        $sql = "INSERT INTO danh_gia(id_sp,id_kh,noi_dung,diem_danh_gia,file) VALUES (?,?,?,?,?)";
+        $param = [$data['productid'], $data['userid'], $data['content'], $data['rate'], $data['file']];
+        $this->db->insert($sql, $param);
+    }
+    function getAllReview($limit, $offset)
+    {
+        $sql = "SELECT * FROM danh_gia LIMIT $limit OFFSET $offset";
+        return $this->db->getAll($sql);
+    }
+    function getAllReviewId($id, $offset, $limit)
+    {
+        $sql = "SELECT * FROM danh_gia WHERE trang_thai = 1 AND id_sp = $id LIMIT $limit OFFSET $offset";
+        return $this->db->getAll($sql);
+    }
+    function getCountReview($id)
+    {
+        $sql = "SELECT COUNT(*) as total FROM danh_gia WHERE trang_thai = 1 AND id_sp = $id";
+        $result = $this->db->getOne($sql);
+        return $result['total'];
+    }
+    function getCountAllReview()
+    {
+        $sql = "SELECT COUNT(*) as total FROM danh_gia";
+        $result = $this->db->getOne($sql);
+        return $result['total'];
+    }
+    function reviewStatus($data)
+    {
+        $sql = "UPDATE danh_gia SET trang_thai = ? WHERE id = ?";
+        $param = [$data['status'],$data['id']];
+        $this->db->update($sql, $param);
     }
 }

@@ -1,16 +1,19 @@
 <?php
 require_once('app/model/CategoryModel.php');
 require_once('app/model/ProductModel.php');
+require_once('app/model/UserModel.php');
 class ProductController
 {
     private $product;
     private $category;
+    private $user;
     private $data;
     //$data = {dsdm: [], dssp: []}
     function __construct()
     {
         $this->product = new ProductModel();
         $this->category = new CategoryModel();
+        $this->user = new UserModel();
     }
     public function view($view, $data)
     {
@@ -80,14 +83,28 @@ class ProductController
         } else {
             $id = 0;
         }
+
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Nếu không có trang, sử dụng trang 1
+        $itemsPerPage = 4;  // Số sản phẩm mỗi trang
+        $offset = ($currentPage - 1) * $itemsPerPage; // Tính offset dựa trên trang hiện tại
+
+        $totalProducts = $this->product->getCountReview($id);
+        $totalPages = ceil($totalProducts / $itemsPerPage);
+
+        $this->data['currentPage'] = $currentPage;
+        $this->data['totalPages'] = $totalPages;  // Truyền biến tổng số trang
+
         $this->data['dm'] = $this->category->getIdcate($idcate);
         $this->data['size'] = $this->product->getSizeDetail($id);
+        $this->data['review'] = $this->product->getAllReviewId($id,$offset,$itemsPerPage);
+        foreach ($this->data['review'] as &$review) {
+            $review['user'] = $this->user->getIdUser($review['id_kh']) ?? [];
+        }
         $this->data['dssplq'] = $this->product->getRelatePro($id);
         foreach ($this->data['dssplq'] as &$product) {
             $product['img'] = $this->product->getImg($product['id']) ?? [];
         }
         $result = $this->product->getIdPro($id);
-        // $this->data['dsspdm'] = $this->product->get_cate_pro($id, $result['idcate']);
         $spct = $this->product->getIdPro($id);
         if (is_array($spct)) {
             $this->data['spct'] = $spct;
@@ -95,6 +112,64 @@ class ProductController
             $this->view('detail', $this->data);
         } else {
             return "Khong co san pham nay";
+        }
+    }
+
+    function addReview()
+    {
+        if (isset($_POST['sub'])) {
+            $idpro = $_POST['productid'];
+            $product = $this->product->getIdPro($idpro);
+            if (isset($_SESSION['user'])) {
+                $user = $_SESSION['user'];
+                $order = $this->product->checkOrder($user['id'], $idpro);
+                $review = $this->product->checkReview($user['id'], $idpro);
+                if (is_array($order) && !empty($order)) {
+                    if (is_array($review) && !empty($review)) {
+                        echo '    
+                        <script>
+                            alert("Bạn đã đánh giá sản phẩm này rồi");
+                        </script>';
+                    } else {
+                        $data = [];
+                        $data['userid'] = $user['id'];
+                        $data['productid'] = $idpro;
+                        $data['rate'] = $_POST['rate'];
+                        $data['content'] = $_POST['content'];
+                        $data['file'] = $_FILES["files"]["name"];
+                        $file = './img/' . $data['file'];
+                        move_uploaded_file($_FILES['files']['tmp_name'], $file);
+
+                        $this->product->addReview($data);
+                        echo '    
+                        <script>
+                            alert("Bạn cần mua hàng để đánh giá");
+                        </script>';
+                    }
+                    echo '
+                        <script>
+                            location.href="index.php?view=detail&idcate=' . $product['id_dm'] . '&id=' . $idpro . '"
+                        </script>';
+                } else {
+                    echo '    
+                <script>
+                    alert("Bạn cần mua hàng để đánh giá");
+                </script>';
+                    echo '
+                <script>
+                    location.href="index.php?view=detail&idcate=' . $product['id_dm'] . '&id=' . $idpro . '"
+                </script>';
+                }
+            } else {
+                echo '    
+            <script>
+                alert("Bạn cần đăng nhập tài khoản để đánh giá");
+            </script>';
+                echo '
+            <script>
+                location.href="index.php?view=detail&idcate=' . $product['id_dm'] . '&id=' . $idpro . '"
+            </script>';
+            }
         }
     }
 }

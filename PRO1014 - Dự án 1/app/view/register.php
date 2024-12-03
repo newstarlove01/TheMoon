@@ -3,13 +3,13 @@
     <h1>Đăng Kí</h1>
     <form action="index.php?view=adduser" method="POST">
         <div class="dangki">
-            <input type="text" id="firstname" name="firstname" required placeholder="Họ">
+            <input type="text" id="firstname" name="firstname" required placeholder="Họ" value="<?php echo isset($_SESSION['old_data']['firstname']) ? $_SESSION['old_data']['firstname'] : ''; ?>">
         </div>
         <div class="dangki">
-            <input type="text" id="lastname" name="lastname" required placeholder="Tên">
+            <input type="text" id="lastname" name="lastname" required placeholder="Tên" value="<?php echo isset($_SESSION['old_data']['lastname']) ? $_SESSION['old_data']['lastname'] : ''; ?>">
         </div>
         <div class="dangki">
-            <input type="email" id="email" name="email" required placeholder="Email">
+            <input type="email" id="email" name="email" required placeholder="Email" value="<?php echo isset($_SESSION['old_data']['email']) ? $_SESSION['old_data']['email'] : ''; ?>">
         </div>
         <div class="dangki">
             <input type="password" id="password" name="password" required placeholder="Mật khẩu">

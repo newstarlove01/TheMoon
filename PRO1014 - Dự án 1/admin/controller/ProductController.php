@@ -21,7 +21,7 @@ class ProductController
     function viewAdd()
     {
         $this->data['cate'] = $this->category->getCate();
-        $this->renderview('addpro', $this->data);
+        $this->renderview('add_pro', $this->data);
     }
     function viewEdit()
     {
@@ -30,9 +30,8 @@ class ProductController
             $this->data['cate'] = $this->category->getCate();
             $this->data['detail_pro'] = $this->product->getIdPro($id);
             $this->data['detail_pro']['img'] = $this->product->getImg($this->data['detail_pro']['id']) ?? [];
-            $this->renderview('editpro', $this->data);
+            $this->renderview('edit_pro', $this->data);
         }
-        // $this->renderview('editcate', $this->data);
     }
     function getAllPro()
     {
@@ -93,6 +92,7 @@ class ProductController
             $data['amount'] = $_POST['amount'];
             $data['hot'] = $_POST['hot'];
             $data['material'] = $_POST['material'];
+            $data['status'] = $_POST['status'];
             $data['id'] = $_POST['idpro'];
 
             $data['anh_chinh'] = $_FILES['anh_chinh']['name'];
@@ -151,8 +151,8 @@ class ProductController
             $id = $_GET['id'];
             $product = $this->product->getIdPro($id);
 
-            if ($product['so_luong'] > 0) {
-                echo '<script>alert("Không thể xoá sản phẩm! - Đang còn số lượng là '.$product['so_luong'].'");</script>';
+            if ($product['so_luong'] > 0 && $product['trang_thai'] == 1) {
+                echo '<script>alert("Không thể xoá sản phẩm! - Đang còn số lượng là '.$product['so_luong'].' - Trạng thái là '.$product['trang_thai'].'");</script>';
             } else {
                 $data = $this->product->getImg($id);
                 $imagePaths = [

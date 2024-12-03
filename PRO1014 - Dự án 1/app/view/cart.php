@@ -53,7 +53,7 @@
             <th style="text-align: left;">Tổng cộng</th>
             <th></th>
             <th></th>
-            <?php if ($_SESSION['total_cart']) {
+            <?php if (isset($_SESSION['total_cart'])) {
                 $total = $_SESSION['total_cart'];
             } else {
                 $total = 0;
@@ -63,7 +63,7 @@
     </table>
     <div class="thanhtoan">
         <p>Đã bao gồm thuế. Phí vận chuyển được tính khi thanh toán.</p>
-        <a href="index.php?view=pay"><button>Thanh Toán</button></a>
+        <a href="index.php?view=payment"><button>Thanh Toán</button></a>
     </div>
 </main>
 <script src="./public/js/cart.js?v=<?php echo time(); ?>"></script>

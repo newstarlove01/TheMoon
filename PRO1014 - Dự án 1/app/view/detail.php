@@ -2,6 +2,7 @@
 <?php
 $product = $data['spct'];
 $cate = $data['dm'];
+$review = $data['review'];
 $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $product['mo_ta']);
 ?>
 <main>
@@ -70,7 +71,7 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $product['mo_ta']);
           </div>
           <button name="cart" type="submit" class="cart-add">THÊM VÀO GIỎ HÀNG</button>
         </div>
-        <button type="submit" class="buy-now">MUA NGAY</button>
+        <button type="button" class="buy-now">MUA NGAY</button>
       </form>
       <p class="info">
         Nếu sản phẩm anh/chị quan tâm hiển thị hết hàng trên website. <br />
@@ -88,80 +89,81 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $product['mo_ta']);
   </div>
   <div id="danh-gia">
     <h3>Đánh giá</h3>
-    <h4>
-      Đánh giá của khách hàng (144) <br />
-      4.8/5
-      <strong style="color: #fab320"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></strong>
-    </h4>
-    <div class="khach-hang">
-      <div class="avatar">
-        <img src="./img/avatar.jpg" alt="" />
-        <h5>
-          n**h <br />
-          <strong style="color: #fab320"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></strong>
-        </h5>
+    <form action="index.php?view=addreview" method="post">
+      <input type="hidden" name="productid" value="<?= $product['id'] ?>">
+      <div class="rate">
+        <input type="radio" id="star5" name="rate" value="5" />
+        <label for="star5" title="text">5 stars</label>
+        <input type="radio" id="star4" name="rate" value="4" />
+        <label for="star4" title="text">4 stars</label>
+        <input type="radio" id="star3" name="rate" value="3" />
+        <label for="star3" title="text">3 stars</label>
+        <input type="radio" id="star2" name="rate" value="2" />
+        <label for="star2" title="text">2 stars</label>
+        <input type="radio" id="star1" name="rate" value="1" />
+        <label for="star1" title="text">1 star</label>
       </div>
-      <p>
-        Mặt hàng: Đen, size 1 <br /><br />
-        omg phải gọi là tuyệt cả là vời, bth ít đánh giá sau khi mua hàng
-        nma hnay phải vào đây để fb vì nhẫn quá đẹp đi
-      </p>
-      <div class="file">
-        <img src="./img/FUSHIRINGHeliosSilver.webp" alt="" />
-        <img src="./img/FUSHIRINGHeliosSilver.webp" alt="" />
+      <textarea name="content"></textarea>
+      <input type="file" name="files"> <br>
+      <button type="submit" name="sub">Đánh giá</button>
+    </form>
+    <h4> Đánh giá của khách hàng (<?php echo count($review) ?>)</h4>
+    <?php
+    for ($i = 0; $i < count($review); $i++) {
+    ?>
+      <div class="khach-hang">
+        <div class="avatar">
+          <div class="image-container"> <img src="./img/<?php echo $review[$i]['user']['avatar'] ?>"></div>
+          <h5>
+            <?php echo $review[$i]['user']['ho'] . " " . $review[$i]['user']['ten']; ?> <br />
+            <strong style="color: #fab320">
+              <?php
+              $rate = '';
+              for ($a = 0; $a < $review[$i]['diem_danh_gia']; $a++) {
+                $rate .= '<i class="fa-solid fa-star"></i>';
+              }
+              for ($a = 0; $a < (5 - $review[$i]['diem_danh_gia']); $a++) {
+                $rate .= '<i class="fa-solid fa-star blank"></i>';
+              }
+              echo $rate;
+              ?>
+            </strong>
+          </h5>
+        </div>
+        <p>
+          <?php echo $review[$i]['noi_dung'] ?>
+        </p>
+        <div class="file">
+          <img src="./img/<?php echo $review[$i]['file']; ?>" />
+        </div>
       </div>
-    </div>
-    <div class="khach-hang">
-      <div class="avatar">
-        <img src="./img/avatar.jpg" alt="" />
-        <h5>
-          n**h <br />
-          <strong style="color: #fab320"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></strong>
-        </h5>
-      </div>
-      <p>
-        Mặt hàng: Đen, size 1 <br /><br />
-        omg phải gọi là tuyệt cả là vời, bth ít đánh giá sau khi mua hàng
-        nma hnay phải vào đây để fb vì nhẫn quá đẹp đi
-      </p>
-      <div class="file">
-        <img src="./img/FUSHIRINGHeliosSilver.webp" alt="" />
-        <img src="./img/FUSHIRINGHeliosSilver.webp" alt="" />
-      </div>
-    </div>
-    <div class="khach-hang">
-      <div class="avatar">
-        <img src="./img/avatar.jpg" alt="" />
-        <h5>
-          n**h <br />
-          <strong style="color: #fab320"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></strong>
-        </h5>
-      </div>
-      <p>
-        Mặt hàng: Đen, size 1 <br /><br />
-        omg phải gọi là tuyệt cả là vời, bth ít đánh giá sau khi mua hàng
-        nma hnay phải vào đây để fb vì nhẫn quá đẹp đi
-      </p>
-      <div class="file">
-        <img src="./img/FUSHIRINGHeliosSilver.webp" alt="" />
-        <img src="./img/FUSHIRINGHeliosSilver.webp" alt="" />
-      </div>
-    </div>
+    <?php }; ?>
     <div id="page">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" aria-label="Previous">
+          <!-- Trang trước -->
+          <?php
+          $idcate = $_GET['idcate'];
+          $id = $_GET['id'];
+          $currentPage = $data['currentPage'];
+          ?>
+          <li class="page-item <?php echo ($currentPage == 1) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?view=detail&idcate=<?php echo $idcate; ?>&id=<?php echo $id; ?>&page=<?php echo 1; ?>" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li class="page-item">
-            <a class="page-link active-check" href="#">1</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
+          <!-- Các trang -->
+          <?php
+          $totalPages = $data['totalPages'];
+          for ($i = 1; $i <= $totalPages; $i++) :
+          ?>
+            <li class="page-item ">
+              <a class="page-link <?php echo ($currentPage == $i) ? 'active-check' : ''; ?>" href="?view=detail&idcate=<?php echo $idcate; ?>&id=<?php echo $id; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            </li>
+          <?php endfor; ?>
+          <!-- Trang sau -->
+          <li class="page-item <?php echo ($currentPage == $totalPages) ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?view=detail&idcate=<?php echo $idcate; ?>&id=<?php echo $id; ?>&page=<?php echo $totalPages; ?>" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
@@ -181,7 +183,7 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $product['mo_ta']);
           <img src="./img/<?= $item['img'][0]['anh_chinh'] ?>" alt="" />
           <h2><?= $item['ten'] ?></h2>
           <p><?= number_format($item['gia']) ?>đ</p>
-          <button>Thêm vào giỏ hàng</button>
+          <button>Chọn size</button>
         </a>
       <?php }; ?>
     </div>

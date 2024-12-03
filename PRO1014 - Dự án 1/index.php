@@ -30,6 +30,10 @@ switch ($view) {
         $detail = new ProductController();
         $detail->detail();
         break;
+    case 'addreview':
+        $review = new ProductController();
+        $review->addReview();
+        break;
     case 'register':
         $register = new UserController();
         $register->viewregister();
@@ -113,6 +117,18 @@ switch ($view) {
     case 'removeall':
         $removeall = new CartController();
         $removeall->removeall();
+        break;
+    case 'payment':
+        $payment = new CartController();
+        $payment->viewPayment();
+        break;
+    case 'discount':
+        $discount = new CartController();
+        $discount->checkDiscount();
+        break;
+    case 'addpayment':
+        $addpayment = new CartController();
+        $addpayment->addPayment();
         break;
     default:
         $home = new HomeController();

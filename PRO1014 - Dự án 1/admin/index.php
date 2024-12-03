@@ -4,6 +4,10 @@ require_once './controller/CategoryController.php';
 require_once './controller/ProductController.php';
 require_once './controller/UserController.php';
 require_once './controller/InformationController.php';
+require_once './controller/ReviewController.php';
+require_once './controller/DiscountController.php';
+require_once './controller/OrderController.php';
+
 function logout()
 {
     session_start();
@@ -88,10 +92,6 @@ switch ($view) {
         $user = new UserController();
         $user->editUser();
         break;
-    case 'del_user':
-        $user = new UserController();
-        $user->delUser();
-        break;
     case 'blog':
         $blog = new InformationController();
         $blog->getAllBlog();
@@ -115,6 +115,46 @@ switch ($view) {
     case 'del_blog':
         $blog = new InformationController();
         $blog->delBlog();
+        break;
+    case 'review':
+        $review = new ReviewController();
+        $review->getAllReview();
+        break;
+    case 'hidereview':
+        $hidereview = new ReviewController();
+        $hidereview->hideReview();
+        break;
+    case 'showreview':
+        $showreview = new ReviewController();
+        $showreview->showReview();
+        break;
+    case 'discount':
+        $discount = new DiscountController();
+        $discount->getAllDiscount();
+        break;
+    case 'adddiscount':
+        $discount = new DiscountController();
+        $discount->viewAddDiscount();
+        break;
+    case 'insertdiscount':
+        $discount = new DiscountController();
+        $discount->addDiscount();
+        break;
+    case 'editdiscount':
+        $discount = new DiscountController();
+        $discount->viewEditDiscount();
+        break;
+    case 'edit_discount':
+        $discount = new DiscountController();
+        $discount->editDiscount();
+        break;
+    case 'order':
+        $order = new OrderController();
+        $order->getAllOrder();
+        break;
+    case 'confirm_order':
+        $order = new OrderController();
+        $order->confirmOrder();
         break;
     default:
         $cate = new CategoryController();

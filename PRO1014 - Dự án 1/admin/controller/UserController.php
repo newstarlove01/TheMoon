@@ -20,9 +20,8 @@ class UserController
         if (isset($_GET['id']) && ($_GET['id'] > 0)) {
             $id = $_GET['id'];
             $this->data['detail_user'] = $this->user->getIdUser($id);
-            $this->renderview('edituser', $this->data);
+            $this->renderview('edit_user', $this->data);
         }
-        // $this->renderview('editcate', $this->data);
     }
     function getAllUser()
     {
@@ -49,23 +48,6 @@ class UserController
             $this->user->updateUserAdmin($data);
             echo '<script>alert("Cập nhật người dùng thành công");</script>';
             echo '<script>location.href="index.php?view=user";</script>';
-        }
-    }
-    function delUser()
-    {
-        if (isset($_GET['id']) && ($_GET['id'])) {
-            $id = $_GET['id'];
-            $data = $this->user->getIdUser($id);
-            if ($data['trang_thai'] == 1) {
-                echo '<script>alert("Người dùng đang hoạt động!");</script>';
-                echo '<script>location.href="index.php?view=user";</script>';
-            } else {
-                $file = '../img/' . $data['avatar'];
-                unlink($file);
-                $this->user->deleteUser($id);
-                echo '<script>alert("Xoá người dùng thành công");</script>';
-                echo '<script>location.href="index.php?view=user";</script>';
-            }
         }
     }
 }

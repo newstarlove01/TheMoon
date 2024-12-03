@@ -8,13 +8,19 @@ require 'phpMailer/src/PHPMailer.php';
 require 'phpMailer/src/SMTP.php';
 
 require_once('app/model/UserModel.php');
+require_once('app/model/CartModel.php');
+require_once('app/model/ProductModel.php');
 class UserController
 {
     private $user;
+    private $cart;
+    private $product;
     private $data;
     function __construct()
     {
         $this->user = new UserModel();
+        $this->cart = new CartModel();
+        $this->product = new ProductModel();
     }
     function renderview($view, $data = null)
     {
@@ -38,6 +44,17 @@ class UserController
     function viewchangepass()
     {
         $this->renderView('changepass');
+    }
+    function viewprofile()
+    {
+        $email = $_SESSION['user']['email'];
+        $this->data['user'] = $this->user->checkmail($email);
+        $this->data['user']['order'] = $this->cart->getUserOrder($this->data['user']['id']) ?? [];
+        foreach ($this->data['user']['order'] as &$product) {
+            $product['product'] = $this->product->getIdPro($product['id_sp']) ?? [];
+            $product['img'] = $this->product->getImg($product['id_sp']) ?? [];
+        }
+        $this->renderView('profile', $this->data);
     }
     function check()
     {
@@ -86,6 +103,11 @@ class UserController
             $data['mat_khau'] = $_POST['password'];
             $data['mat_khau_moi'] = $_POST['repassword'];
 
+            $_SESSION['old_data'] = [
+                'firstname' => $data['ho'],
+                'lastname' => $data['ten'],
+                'email' => $data['email']
+            ];
             $result = $this->user->checkmail($data['email']);
             if ($result) {
                 echo '    
@@ -98,6 +120,7 @@ class UserController
                 </script>';
             } else {
                 if ($data['mat_khau'] === $data['mat_khau_moi']) {
+                    unset($_SESSION['old_data']);
                     $this->user->insertUser($data);
                     echo '    
                     <script>
@@ -122,7 +145,7 @@ class UserController
     }
     function logout()
     {
-        session_destroy();
+        unset($_SESSION['user']);
         echo '
         <script>
             location.href="index.php?view=home"
@@ -181,35 +204,23 @@ class UserController
             $data['email'] = $_SESSION['email'];
             $result = $this->user->checkmail($data['email']);
             $reset_code = $_POST['resetcode'];
-            $oldpass = $_POST['oldpass'];
             $data['newpass'] = $_POST['newpass'];
             $data['renewpass'] = $_POST['renewpass'];
             if ($reset_code == $result['reset_code']) {
-                if ($result['mat_khau'] === $oldpass) {
-                    if ($data['newpass'] === $data['renewpass']) {
-                        $this->user->updateUser($data);
-                        echo '    
+                if ($data['newpass'] === $data['renewpass']) {
+                    $this->user->updateUser($data);
+                    echo '    
                 <script>
                     alert("Đổi mật khẩu thành công!");
                 </script>';
-                        echo '
+                    echo '
                 <script>
                     location.href="index.php?view=login"
                 </script>';
-                    } else {
-                        echo '    
-                <script>
-                    alert("Mật khẩu nhập lại không giống!");
-                </script>';
-                        echo '
-                <script>
-                    location.href="index.php?view=changepass"
-                </script>';
-                    }
                 } else {
                     echo '    
                 <script>
-                    alert("Mật khẩu cũ không đúng! Vui lòng nhập lại");
+                    alert("Mật khẩu nhập lại không giống!");
                 </script>';
                     echo '
                 <script>
@@ -227,12 +238,6 @@ class UserController
                 </script>';
             }
         }
-    }
-    function viewprofile()
-    {
-        $email = $_SESSION['user']['email'];
-        $this->data['user'] = $this->user->checkmail($email);
-        $this->renderView('profile', $this->data);
     }
     function editprofile()
     {

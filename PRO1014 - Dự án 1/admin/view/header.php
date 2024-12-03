@@ -61,14 +61,14 @@ function isActive($currentView, $menuView)
                 Người dùng
               </a>
             </li>
-            <li class="<?= isActive($view, 'sale') ?>">
-              <a href="">
+            <li class="<?= isActive($view, 'discount') ?>">
+              <a href="index.php?view=discount">
                 <i class="fa-solid fa-tag"></i>
                 Giảm giá
               </a>
             </li>
             <li class="<?= isActive($view, 'review') ?>">
-              <a href="">
+              <a href="index.php?view=review">
                 <i class="fa-solid fa-star"></i>
                 Đánh giá
               </a>
@@ -79,8 +79,8 @@ function isActive($currentView, $menuView)
                 Bài viết
               </a>
             </li>
-            <li>
-              <a href="">
+            <li class="<?= isActive($view, 'order') ?>">
+              <a href="index.php?view=order">
                 <i class="fa-solid fa-truck"></i>
                 Đơn hàng
               </a>

@@ -167,7 +167,7 @@
             <img src="./img/<?= $item['img'][0]['anh_chinh'] ?>" alt="" />
             <h2><?= $item['ten'] ?></h2>
             <p><?= number_format($item['gia']) ?>đ</p>
-            <button>Thêm vào giỏ hàng</button>
+            <button>Chọn size</button>
           </a>
         <?php     }; ?>
       </div>

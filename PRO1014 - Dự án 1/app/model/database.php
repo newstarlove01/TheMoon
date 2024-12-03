@@ -39,16 +39,16 @@ class Database
     return $this->stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  function insert($sql, $param)
+  function insert($sql, $param = [])
   {
     $this->query($sql, $param);
     return $this->conn->lastInsertId();
   }
-  function delete($sql, $param)
+  function delete($sql, $param = [])
   {
     $this->query($sql, $param);
   }
-  function update($sql, $param)
+  function update($sql, $param = [])
   {
     $this->query($sql, $param);
   }

@@ -49,11 +49,6 @@ class UserModel
         $param = [$data['firstname'], $data['lastname'], $data['email'], $data['sdt'], $data['address'], $data['image'], $data['idprofile']];
         return $this->db->update($sql, $param);
     }
-    function deleteUser($id)
-    {
-        $sql = "DELETE FROM khach_hang WHERE id = ?";
-        return $this->db->delete($sql, [$id]);
-    }
     function getAllUser()
     {
         $sql = "SELECT * FROM khach_hang";

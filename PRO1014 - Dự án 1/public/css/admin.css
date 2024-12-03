@@ -138,7 +138,7 @@ main th {
 }
 
 main .main-table table button {
-  width: 60%;
+  width: 90%;
 }
 
 .control {
@@ -218,4 +218,8 @@ input[type="checkbox"]:checked + .custom-checkbox::after {
   border: solid black;
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
+}
+
+.blank {
+  color: gray;
 }
