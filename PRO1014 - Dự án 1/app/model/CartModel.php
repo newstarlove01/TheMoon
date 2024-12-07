@@ -97,13 +97,36 @@ class CartModel
         $sql = "SELECT * FROM don_hang LIMIT $limit OFFSET $offset";
         return $this->db->getAll($sql);
     }
-    function confirmOrder($id)
+    function settingOrder($status, $id)
     {
-        $sql = "UPDATE don_hang SET trang_thai = 1 WHERE id = $id";
+        $sql = "UPDATE don_hang SET trang_thai = '$status' WHERE id = $id";
         $this->db->update($sql);
     }
-    function getUserOrder($id){
-        $sql = "SELECT * FROM chi_tiet_don_hang WHERE id_dh = (SELECT id FROM don_hang WHERE trang_thai = 1 AND id_kh = $id)";
+    function getUserOrder($id)
+    {
+        $sql = "SELECT * FROM don_hang WHERE id_kh = $id";
         return $this->db->getAll($sql);
+    }
+    function getUserOrderDetail($id)
+    {
+        $sql = "SELECT * FROM chi_tiet_don_hang WHERE id_dh = $id";
+        return $this->db->getAll($sql);
+    }
+    function deleteOrder($id)
+    {
+        try {
+            $this->db->beginTransaction();
+
+            $sqlDeleteDetail = "DELETE FROM chi_tiet_don_hang WHERE id_dh = ?";
+            $this->db->delete($sqlDeleteDetail, [$id]);
+
+            $sqlDeleteOrder = "DELETE FROM don_hang WHERE id = ?";
+            $this->db->delete($sqlDeleteOrder, [$id]);
+
+            $this->db->commit();
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            throw $e;
+        }
     }
 }

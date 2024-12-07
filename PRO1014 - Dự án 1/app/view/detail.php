@@ -89,7 +89,7 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $product['mo_ta']);
   </div>
   <div id="danh-gia">
     <h3>Đánh giá</h3>
-    <form action="index.php?view=addreview" method="post">
+    <form action="index.php?view=addreview" method="post" enctype="multipart/form-data">
       <input type="hidden" name="productid" value="<?= $product['id'] ?>">
       <div class="rate">
         <input type="radio" id="star5" name="rate" value="5" />
@@ -104,7 +104,7 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $product['mo_ta']);
         <label for="star1" title="text">1 star</label>
       </div>
       <textarea name="content"></textarea>
-      <input type="file" name="files"> <br>
+      <input type="file" name="file">
       <button type="submit" name="sub">Đánh giá</button>
     </form>
     <h4> Đánh giá của khách hàng (<?php echo count($review) ?>)</h4>

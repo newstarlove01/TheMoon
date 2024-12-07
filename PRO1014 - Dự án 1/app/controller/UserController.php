@@ -49,11 +49,19 @@ class UserController
     {
         $email = $_SESSION['user']['email'];
         $this->data['user'] = $this->user->checkmail($email);
-        $this->data['user']['order'] = $this->cart->getUserOrder($this->data['user']['id']) ?? [];
-        foreach ($this->data['user']['order'] as &$product) {
-            $product['product'] = $this->product->getIdPro($product['id_sp']) ?? [];
-            $product['img'] = $this->product->getImg($product['id_sp']) ?? [];
+        $this->data['order'] = $this->cart->getUserOrder($this->data['user']['id']) ?? [];
+        foreach ($this->data['order'] as $key => $order) {
+            $this->data['order'][$key]['detail'] = $this->cart->getUserOrderDetail($order['id']);
+            foreach ($this->data['order'][$key]['detail'] as $detailKey => $detail) {
+                // Retrieve product information
+                $detail['product'] = $this->product->getIdPro($detail['id_sp']);
+                $detail['img'] = $this->product->getImg($detail['id_sp']);
+                
+                // Update the detail with product info
+                $this->data['order'][$key]['detail'][$detailKey] = $detail;
+            }
         }
+        
         $this->renderView('profile', $this->data);
     }
     function check()

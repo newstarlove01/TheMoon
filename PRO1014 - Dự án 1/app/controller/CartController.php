@@ -200,8 +200,15 @@ class CartController
             unset($_SESSION['cart']);
             unset($_SESSION['total_cart']);
             unset($_SESSION['total_pay']);
-            echo '<script>alert("Đơn hàng đã đc đặt thành công!");</script>';
+            echo '<script>alert("Đơn hàng đã được đặt thành công!");</script>';
             echo '<script>location.href="index.php?view=profile";</script>';
         }
+    }
+    function deactiveOrder(){
+        $id = $_POST['orderid'];
+        $status = 'Đã huỷ';
+        $this->cart->settingOrder($status,$id); 
+        echo '<script>alert("Đơn hàng đã được huỷ thành công!");</script>';
+        echo '<script>location.href="index.php?view=profile";</script>';
     }
 }

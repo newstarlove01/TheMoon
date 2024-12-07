@@ -130,6 +130,10 @@ switch ($view) {
         $addpayment = new CartController();
         $addpayment->addPayment();
         break;
+    case 'deactiveOrder':
+        $deactiveOrder = new CartController();
+        $deactiveOrder->deactiveOrder();
+        break;
     default:
         $home = new HomeController();
         $home->home();

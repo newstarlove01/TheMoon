@@ -12,10 +12,11 @@ if (isset($_SESSION['discount'])) {
     $discount = 0;
     $discount_name = '';
 }
-if (is_array($_SESSION['total_pay']) && !empty($_SESSION['total_pay'])) {
+if (isset($_SESSION['total_pay'])) {
     $total_pay = $_SESSION['total_pay'];
 } else {
     $total_pay = $total;
+    $_SESSION['total_pay'] = $total;
 }
 ?>
 

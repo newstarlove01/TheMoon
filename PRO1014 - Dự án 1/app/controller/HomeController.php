@@ -25,13 +25,14 @@ class HomeController
             $product['img'] = $this->product->getImg($product['id']) ?? []; 
         }
         $this->data['dssp'] = $this->product->getProduct(2);
+        $this->data['dssp'] = $this->product->getProduct(2);
         foreach ($this->data['dssp'] as &$product) {
-            $product['img'] = $this->product->getImg($product['id']) ?? [];
+            $product['img'] = $this->product->getImg($product['id']) ?? []; 
         }
         // var_dump( $this->data['dssp']);
         $this->data['dssphot'] = $this->product->getProduct(1);
         foreach ($this->data['dssphot'] as &$product) {
-            $product['img'] = $this->product->getImg($product['id']) ?? [];
+            $product['img'] = $this->product->getImg($product['id']) ?? []; 
         }
         $this->data['dsm'] = $this->banner->getMeet();
         $this->view($this->data);

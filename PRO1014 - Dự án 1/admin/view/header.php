@@ -30,6 +30,7 @@ function isActive($currentView, $menuView)
 
   <script src="../public/js/all.js"></script>
   <script src="../public/js/bootstrap.bundle.js"></script>
+
 </head>
 
 <body>
@@ -38,7 +39,7 @@ function isActive($currentView, $menuView)
       <div class="sidebar">
         <div class="sidebar-wrapper">
           <div class="logo">
-            <a href="" class="simple-text">
+            <a href="index.php" class="simple-text">
               <img src="../img/logo-ngang.png" alt="" />
             </a>
           </div>
@@ -100,6 +101,6 @@ function isActive($currentView, $menuView)
         <h1>Trang quản trị của The Moon</h1>
         <div>
           <a href="index.php?view=logout">Đăng xuất</a>
-          <img src="../img/<?=$_SESSION['user']['avatar'] ?>" alt="" />
+          <img src="../img/<?= $_SESSION['user']['avatar'] ?>" alt="" />
         </div>
       </nav>

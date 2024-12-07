@@ -9,9 +9,10 @@
       <tr>
         <th style="width: 5%;">STT</th>
         <th style="width: 10%;">Tiêu đề</th>
-        <th style="width: 20%;">Tóm tắt</th>
-        <th style="width: 20%;">Nội dung</th>
+        <th style="width: 15%;">Tóm tắt</th>
+        <th style="width: 15%;">Nội dung</th>
         <th style="width: 20%;">Hình ảnh</th>
+        <th style="width: 10%;">Trạng thái</th>
         <th style="width: 10%;">Ngày nhập</th>
         <th style="width: 15%;">Thao tác</th>
       </tr>
@@ -27,6 +28,10 @@
           <td><?= subword($listblog[$i]['tom_tat'], 20) ?></td>
           <td><?= subword($listblog[$i]['noi_dung'], 20) ?></td>
           <td><img width="100%" src="../img/<?= $listblog[$i]['hinh_anh'] ?>" alt=""></td>
+          <td style="text-align: center;">
+            <input type="checkbox" <?= ($listblog[$i]['trang_thai'] ? "checked" : "") ?>>
+            <span class="custom-checkbox"></span>
+          </td>
           <td><?= $listblog[$i]['ngay_nhap'] ?></td>
           <td class="button">
             <a href="index.php?view=editblog&id=<?= $listblog[$i]['id'] ?>"><button>Sửa</button></a>

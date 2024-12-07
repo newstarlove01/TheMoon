@@ -6,14 +6,18 @@ class InformationModel{
         $this->db = new Database();
     }
     function getBanner(){
-        $sql = "SELECT * FROM banner";
+        $sql = "SELECT * FROM banner WHERE trang_thai = 1";
         return $this->db->getAll($sql);
     }
     function getMeet(){
-        $sql = "SELECT * FROM meets";
+        $sql = "SELECT * FROM meets WHERE trang_thai = 1";
         return $this->db->getAll($sql);
     }
     function getBLog(){
+        $sql = "SELECT * FROM bai_viet WHERE trang_thai = 1";
+        return $this->db->getAll($sql);
+    }
+    function getAllBLog(){
         $sql = "SELECT * FROM bai_viet";
         return $this->db->getAll($sql);
     }
@@ -39,8 +43,8 @@ class InformationModel{
     }
     function updateBlog($data)
     {
-        $sql = "UPDATE bai_viet SET tieu_de = ?, tom_tat = ?, noi_dung = ?, hinh_anh = ? WHERE id = ?";
-        $param = [$data['name'], $data['title'], $data['content'], $data['image'], $data['id']];
+        $sql = "UPDATE bai_viet SET tieu_de = ?, tom_tat = ?, noi_dung = ?, hinh_anh = ?, trang_thai = ? WHERE id = ?";
+        $param = [$data['name'], $data['title'], $data['content'], $data['image'], $data['status'], $data['id']];
         return $this->db->update($sql, $param);
     }
     function delBlog($id)

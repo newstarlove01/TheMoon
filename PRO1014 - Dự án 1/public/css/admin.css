@@ -223,3 +223,19 @@ input[type="checkbox"]:checked + .custom-checkbox::after {
 .blank {
   color: gray;
 }
+
+.details-row {
+  background-color: #f9f9f9;
+}
+.details-row table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.details-row th, .details-row td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.order-row {
+  cursor: pointer;
+}

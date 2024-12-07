@@ -156,6 +156,10 @@ switch ($view) {
         $order = new OrderController();
         $order->confirmOrder();
         break;
+    case 'del_order':
+        $order = new OrderController();
+        $order->delOrder();
+        break;
     default:
         $cate = new CategoryController();
         $cate->getAllcate();

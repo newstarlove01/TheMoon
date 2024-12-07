@@ -28,7 +28,7 @@ class InformationController
             $pro = $this->product->check_cate_pro($c['id']);
             $this->data['pro'][$c['id']] = count($pro);
         }
-        $this->renderview('analytics',$this->data);
+        $this->renderview('analytics', $this->data);
     }
     function viewAddBlog()
     {
@@ -48,7 +48,7 @@ class InformationController
         $itemsPerPage = 9;
         $offset = ($currentPage - 1) * $itemsPerPage;
 
-        $this->data['blog'] = $this->information->getBLog();
+        $this->data['blog'] = $this->information->getAllBLog();
         $totalProducts = $this->information->getCountAllBlog();
         $totalPages = ceil($totalProducts / $itemsPerPage);
 
@@ -81,6 +81,7 @@ class InformationController
             $data['content'] = $_POST['content'];
             $data['image'] = $_FILES['image']['name'];
             $data['id'] = $_POST['idblog'];
+            $data['status'] = $_POST['status'];
             $data['image_old'] = $_POST['image_old'];
             if ($data['image'] == "") {
                 $data['image'] = $data['image_old'];
@@ -100,10 +101,14 @@ class InformationController
         if (isset($_GET['id']) && ($_GET['id'])) {
             $id = $_GET['id'];
             $blog = $this->information->getIdblog($id);
-            $file = '../img/' . $blog['image'];
-            unlink($file);
-            $this->information->delBlog($id);
-            echo '<script>alert("Xoá bài viết thành công");</script>';
+            if ($blog['trang_thai'] == 0) {
+                $file = '../img/' . $blog['image'];
+                unlink($file);
+                $this->information->delBlog($id);
+                echo '<script>alert("Xoá bài viết thành công");</script>';
+            } else {
+                echo '<script>alert("Bài viết đang hoạt động");</script>';
+            }
             echo '<script>location.href="index.php?view=blog";</script>';
         }
     }

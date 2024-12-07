@@ -96,7 +96,7 @@ class ProductController
 
         $this->data['dm'] = $this->category->getIdcate($idcate);
         $this->data['size'] = $this->product->getSizeDetail($id);
-        $this->data['review'] = $this->product->getAllReviewId($id,$offset,$itemsPerPage);
+        $this->data['review'] = $this->product->getAllReviewId($id, $offset, $itemsPerPage);
         foreach ($this->data['review'] as &$review) {
             $review['user'] = $this->user->getIdUser($review['id_kh']) ?? [];
         }
@@ -136,15 +136,11 @@ class ProductController
                         $data['productid'] = $idpro;
                         $data['rate'] = $_POST['rate'];
                         $data['content'] = $_POST['content'];
-                        $data['file'] = $_FILES["files"]["name"];
+                        $data['file'] = $_FILES["file"]["name"];
                         $file = './img/' . $data['file'];
-                        move_uploaded_file($_FILES['files']['tmp_name'], $file);
+                        move_uploaded_file($_FILES['file']['tmp_name'], $file);
 
                         $this->product->addReview($data);
-                        echo '    
-                        <script>
-                            alert("Bạn cần mua hàng để đánh giá");
-                        </script>';
                     }
                     echo '
                         <script>
