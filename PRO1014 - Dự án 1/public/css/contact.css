@@ -1,0 +1,64 @@
+main {
+  text-align: center;
+  color: white;
+}
+
+main h1 {
+  font-family: "Jura";
+  font-weight: bold;
+  margin: 5%;
+  font-size: 60px;
+}
+
+main h1 p {
+  font-size: 30px;
+  font-weight: normal;
+}
+
+main .locate {
+  margin: 0 12%;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+main .locate .info {
+  text-align: left;
+  font-size: 20px;
+}
+
+main .contact {
+  margin: 0 10%;
+}
+
+main .contact label {
+  font-size: 30px;
+  font-family: "Jura";
+  font-weight: normal;
+  margin: 1%;
+}
+
+main .contact textarea {
+  width: 60%;
+  height: 100px;
+  padding: 2%;
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+  margin: 2%;
+}
+
+main .contact button {
+  width: 20%;
+  height: 55px;
+  font-family: "Jura";
+  font-weight: bold;
+  font-size: 20px;
+  background-color: black;
+  border: 2px solid #fab320;
+  color: #fab320;
+}
+
+main .contact button:hover {
+  background-color: #fab320;
+  color: black;
+}

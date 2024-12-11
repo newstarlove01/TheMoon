@@ -26,19 +26,19 @@ if (isset($_SESSION['total_pay'])) {
         <div class="form">
             <input type="hidden" name="userid" value="<?= $user['id'] ?>">
             <label for="">Liên hệ</label> <br>
-            <input type="text" placeholder="Email hoặc số điện thoại" value="<?= $user['email'] ?>"> <br>
+            <input type="text" name="contact" placeholder="Email hoặc số điện thoại" value="<?= $user['email'] ?>"> <br>
             <label for="">Giao hàng</label> <br>
-            <select name="city" id="city" required>
+            <select name="city" id="city">
                 <option value="">Thành phố:</option>
                 <option value="Hồ Chí Minh">Hồ Chí Minh</option>
                 <option value="Hà Nội">Hà Nội</option>
             </select> <br>
             <div class="name">
-                <input type="text" placeholder="Họ" value="<?= $user['ho'] ?>" required>
-                <input type="text" placeholder="Tên" value="<?= $user['ten'] ?>" required>
+                <input type="text" name="lastName" placeholder="Họ" value="<?= $user['ho'] ?>">
+                <input type="text" name="firstName" placeholder="Tên" value="<?= $user['ten'] ?>">
             </div>
-            <input type="text" placeholder="Số điện thoại" value="<?= $user['sdt'] ?>" required> <br>
-            <input type="text" name="address" placeholder="Địa chỉ" value="<?= $user['dia_chi'] ?>" required> <br>
+            <input type="text" name="phone" placeholder="Số điện thoại" value="<?= $user['sdt'] ?>"> <br>
+            <input type="text" name="address" placeholder="Địa chỉ" value="<?= $user['dia_chi'] ?>"> <br>
             <label for="">Phương thức vận chuyển</label> <br>
             <select name="ship" id="ship">
                 <option value="Tiêu chuẩn" selected>Tiêu chuẩn</option>
@@ -75,17 +75,6 @@ if (isset($_SESSION['total_pay'])) {
                     <?php } ?>
                 <?php } ?>
             <?php } ?>
-            <!-- <div class="cart-item">
-                <div class="image">
-                    <img src="./img/ChainBlackHeliosStainlessSteel.webp" alt="">
-                    <span>1</span>
-                </div>
-                <div class="product">
-                    <h5>Nhẫn Bạc S925 Black Sun Helios Silver Original</h5>
-                    <p>Size 7</p>
-                </div>
-                <p>845.000đ</p>
-            </div> -->
         </div>
         <form action="index.php?view=discount" method="post">
             <div class="discount">
@@ -113,3 +102,68 @@ if (isset($_SESSION['total_pay'])) {
         </div>
     </div>
 </main>
+
+<script>
+    // Hàm kiểm tra form
+    function validateForm(event) {
+        // Ngừng gửi form nếu không hợp lệ
+        event.preventDefault();
+
+        // Lấy các giá trị từ form
+        const contact = document.querySelector('input[name="contact"]').value.trim(); // Liên hệ
+        const city = document.querySelector('select[name="city"]').value.trim(); // Thành phố
+        const lastName = document.querySelector('input[name="lastName"]').value.trim(); // Họ
+        const firstName = document.querySelector('input[name="firstName"]').value.trim(); // Tên
+        const phone = document.querySelector('input[name="phone"]').value.trim(); // Số điện thoại
+        const address = document.querySelector('input[name="address"]').value.trim(); // Địa chỉ
+        const ship = document.querySelector('select[name="ship"]').value.trim(); // Phương thức vận chuyển
+        const payment = document.querySelector('input[name="payment"]:checked'); // Phương thức thanh toán
+
+        // Kiểm tra các trường bắt buộc
+        if (!contact) {
+            alert("Vui lòng nhập Liên hệ!");
+            return false;
+        }
+
+        if (!city) {
+            alert("Vui lòng chọn Thành phố!");
+            return false;
+        }
+
+        if (!lastName || !firstName) {
+            alert("Vui lòng nhập đầy đủ Họ và Tên!");
+            return false;
+        }
+
+        if (!phone) {
+            alert("Vui lòng nhập số điện thoại!");
+            return false;
+        }
+
+        if (!address) {
+            alert("Vui lòng nhập địa chỉ!");
+            return false;
+        }
+
+        if (!ship) {
+            alert("Vui lòng chọn phương thức vận chuyển!");
+            return false;
+        }
+
+        if (!payment) {
+            alert("Vui lòng chọn phương thức thanh toán!");
+            return false;
+        }
+        event.target.submit(); // Gửi form
+    }
+
+    // Đảm bảo DOM đã được tải hoàn chỉnh
+    document.addEventListener('DOMContentLoaded', function() {
+        const paymentForm = document.querySelector('form[action="index.php?view=addpayment"]');
+
+        // Kiểm tra nếu form tồn tại trước khi gán sự kiện
+        if (paymentForm) {
+            paymentForm.addEventListener('submit', validateForm);
+        }
+    });
+</script>

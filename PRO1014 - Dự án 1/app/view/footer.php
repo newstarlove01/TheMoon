@@ -27,7 +27,7 @@
             </div>
             <div class="connect-items">
                 <ul>
-                    <li><a href="#">Chăm sóc khách hàng</a></li>
+                    <li><a href="?view=contact">Chăm sóc khách hàng</a></li>
                     <li>Hướng dẫn thanh toán</li>
                     <li>Giao hàng</li>
                     <li>Chính sách bảo hành</li>
@@ -37,7 +37,7 @@
             </div>
             <div class="connect-items">
                 <ul>
-                    <li><a href="index.php?view=about">Về chúng tôi</a></li>
+                    <li><a href="?view=about">Về chúng tôi</a></li>
                     <li>Câu chuyện của The Moon</li>
                     <li>Hệ thống cửa hàng</li>
                     <li>Tuyển dụng</li>
@@ -46,7 +46,7 @@
             </div>
             <div class="connect-items">
                 <ul>
-                    <li><a href="index.php?view=blog">Dành cho khách hàng</a></li>
+                    <li><a href="?view=blog">Dành cho khách hàng</a></li>
                     <li>Tin tức</li>
                     <li>Kiến thức thời trang</li>
                     <li>Hướng dẫn bảo quản sản phẩm</li>

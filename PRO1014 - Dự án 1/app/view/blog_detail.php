@@ -7,7 +7,7 @@
     ?>
     <div class="blog-detail">
         <div class="blog-item">
-            <a href="index.php?view=blog"><button>Quay lại</button></a> <br> <br> <br>
+            <a href="?view=blog"><button>Quay lại</button></a> <br> <br> <br>
             <strong><?= $blogdetail['tieu_de'] ?></strong>
             <p> <?= $noi_dung ?> </p>
         </div>

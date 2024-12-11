@@ -27,6 +27,7 @@ function isActive($currentView, $menuView)
   <link
     href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Darker+Grotesque:wght@300..900&family=Jura:wght@300..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet" />
+  <link rel="icon" type="image/png" href="../img/logo-doc1.png">
 
   <script src="../public/js/all.js"></script>
   <script src="../public/js/bootstrap.bundle.js"></script>
@@ -65,7 +66,7 @@ function isActive($currentView, $menuView)
             <li class="<?= isActive($view, 'discount') ?>">
               <a href="index.php?view=discount">
                 <i class="fa-solid fa-tag"></i>
-                Giảm giá
+                Khuyến mãi
               </a>
             </li>
             <li class="<?= isActive($view, 'review') ?>">

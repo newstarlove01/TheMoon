@@ -1,4 +1,11 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'app/controller/phpMailer/src/Exception.php';
+require 'app/controller/phpMailer/src/PHPMailer.php';
+require 'app/controller/phpMailer/src/SMTP.php';
+
 require_once 'app/model/database.php';
 require_once 'app/controller/HeaderController.php';
 require_once 'app/controller/HomeController.php';
@@ -14,10 +21,6 @@ $header = new HeaderController();
 $header->header();
 $view = $_GET['view'] ?? '';
 switch ($view) {
-    case 'search':
-        $product = new ProductController();
-        $product->search();
-        break;
     case 'home':
         $home = new HomeController();
         $home->home();
@@ -133,6 +136,14 @@ switch ($view) {
     case 'deactiveOrder':
         $deactiveOrder = new CartController();
         $deactiveOrder->deactiveOrder();
+        break;
+    case 'contact':
+        $contact = new InformationController();
+        $contact->contact();
+        break;
+    case 'sendform':
+        $form = new InformationController();
+        $form->sendForm();
         break;
     default:
         $home = new HomeController();
