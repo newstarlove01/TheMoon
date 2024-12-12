@@ -1,17 +1,24 @@
 <link rel="stylesheet" href="./public/css/product.css?v=<?php echo time(); ?>" />
 <main>
   <?php
-  $cate = $data['dm'];
-  $mo_ta = preg_replace('/([.!?])\s/', '$1<br>', $cate['mo_ta']);
+  if (isset($data['dm'])) {
+    $cate = $data['dm'];
+    $mo_ta = preg_replace('/([.!?])\s/', '$1<br>', $cate['mo_ta']);
+  } else {
+    $cate = array();
+  }
   ?>
-  <div id="product-banner">
-    <img src="./img/<?= $cate['hinh_anh'] ?>" alt="" />
-    <div class="product-banner-content">
-      <h1><?= $cate['ten'] ?></h1>
-      <p><?= $mo_ta ?></p>
-    </div>
-  </div>';
 
+  <?php
+  if (isset($data['dm'])) { ?>
+    <div id="product-banner">
+      <img src="./img/<?= $cate['hinh_anh'] ?>" alt="" />
+      <div class="product-banner-content">
+        <h1><?= $cate['ten'] ?></h1>
+        <p><?= $mo_ta ?></p>
+      </div>
+    </div>;
+  <?php  }; ?>
   <div id="main-container">
     <div id="filter">
       <div class="card">
@@ -175,32 +182,40 @@
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <!-- Trang trước -->
-            <?php $idcate = $_GET['idcate'];
+            <?php
+            // Lấy từ khóa tìm kiếm từ GET nếu có
+            $searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
             $currentPage = $data['currentPage'];
+            $idCategory = isset($_GET['idcate']) ? $_GET['idcate'] : 0;
             ?>
             <li class="page-item <?php echo ($currentPage == 1) ? 'disabled' : ''; ?>">
-              <a class="page-link" href="?view=product&idcate=<?php echo $idcate; ?>&page=<?php echo 1; ?>" aria-label="Previous">
+              <a class="page-link" href="?view=product&idcate=<?php echo $idCategory; ?>&search=<?php echo urlencode($searchKeyword); ?>&page=1" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
+
             <!-- Các trang -->
             <?php
             $totalPages = $data['totalPages'];
             for ($i = 1; $i <= $totalPages; $i++) :
+              $activeClass = ($currentPage == $i) ? 'active-check' : '';
             ?>
-              <li class="page-item ">
-                <a class="page-link <?php echo ($currentPage == $i) ? 'active-check' : ''; ?>" href="?view=product&idcate=<?php echo $idcate; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+              <li class="page-item">
+                <a class="page-link <?php echo $activeClass; ?>" href="?view=product&idcate=<?php echo $idCategory; ?>&search=<?php echo urlencode($searchKeyword); ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
               </li>
             <?php endfor; ?>
+
             <!-- Trang sau -->
-            <li class="page-item <?php echo ($currentPage == $totalPages) ? 'disabled' : ''; ?>">
-              <a class="page-link" href="?view=product&idcate=<?php echo $idcate; ?>&page=<?php echo $totalPages; ?>" aria-label="Next">
+            <li class="page-item <?php echo ($currentPage == $totalPages || $totalPages == 0) ? 'disabled' : ''; ?>">
+              <a class="page-link" href="?view=product&idcate=<?php echo $idCategory; ?>&search=<?php echo urlencode($searchKeyword); ?>&page=<?php echo $totalPages; ?>" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
           </ul>
         </nav>
       </div>
+
+
     </div>
   </div>
 </main>

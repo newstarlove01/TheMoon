@@ -174,7 +174,7 @@ class CartController
                     $_SESSION['discount']['sotien'] = $_SESSION['discount']['gia_tri_km'];
                     $total = $total - $_SESSION['discount']['gia_tri_km'];
                 }
-                $_SESSION['discount']['ten'] = $discount;
+                // $_SESSION['discount']['ten'] = $discount;
             } else {
                 $total = $total;
                 echo '<script>alert("Mã khuyến mãi không hợp lệ hoặc hết hạn sử dụng!");</script>';
@@ -185,29 +185,28 @@ class CartController
     }
     function addPayment()
     {
-        if (isset($_POST['sub'])) {
-            $data = [];
-            $data['userid'] = $_POST['userid'];
-            $data['discount'] =  $_SESSION['discount']['id'] ?? null;
-            $data['total_product'] = $_SESSION['total_cart'];
-            $data['total_discount'] =  $_SESSION['discount']['sotien'] ?? [];
-            $data['total'] = $_SESSION['total_pay'];
-            $data['address'] = $_POST['address'] . ', ' . $_POST['city'];
-            $data['payment'] = $_POST['payment'];
+        $data = [];
+        $data['userid'] = $_POST['userid'];
+        $data['discount'] =  $_SESSION['discount']['id'] ?? null;
+        $data['total_product'] = $_SESSION['total_cart'];
+        $data['total_discount'] =  $_SESSION['discount']['sotien'] ?? [];
+        $data['total'] = $_SESSION['total_pay'];
+        $data['address'] = $_POST['address'] . ', ' . $_POST['city'];
+        $data['payment'] = $_POST['payment'];
 
-            $this->cart->insertOrder($data);
-            unset($_SESSION['discount']);
-            unset($_SESSION['cart']);
-            unset($_SESSION['total_cart']);
-            unset($_SESSION['total_pay']);
-            echo '<script>alert("Đơn hàng đã được đặt thành công!");</script>';
-            echo '<script>location.href="index.php?view=profile";</script>';
-        }
+        $this->cart->insertOrder($data);
+        unset($_SESSION['discount']);
+        unset($_SESSION['cart']);
+        unset($_SESSION['total_cart']);
+        unset($_SESSION['total_pay']);
+        echo '<script>alert("Đơn hàng đã được đặt thành công!");</script>';
+        echo '<script>location.href="index.php?view=profile";</script>';
     }
-    function deactiveOrder(){
+    function deactiveOrder()
+    {
         $id = $_POST['orderid'];
         $status = 'Đã huỷ';
-        $this->cart->settingOrder($status,$id); 
+        $this->cart->settingOrder($status, $id);
         echo '<script>alert("Đơn hàng đã được huỷ thành công!");</script>';
         echo '<script>location.href="index.php?view=profile";</script>';
     }

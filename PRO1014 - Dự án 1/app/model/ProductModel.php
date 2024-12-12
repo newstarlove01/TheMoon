@@ -108,12 +108,6 @@ class ProductModel
         $result = $this->db->getOne($sql);
         return $result['total'];
     }
-    // function insertPro($data)
-    // {
-    //     $sql = "INSERT INTO san_pham(name,price,amount,image,view,idcate) VALUES(?,?,?,?,?,?)";
-    //     $param = [$data['name'], $data['price'], $data['amount'], $data['image'], $data['view'], $data['idcate']];
-    //     return $this->db->insert($sql, $param);
-    // }
     function insertPro($data)
     {
         try {
@@ -154,12 +148,6 @@ class ProductModel
             throw $e; // Ném lỗi để controller xử lý
         }
     }
-    // function updatePro($data)
-    // {
-    //     $sql = "UPDATE san_pham SET name = ?,amount = ?,image = ?,view = ?,price = ?,idcate = ? WHERE id = ?";
-    //     $param = [$data['name'], $data['amount'], $data['image'], $data['view'], $data['price'], $data['idcate'], $data['id']];
-    //     return $this->db->update($sql, $param);
-    // }
     function updatePro($data)
     {
         try {
@@ -222,7 +210,7 @@ class ProductModel
     }
     function checkOrder($id_kh, $id_sp)
     {
-        $sql = "SELECT * FROM chi_tiet_don_hang WHERE id_dh = (SELECT id FROM don_hang WHERE id_kh = $id_kh) AND id_sp = $id_sp";
+        $sql = "SELECT * FROM chi_tiet_don_hang WHERE id_dh IN (SELECT id FROM don_hang WHERE id_kh = $id_kh AND trang_thai = 'Đã xác nhận') AND id_sp = $id_sp";
         return $this->db->getAll($sql);
     }
     function checkReview($id_kh, $id_sp)

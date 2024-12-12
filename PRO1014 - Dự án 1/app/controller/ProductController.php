@@ -19,56 +19,47 @@ class ProductController
     {
         require_once 'app/view/' . $view . '.php';
     }
-
-    public function search()
+    public function product()
     {
-        $searchKeyword = isset($_POST['search']) ? trim($_POST['search']) : '';
+        // Kiểm tra xem có từ khóa tìm kiếm hay không
+        $searchKeyword = isset($_GET['search']) ? trim($_GET['search']) : '';
+        $idCategory = isset($_GET['idcate']) ? (int)$_GET['idcate'] : 0;
 
-        $currentPage = isset($_GET['page']) ? max((int)$_GET['page'], 1) : 1; // Mặc định trang 1 nếu không có
+        // Lấy trang hiện tại và số sản phẩm trên mỗi trang
+        $currentPage = isset($_GET['page']) ? max((int)$_GET['page'], 1) : 1;
         $itemsPerPage = 9;
         $offset = ($currentPage - 1) * $itemsPerPage;
 
-        $totalProducts = $this->product->get_count_search($searchKeyword);
+        // Truy vấn và xử lý tìm kiếm hoặc theo danh mục
+        if ($searchKeyword) {
+            // Nếu có từ khóa tìm kiếm
+            $totalProducts = $this->product->get_count_search($searchKeyword);
+            $this->data['dssp'] = $this->product->getSearch($searchKeyword, $itemsPerPage, $offset);
+            $this->data['searchKeyword'] = $searchKeyword; // Truyền từ khóa tìm kiếm vào view
+        } elseif ($idCategory > 0) {
+            // Nếu có danh mục, tìm sản phẩm theo danh mục
+            $totalProducts = $this->product->get_count_cate_pro($idCategory);
+            $this->data['dssp'] = $this->product->get_all_cate_pro($idCategory, $offset, $itemsPerPage);
+            $this->data['dm'] = $this->category->getIdcate($idCategory);
+            $this->data['size'] = $this->product->getSize($idCategory);
+        } else {
+            // Nếu không có cả từ khóa tìm kiếm và danh mục, không làm gì
+            $this->data['dssp'] = [];
+            $totalProducts = 0;
+        }
+
+        // Tính tổng số trang
         $totalPages = ceil($totalProducts / $itemsPerPage);
-
         $this->data['currentPage'] = $currentPage;
-        $this->data['totalPages'] = $totalPages;  // Truyền biến tổng số trang
-        $this->data['dssp'] = $this->product->getSearch($searchKeyword, $itemsPerPage, $offset);
-        $this->data['searchKeyword'] = $searchKeyword; // Truyền từ khóa tìm kiếm vào view
+        $this->data['totalPages'] = $totalPages;
 
+        // Lặp qua sản phẩm để lấy ảnh
         foreach ($this->data['dssp'] as &$product) {
             $product['img'] = $this->product->getImg($product['id']) ?? [];
         }
 
-        $this->view('search', $this->data);
-    }
-
-    function product()
-    {
-        if (isset($_GET['idcate']) && $_GET['idcate'] > 0) {
-            $id = $_GET['idcate'];
-            $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Nếu không có trang, sử dụng trang 1
-            $itemsPerPage = 9;  // Số sản phẩm mỗi trang
-            $offset = ($currentPage - 1) * $itemsPerPage; // Tính offset dựa trên trang hiện tại
-
-            $this->data['dm'] = $this->category->getIdcate($id);
-            $this->data['size'] = $this->product->getSize($id);
-            $this->data['dssp'] = $this->product->get_all_cate_pro($id, $offset, $itemsPerPage);
-
-            $totalProducts = $this->product->get_count_cate_pro($id);
-            $totalPages = ceil($totalProducts / $itemsPerPage);
-
-            $this->data['currentPage'] = $currentPage;
-            $this->data['totalPages'] = $totalPages;  // Truyền biến tổng số trang
-
-            // Lặp qua sản phẩm để lấy ảnh
-            foreach ($this->data['dssp'] as &$product) {
-                $product['img'] = $this->product->getImg($product['id']) ?? [];
-            }
-
-            // Gọi view để hiển thị
-            $this->view('product', $this->data);
-        }
+        // Gọi view để hiển thị
+        $this->view('product', $this->data);
     }
 
     function detail()

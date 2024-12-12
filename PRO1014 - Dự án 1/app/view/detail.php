@@ -89,7 +89,7 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $product['mo_ta']);
   </div>
   <div id="danh-gia">
     <h3>Đánh giá</h3>
-    <form action="index.php?view=addreview" method="post" enctype="multipart/form-data">
+    <form action="index.php?view=addreview" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
       <input type="hidden" name="productid" value="<?= $product['id'] ?>">
       <div class="rate">
         <input type="radio" id="star5" name="rate" value="5" />
@@ -103,10 +103,11 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $product['mo_ta']);
         <input type="radio" id="star1" name="rate" value="1" />
         <label for="star1" title="text">1 star</label>
       </div>
-      <textarea name="content"></textarea>
+      <textarea name="content" placeholder="Viết nhận xét của bạn"></textarea>
       <input type="file" name="file">
       <button type="submit" name="sub">Đánh giá</button>
     </form>
+
     <h4> Đánh giá của khách hàng (<?php echo count($review) ?>)</h4>
     <?php
     for ($i = 0; $i < count($review); $i++) {
@@ -162,7 +163,7 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $product['mo_ta']);
             </li>
           <?php endfor; ?>
           <!-- Trang sau -->
-          <li class="page-item <?php echo ($currentPage == $totalPages) ? 'disabled' : ''; ?>">
+          <li class="page-item <?php echo ($currentPage == $totalPages || $totalPages == 0) ? 'disabled' : ''; ?>">
             <a class="page-link" href="?view=detail&idcate=<?php echo $idcate; ?>&id=<?php echo $id; ?>&page=<?php echo $totalPages; ?>" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
@@ -189,3 +190,50 @@ $mo_ta = preg_replace('/([.!?])\s/', '$1<br><br>', $product['mo_ta']);
     </div>
   </div>
 </main>
+<script>
+  function validateForm() {
+    // Lấy giá trị số sao được chọn
+    const rate = document.querySelector('input[name="rate"]:checked');
+
+    // Lấy nội dung nhận xét
+    const content = document.querySelector('textarea[name="content"]').value.trim();
+
+    // Lấy tệp tải lên
+    const file = document.querySelector('input[name="file"]').files[0];
+
+    // Kiểm tra xem số sao đã được chọn chưa
+    if (!rate) {
+      alert("Vui lòng chọn số sao!");
+      return false; // Ngăn gửi form
+    }
+
+    // Kiểm tra nội dung nhận xét
+    if (!content) {
+      alert("Vui lòng nhập nhận xét!");
+      return false;
+    }
+
+    // Kiểm tra tệp đã được tải lên chưa
+    if (!file) {
+      alert("Vui lòng tải lên một tệp!");
+      return false;
+    }
+
+    // Kiểm tra định dạng file
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (!allowedTypes.includes(file.type)) {
+      alert("Chỉ cho phép tải lên các file hình ảnh (JPEG, PNG, GIF)!");
+      return false;
+    }
+
+    return true; // Tất cả đều hợp lệ, cho phép gửi form
+  }
+
+  // Gán sự kiện onsubmit cho form
+  document.addEventListener('DOMContentLoaded', function() {
+    const reviewForm = document.querySelector('form[action="index.php?view=addreview"]');
+    if (reviewForm) {
+      reviewForm.onsubmit = validateForm;
+    }
+  });
+</script>

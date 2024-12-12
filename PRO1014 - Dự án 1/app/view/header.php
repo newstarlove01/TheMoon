@@ -13,6 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Darker+Grotesque:wght@300..900&family=Jura:wght@300..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet" />
+    <link rel="icon" type="image/png" href="../img/logo-doc1.png">
 </head>
 
 <body id="body">
@@ -20,13 +21,15 @@
     <div class="logo-nav">
       <a href="index.php"><img id="logo" src="./img/logo-ngang.png" alt="" /> </a>
       <div class="icons-area">
-        <form method="POST" action="index.php?view=search">
+        <form action="index.php" method="get">
           <input
             onblur="closeSearch()"
             id="search"
             name="search"
             type="text"
+            value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>"
             placeholder="Tìm kiếm..." />
+          <input type="hidden" name="view" value="product" /> <!-- Đảm bảo rằng view luôn là product -->
         </form>
         <a onmouseover="openSearch()" href="#" class="search"><i class="fa-solid fa-magnifying-glass icon"></i></a>
         <?php
