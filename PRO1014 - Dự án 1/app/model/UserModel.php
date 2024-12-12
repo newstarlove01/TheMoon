@@ -1,5 +1,4 @@
 <?php
-
 class UserModel
 {
     private $db;
@@ -12,14 +11,12 @@ class UserModel
         $sql = "SELECT * FROM khach_hang WHERE email = '$email' AND mat_khau = '$password'";
         return  $this->db->getOne($sql);
     }
-
     function insertUser($data)
     {
         $sql = "INSERT INTO khach_hang(ho,ten,email,mat_khau) VALUES (?,?,?,?)";
         $param = [$data['ho'], $data['ten'], $data['email'], $data['mat_khau']];
         return $this->db->insert($sql, $param);
     }
-
     function checkmail($email)
     {
         $sql = "SELECT * FROM khach_hang WHERE email='$email'";

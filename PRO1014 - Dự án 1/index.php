@@ -6,7 +6,6 @@ require_once 'app/controller/ProductController.php';
 require_once 'app/controller/UserController.php';
 require_once 'app/controller/CartController.php';
 require_once 'app/controller/InformationController.php';
-
 session_start();
 // session_unset();
 $db = new Database();
